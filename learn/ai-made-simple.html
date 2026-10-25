@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn what AI is, how it learns from examples, and where it can help. Train a small model yourself in the interactive lab." />
+  <meta name="theme-color" content="#102033" />
+  <title>AI Made Simple | Learn AI | Code With Impact</title>
+  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
+  <link rel="stylesheet" href="learn.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="logo" href="../index.html"><img class="logo-image" src="../images/logo_for__codewithimpact__features.png" alt="Code With Impact logo" /></a>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html">Projects</a>
+      <a class="active" href="index.html">Learn AI</a>
+      <a href="../get-involved.html">Get Involved</a>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <a class="btn primary small" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer">Partner With Us</a>
+  </header>
+
+  <main id="main">
+    <section class="lesson-top">
+      <p class="crumbs"><a href="index.html">← All lessons</a> / Foundations / Lesson 01 of 07</p>
+      <p class="eyebrow">Interactive lesson</p>
+      <h1>AI made simple: what it is, and what it isn't.</h1>
+      <p>Before the jargon: what does “AI” actually mean, how does a system learn from examples, and when should a charity or research team use it? When would another approach work better?</p>
+      <ul class="lesson-stats"><li>About 15 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Original diagrams</li></ul>
+    </section>
+
+    <div class="lesson-shell">
+      <div class="lesson-content">
+        <section class="panel" id="intro">
+          <h2>So what is AI?</h2>
+          <p>Most of the AI you meet today is <b>machine learning</b>: instead of a person writing every rule, a system is shown many examples and learns patterns from them. Show it thousands of emails marked “spam” or “not spam” and it learns which features tend to signal spam.</p>
+          <p><b>Generative AI</b>, including tools like ChatGPT, Claude or Gemini, uses the same idea at a huge scale. It learned patterns from vast amounts of text, and uses them to predict what words are likely to come next. That is why it can write fluently, and also why it can sound confident while being wrong.</p>
+          <div class="compare">
+            <div><h3>Traditional software</h3><p>A person writes the rules.<br><i>“If the email contains <b>prize</b>, mark it spam.”</i></p></div>
+            <div><h3>Machine learning</h3><p>The system learns the rules from examples.<br><i>“Here are 10,000 labelled emails. Find the pattern.”</i></p></div>
+            <div><h3>Generative AI</h3><p>A model learns patterns in language, then produces new text, images or code.</p></div>
+          </div>
+        </section>
+
+        <section class="panel lab" id="lab-train">
+          <p class="lab-tag">Interactive</p>
+          <h2>Teach a tiny model to triage an inbox</h2>
+          <p>A charity receives these eight messages. Each one is labelled <b>Urgent</b> or <b>Can wait</b>. Press <b>Train the model</b>, and a small but real model learns which words point to urgency. Then see how it handles four messages it has never seen.</p>
+          <p class="hint">Try this: switch a few labels to the “wrong” answer and train again. What happens to the predictions?</p>
+          <div id="train-set" class="train-set"></div>
+          <div class="lab-actions"><button type="button" class="btn dark" id="train-btn">Train the model</button><span class="hint" id="train-status" aria-live="polite">Not trained yet.</span></div>
+          <div id="predictions" class="predictions" aria-live="polite"></div>
+          <p class="notice"><b>This is real, but tiny.</b> The model counts which words appear in urgent and non-urgent messages (a method called <i>naive Bayes</i>). Real systems learn from thousands or millions of examples, but the principle is the same: <b>the model can only be as good as the examples it learns from.</b></p>
+        </section>
+        <section class="panel lab" id="lab-fit">
+          <p class="lab-tag">Interactive</p>
+          <h2>Can AI help with this?</h2>
+          <p>For each task, decide whether AI is a good fit. Then compare your answer with ours. You may disagree; what matters is how you reached your decision.</p>
+          <div id="fit-cards" class="fit-cards"></div>
+          <p class="hint" id="fit-status" aria-live="polite"></p>
+        </section>
+
+        <section class="panel" id="ideas">
+          <h2>Key ideas to take away</h2>
+          <ul class="ideas">
+            <li><b>AI learns patterns from examples.</b> Biased, outdated or mislabelled examples produce a biased, outdated or wrong model.</li>
+            <li><b>Generative AI predicts plausible content.</b> Plausible is not the same as true, so facts, figures and references always need checking.</li>
+            <li><b>AI is strongest at drafting, summarising, sorting and searching.</b> It is weakest where accuracy is critical, the stakes for a person are high, or accountability matters.</li>
+            <li><b>Keep a human in charge.</b> Use AI to support people's judgement, especially in health, safeguarding and decisions about individuals. People should remain responsible for these decisions.</li>
+          </ul>
+        </section>
+
+        <section class="panel" id="deeper">
+          <details class="deeper">
+            <summary><span class="deeper-title">Want to go deeper?</span><span class="deeper-sub">Equations, code and research for technical learners. Optional.</span></summary>
+            <div class="deeper-body">
+              <h3>The model in the lab: naive Bayes</h3>
+              <p>For each word <i>w</i>, the model estimates how much more often it appears in urgent messages than in non-urgent ones, with +1 smoothing so unseen words do not produce zeros:</p>
+              <pre class="formula">score(w) = log( (count_urgent(w) + 1) / (N_urgent + V) )
+         − log( (count_wait(w) + 1)   / (N_wait + V) )</pre>
+              <p>A message's score is the sum of its words' scores plus the log of the prior ratio. Positive means “urgent”. <i>N</i> is the number of words in each class and <i>V</i> the vocabulary size. Words the model has never seen contribute nothing, which is why it struggles with new vocabulary.</p>
+              <h3>The same idea in Python</h3>
+<pre class="code"><code>from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+messages = ["Volunteer fell at the event", "Thanks for the newsletter"]
+labels   = ["urgent", "can wait"]
+
+vectoriser = CountVectorizer(stop_words="english")
+X = vectoriser.fit_transform(messages)
+model = MultinomialNB().fit(X, labels)
+
+print(model.predict(vectoriser.transform(["Venue flooded before the event"])))</code></pre>
+              <h3>Words worth knowing</h3>
+              <dl class="glossary">
+                <dt>Training data</dt><dd>The labelled examples a model learns from.</dd>
+                <dt>Generalisation</dt><dd>How well a model handles examples it has not seen. Always test on held-out data.</dd>
+                <dt>Overfitting</dt><dd>Memorising the training examples instead of learning the underlying pattern.</dd>
+                <dt>Foundation model</dt><dd>A large model trained on broad data that can be adapted to many tasks. These models underpin today's generative AI.</dd>
+              </dl>
+            </div>
+          </details>
+        </section>
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>4 quick questions. You can try again as often as you like; lesson completion is saved in this browser; answers reset when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" id="explore">
+          <h2>Continue exploring</h2>
+          <p>We've picked resources that explain these ideas from different angles. They are independent of Code With Impact.</p>
+          <ul class="explore-list"><li class="explore-card"><span class="explore-kind">Course</span><h3><a href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" rel="noopener noreferrer">Generative AI for Beginners <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Microsoft</p><p>A free, structured course with short lessons and practical exercises.</p></li><li class="explore-card"><span class="explore-kind">Courses</span><h3><a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener noreferrer">DeepLearning.AI Short Courses <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">DeepLearning.AI</p><p>One-to-two-hour courses on prompting, RAG, agents and evaluation, many with code.</p></li><li class="explore-card"><span class="explore-kind">Course</span><h3><a href="https://huggingface.co/learn/llm-course/en/chapter1/1" target="_blank" rel="noopener noreferrer">Hugging Face LLM Course <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Hugging Face</p><p>A free, hands-on course on using and fine-tuning open models.</p></li></ul>
+        </section>
+
+        <section class="panel" id="credits">
+          <h2>Sources for this lesson</h2>
+          <p class="credit-note">The explanations, examples, triage model and task cards in this lesson are original Code With Impact material. The lesson introduces one idea at a time, followed by hands-on practice. This structure is inspired by the visual teaching approach of the resources below.</p>
+          <ul class="refs"><li><cite>Hands-On Large Language Models</cite>, Jay Alammar &amp; Maarten Grootendorst (O'Reilly, 2024), Chapter 1, “An Introduction to Language Models”. <a href="https://www.oreilly.com/library/view/hands-on-large-language/9781098150952/" target="_blank" rel="noopener noreferrer">Publisher page <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></li><li><cite>AI Engineering</cite>, Chip Huyen (O'Reilly, 2024), Chapter 1, on building applications with foundation models. <a href="https://www.oreilly.com/library/view/ai-engineering/9781098166298/" target="_blank" rel="noopener noreferrer">Publisher page <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></li></ul>
+          <p class="hint">How we reference: we link and credit, we never copy other educators' text, diagrams or code. See our full <a href="credits.html">Sources &amp; credits</a> register.</p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="index.html"><span>← Back</span><b>Learning path</b></a><a class="next" href="inside-an-llm.html"><span>Next →</span><b>02 · Inside an LLM</b></a></nav>
+      </div>
+
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-train">Teach a model</a><a href="#lab-fit">Can AI help?</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>We do not use cookies on this website.</p>
+    <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
+    <div class="social-links">
+      <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
+      <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+    </div>
+  </footer>
+  <script>window.LESSON={"slug":"ai-made-simple","steps":["train","fit"],"quiz":[{"q":"How does the supervised learning system in this lesson learn to classify messages?","choices":["A programmer writes every rule by hand.","It learns patterns from labelled examples.","It searches the internet each time it runs."],"a":1,"explain":"This classifier learns from labelled examples. Other learning methods use unlabelled data or different feedback."},{"q":"In the lab, you mislabel several messages and retrain. What is most likely?","choices":["The model ignores the mistakes.","The model learns the wrong pattern and its predictions get worse.","The model refuses to train."],"a":1,"explain":"Incorrect labels can teach misleading patterns. Test on separate examples to see how much the errors affect predictions."},{"q":"A generative AI tool gives you a confident statistic with a source. What should you do?","choices":["Use it: confident answers are usually right.","Check the statistic and that the source exists and says this.","Ask the tool if it is sure, and use it if it says yes."],"a":1,"explain":"Generative AI predicts plausible text; it can invent figures and references. Verify against the original source."},{"q":"Which task is the poorest fit for AI acting on its own?","choices":["Drafting a thank-you email for staff to edit.","Grouping survey comments into themes.","Deciding whether a person qualifies for support."],"a":2,"explain":"Decisions about individuals need fairness, accountability and human judgement. AI can support, not decide."}]};</script>
+  <script src="lesson-kit.js" defer></script>
+  <script src="lab-ai-made-simple.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="See how AI represents meaning as numbers, and why that lets computers search by meaning rather than exact words. Interactive meaning map and search comparison." />
+  <meta name="theme-color" content="#102033" />
+  <title>Embeddings &amp; Search | Learn AI | Code With Impact</title>
+  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
+  <link rel="stylesheet" href="learn.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="logo" href="../index.html"><img class="logo-image" src="../images/logo_for__codewithimpact__features.png" alt="Code With Impact logo" /></a>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html">Projects</a>
+      <a class="active" href="index.html">Learn AI</a>
+      <a href="../get-involved.html">Get Involved</a>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <a class="btn primary small" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer">Partner With Us</a>
+  </header>
+
+  <main id="main">
+    <section class="lesson-top">
+      <p class="crumbs"><a href="index.html">← All lessons</a> / Building blocks / Lesson 04 of 07</p>
+      <p class="eyebrow">Interactive lesson</p>
+      <h1>Embeddings and search: finding meaning, not just matching words.</h1>
+      <p>How can a computer know that “people giving their time” is about volunteering, even though the word never appears? Embeddings make this possible. They are used in semantic search and RAG.</p>
+      <ul class="lesson-stats"><li>About 25 minutes</li><li>Intermediate</li><li>No account required</li><li>Original diagrams</li></ul>
+    </section>
+
+    <div class="lesson-shell">
+      <div class="lesson-content">
+        <section class="panel" id="intro">
+          <h2>Meaning as a location</h2>
+          <p>An <b>embedding</b> turns a piece of text into a list of numbers, representing a point in a “meaning space”. An embedding model is trained so that texts with similar meanings land close together, even when they use completely different words.</p>
+          <p>Once text is a point, searching becomes geometry: turn the question into a point too, and find the nearest neighbours. This is called <b>semantic search</b>, and it is the engine inside most “chat with your documents” tools.</p>
+          <div class="notice"><b>About this lab:</b> real embeddings have hundreds or thousands of dimensions and are learned by a model. Ours have just five hand-labelled dimensions: <i>volunteering, money, research, health</i> and <i>events</i>, so you can see exactly what is going on. The similarity calculations are real.</div>
+        </section>
+
+        <section class="panel lab" id="lab-map">
+          <p class="lab-tag">Interactive</p>
+          <h2>Explore the meaning map</h2>
+          <p>Each dot is a short piece of text from a charity's website. Choose a search question: it appears as a navy star, placed among the texts it is closest to, and the three most similar texts are linked to it. The map positions are arranged for illustration; they are not a projection of the five-dimensional vectors. Compare the similarity scores rather than distances on the drawing.</p>
+          <div class="chips" role="group" aria-label="Search questions" id="queries"></div>
+          <div class="map-wrap"><svg id="map" viewBox="0 0 640 400" role="img" aria-label="Map of texts grouped by meaning"></svg></div>
+          <div class="legend" id="legend"></div>
+          <h3 class="mini-h">Closest matches (cosine similarity)</h3>
+          <ol class="results" id="sem-results" aria-live="polite"></ol>
+        </section>
+        <section class="panel lab" id="lab-compare">
+          <p class="lab-tag">Interactive</p>
+          <h2>Keyword search versus meaning search</h2>
+          <p>Run the same question through both kinds of search. Our simple keyword matcher counts exact shared words; meaning search compares hand-set vectors. Real keyword systems can also use stemming and synonym lists. Which wins depends on the question. Try each one and compare the results.</p>
+          <div class="chips" role="group" aria-label="Questions to compare" id="cmp-queries"></div>
+          <div class="two-col">
+            <div><h3 class="mini-h">Keyword search</h3><ol class="results" id="kw-out" aria-live="polite"></ol></div>
+            <div><h3 class="mini-h">Meaning search</h3><ol class="results" id="mean-out" aria-live="polite"></ol></div>
+          </div>
+          <p class="hint" id="cmp-note" aria-live="polite"></p>
+        </section>
+
+        <section class="panel" id="ideas">
+          <h2>Key ideas to take away</h2>
+          <ul class="ideas">
+            <li><b>Embeddings represent patterns of meaning as numbers.</b> Related texts often score highly, but similarity does not prove factual agreement or that a passage answers your question.</li>
+            <li><b>Semantic search finds related ideas</b> even when the words differ. For example, “caring for a relative” finds “support for carers”.</li>
+            <li><b>Keyword search still matters</b> for exact names, codes and acronyms such as “Gift Aid” or “MND”. Many real systems combine both (<i>hybrid search</i>).</li>
+            <li><b>Embeddings are only as good as the model that made them.</b> General models may not understand specialist medical or legal language well.</li>
+          </ul>
+        </section>
+
+        <section class="panel" id="deeper">
+          <details class="deeper">
+            <summary><span class="deeper-title">Want to go deeper?</span><span class="deeper-sub">Equations, code and research for technical learners. Optional.</span></summary>
+            <div class="deeper-body">
+              <h3>Cosine similarity</h3>
+              <p>Similarity is usually measured by the angle between two vectors, ignoring their length:</p>
+              <pre class="formula">cos(a, b) = (a · b) / (‖a‖ ‖b‖)      ranges from −1 to 1</pre>
+              <p>The meaning map uses exactly this on its five-dimensional vectors. Real embedding models produce 384 to 3,072 dimensions, so we can't draw them directly; tools such as UMAP or t-SNE squash them into two dimensions for plotting.</p>
+              <h3>Real embeddings in Python</h3>
+<pre class="code"><code>from sentence_transformers import SentenceTransformer, util
+
+model = SentenceTransformer("all-MiniLM-L6-v2")   # small, free, runs on a laptop
+docs  = ["Support for carers looking after a family member",
+         "Setting up a monthly direct debit donation"]
+query = "help for someone caring for a relative"
+
+scores = util.cos_sim(model.encode(query), model.encode(docs))
+print(scores)   # the carers text scores much higher</code></pre>
+              <h3>Storing embeddings at scale</h3>
+              <p>A <b>vector database</b> such as Chroma or Qdrant stores embeddings and supports similarity search. FAISS is a similarity-search library rather than a complete database. Approximate indexes can make searches over large collections faster. Keyword search usually uses <b>BM25</b>, a scoring formula that rewards rare words that appear in a document. You'll use a version of it in Lesson 05.</p>
+              <h3>Further reading</h3>
+              <p>Mikolov et al. (2013), <a href="https://arxiv.org/abs/1301.3781" target="_blank" rel="noopener noreferrer">“Efficient Estimation of Word Representations in Vector Space” <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a>, the word2vec paper. Reimers &amp; Gurevych (2019), <a href="https://arxiv.org/abs/1908.10084" target="_blank" rel="noopener noreferrer">“Sentence-BERT” <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a>, on sentence embeddings for search.</p>
+            </div>
+          </details>
+        </section>
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>3 quick questions. You can try again as often as you like; lesson completion is saved in this browser; answers reset when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" id="explore">
+          <h2>Continue exploring</h2>
+          <p>We've picked resources that explain these ideas from different angles. They are independent of Code With Impact.</p>
+          <ul class="explore-list"><li class="explore-card"><span class="explore-kind">Code</span><h3><a href="https://github.com/HandsOnLLM/Hands-On-Large-Language-Models" target="_blank" rel="noopener noreferrer">Hands-On LLMs: official notebooks <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Jay Alammar &amp; Maarten Grootendorst</p><p>Free notebooks accompanying the book, runnable in Google Colab.</p></li><li class="explore-card"><span class="explore-kind">Tool</span><h3><a href="https://github.com/chroma-core/chroma" target="_blank" rel="noopener noreferrer">Chroma <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Chroma</p><p>A simple open-source vector database, ideal for first experiments.</p></li><li class="explore-card"><span class="explore-kind">Course</span><h3><a href="https://huggingface.co/learn/llm-course/en/chapter1/1" target="_blank" rel="noopener noreferrer">Hugging Face LLM Course <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Hugging Face</p><p>A free, hands-on course on using and fine-tuning open models.</p></li><li class="explore-card"><span class="explore-kind">Tool</span><h3><a href="https://github.com/run-llama/llama_index" target="_blank" rel="noopener noreferrer">LlamaIndex <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">LlamaIndex</p><p>A framework for loading, indexing and querying your own documents.</p></li></ul>
+        </section>
+
+        <section class="panel" id="credits">
+          <h2>Sources for this lesson</h2>
+          <p class="credit-note">The example texts, five-dimensional meaning vectors, map and comparison lab are original Code With Impact material. Similarity scores are calculated in your browser.</p>
+          <ul class="refs"><li><cite>Hands-On Large Language Models</cite>, Jay Alammar &amp; Maarten Grootendorst (O'Reilly, 2024), Chapter 2, “Tokens and Embeddings”, and Chapter 8, “Semantic Search and Retrieval-Augmented Generation”. <a href="https://www.oreilly.com/library/view/hands-on-large-language/9781098150952/" target="_blank" rel="noopener noreferrer">Publisher page <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></li><li><cite>AI Engineering</cite>, Chip Huyen (O'Reilly, 2024), Chapter 6, on retrieval. <a href="https://www.oreilly.com/library/view/ai-engineering/9781098166298/" target="_blank" rel="noopener noreferrer">Publisher page <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></li></ul>
+          <p class="hint">How we reference: we link and credit, we never copy other educators' text, diagrams or code. See our full <a href="credits.html">Sources &amp; credits</a> register.</p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="prompting-and-context.html"><span>← Previous</span><b>03 · Prompting &amp; Context</b></a><a class="next" href="build-a-rag-system.html"><span>Next →</span><b>05 · Build a RAG System</b></a></nav>
+      </div>
+
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-map">Meaning map</a><a href="#lab-compare">Keywords vs meaning</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>We do not use cookies on this website.</p>
+    <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
+    <div class="social-links">
+      <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
+      <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+    </div>
+  </footer>
+  <script>window.LESSON={"slug":"embeddings-and-search","steps":["map","compare"],"quiz":[{"q":"What does an embedding represent?","choices":["A compressed copy of the text that can be turned back into it.","The meaning of a text as a point in a numerical space.","A list of the keywords in the text."],"a":1,"explain":"An embedding is a vector placing the text in a space where similar meanings are close together."},{"q":"In this lab's exact-word matcher, why might “ways to donate money” miss “Setting up a monthly direct debit donation”?","choices":["The words don't match exactly (“donate” vs “donation”).","Keyword search can't read long texts.","Direct debits are excluded from search."],"a":0,"explain":"This lab requires exact shared words. Production keyword systems can use stemming or synonyms; semantic search is another approach to test."},{"q":"When is keyword search often better than meaning search?","choices":["For vague, conversational questions.","For exact terms, names or acronyms such as “Gift Aid”.","Never. Meaning search is always better."],"a":1,"explain":"Exact identifiers are where keyword matching shines. Hybrid search combines the strengths of both."}]};</script>
+  <script src="lesson-kit.js" defer></script>
+  <script src="lab-embeddings.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how instructions, context and settings shape an AI model&#x27;s answers: build a prompt, experiment with temperature, and see the limits of a context window." />
+  <meta name="theme-color" content="#102033" />
+  <title>Prompting &amp; Context | Learn AI | Code With Impact</title>
+  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
+  <link rel="stylesheet" href="learn.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="logo" href="../index.html"><img class="logo-image" src="../images/logo_for__codewithimpact__features.png" alt="Code With Impact logo" /></a>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html">Projects</a>
+      <a class="active" href="index.html">Learn AI</a>
+      <a href="../get-involved.html">Get Involved</a>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <a class="btn primary small" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer">Partner With Us</a>
+  </header>
+
+  <main id="main">
+    <section class="lesson-top">
+      <p class="crumbs"><a href="index.html">← All lessons</a> / Foundations / Lesson 03 of 07</p>
+      <p class="eyebrow">Interactive lesson</p>
+      <h1>Prompting and context: why the same AI gives different answers.</h1>
+      <p>A model only knows what it learned in training and what you put in front of it. Learn how to write clear instructions, give useful context, and understand why outputs vary.</p>
+      <ul class="lesson-stats"><li>About 20 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Original diagrams</li></ul>
+    </section>
+
+    <div class="lesson-shell">
+      <div class="lesson-content">
+        <section class="panel" id="intro">
+          <h2>A prompt is a brief, not a magic spell</h2>
+          <p>Think of a language model as a capable new volunteer on their first day. They know a lot in general, but nothing about <i>your</i> charity, your data or your audience unless you tell them. A good prompt is simply a good brief.</p>
+          <p>Everything the model can “see” at once, including your instructions, pasted documents and the conversation so far, is called the <b>context</b>. It has a size limit, called the <b>context window</b>. And even with the same context, settings like <b>temperature</b> change how predictable the answer is.</p>
+        </section>
+
+        <section class="panel lab" id="lab-prompt">
+          <p class="lab-tag">Interactive</p>
+          <h2>Build a better prompt</h2>
+          <p>Your task: get a useful summary of a volunteer survey for your trustees. Start with the vague prompt, then add ingredients one at a time and watch the response change.</p>
+          <div class="chips" role="group" aria-label="Prompt ingredients" id="ingredients"></div>
+          <div class="two-col">
+            <div><h3 class="mini-h">Your prompt</h3><pre class="prompt-box" id="prompt-out" aria-live="polite"></pre></div>
+            <div><h3 class="mini-h">Illustrative response</h3><div class="response-box" id="response-out" aria-live="polite"></div></div>
+          </div>
+          <p class="hint">The responses were written by our team to show typical model behaviour. No AI model is called.</p>
+        </section>
+        <section class="panel lab" id="lab-temp">
+          <p class="lab-tag">Interactive</p>
+          <h2>Experiment: temperature and randomness</h2>
+          <p>We have assigned example scores to possible next words for <b>“Our volunteers are …”</b>. Move the temperature slider: the probabilities below are calculated live with the real softmax formula. Then generate ten completions to see how often each word is picked.</p>
+          <div class="slider-row"><label for="temp">Temperature: <b id="temp-val">1.0</b></label><input type="range" id="temp" min="0.1" max="2" step="0.1" value="1" /></div>
+          <div class="bars" id="temp-bars"></div>
+          <div class="lab-actions"><button type="button" class="btn dark" id="sample-btn">Generate 10 completions</button></div>
+          <div class="samples" id="samples" aria-live="polite"></div>
+        </section>
+        <section class="panel lab" id="lab-window">
+          <p class="lab-tag">Interactive</p>
+          <h2>Experiment: the context window</h2>
+          <p>Below is a long conversation. This demo keeps the newest complete messages that fit its example token budget. Shrink the window and watch what drops out of view. Real applications may trim, summarise or retrieve older messages, or reject an oversized request.</p>
+          <div class="slider-row"><label for="window">Context window: <b id="window-val">900</b> tokens</label><input type="range" id="window" min="150" max="900" step="25" value="900" /></div>
+          <ol class="convo" id="convo"></ol>
+          <p class="notice" id="window-note" aria-live="polite"></p>
+        </section>
+
+        <section class="panel" id="ideas">
+          <h2>Key ideas to take away</h2>
+          <ul class="ideas">
+            <li><b>Be specific about the task, audience and format.</b> “Three bullet points for trustees” beats “summarise this”.</li>
+            <li><b>Give the model the facts.</b> Without your data in the context, it may guess, ask for the missing data or decline to answer. Check that the response uses the evidence you supplied.</li>
+            <li><b>Tell it what to do when unsure.</b> Ask it to say “not in the data”, then test whether it follows that instruction. A prompt cannot guarantee that it will.</li>
+            <li><b>Temperature changes variety, not truth.</b> Lower settings concentrate the next-token probabilities. They can still produce the same wrong answer repeatedly, so verify factual claims at any setting.</li>
+            <li><b>Context windows are finite.</b> In long conversations, early instructions can drop out of view. Restate what matters, or start a fresh conversation.</li>
+          </ul>
+        </section>
+
+        <section class="panel" id="deeper">
+          <details class="deeper">
+            <summary><span class="deeper-title">Want to go deeper?</span><span class="deeper-sub">Equations, code and research for technical learners. Optional.</span></summary>
+            <div class="deeper-body">
+              <h3>Messages, roles and system prompts</h3>
+              <p>Chat models receive a list of messages, each with a role. The <b>system</b> message sets standing instructions, and an application can preserve it while trimming older conversation turns. This lab demonstrates one simple trimming policy; it does not model how every chat application handles context.</p>
+<pre class="code"><code>messages = [
+  {"role": "system", "content": "You summarise survey data for charity trustees. "
+                                "Only use the data provided. If something is not in the data, say so."},
+  {"role": "user",   "content": "Survey data:\n" + survey_text + "\n\nWrite three bullet points."},
+]</code></pre>
+              <h3>Sampling settings</h3>
+              <ul>
+                <li><b>Temperature</b> rescales scores before softmax: <code>P(i) ∝ exp(z_i / T)</code>.</li>
+                <li><b>Top-p</b> (nucleus sampling) only samples from the smallest set of tokens whose probabilities add up to <i>p</i>.</li>
+                <li><b>Greedy decoding</b> always picks the top token. This gives consistent results, but the wording can be repetitive.</li>
+              </ul>
+              <h3>Techniques worth knowing</h3>
+              <dl class="glossary">
+                <dt>Few-shot prompting</dt><dd>Including worked examples of the input and desired output in the prompt.</dd>
+                <dt>Prompt chaining</dt><dd>Splitting a task into steps, each with its own prompt, passing outputs forward (Gullí, Chapter 1).</dd>
+                <dt>Structured output</dt><dd>Asking for JSON or a fixed template so results can be checked automatically.</dd>
+                <dt>Context engineering</dt><dd>Deciding what information goes into the context, in what order, and what stays out. You will use this approach in RAG (Lesson 05).</dd>
+              </dl>
+            </div>
+          </details>
+        </section>
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>3 quick questions. You can try again as often as you like; lesson completion is saved in this browser; answers reset when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" id="explore">
+          <h2>Continue exploring</h2>
+          <p>We've picked resources that explain these ideas from different angles. They are independent of Code With Impact.</p>
+          <ul class="explore-list"><li class="explore-card"><span class="explore-kind">Guide</span><h3><a href="https://www.promptingguide.ai/" target="_blank" rel="noopener noreferrer">Prompt Engineering Guide <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">DAIR.AI</p><p>A well-organised reference to prompting techniques, with links to the research.</p></li><li class="explore-card"><span class="explore-kind">Courses</span><h3><a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener noreferrer">DeepLearning.AI Short Courses <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">DeepLearning.AI</p><p>One-to-two-hour courses on prompting, RAG, agents and evaluation, many with code.</p></li><li class="explore-card"><span class="explore-kind">Examples</span><h3><a href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noopener noreferrer">Claude Cookbooks <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Anthropic</p><p>Notebooks showing prompting, retrieval, tool use and agent patterns.</p></li><li class="explore-card"><span class="explore-kind">Examples</span><h3><a href="https://developers.openai.com/cookbook" target="_blank" rel="noopener noreferrer">OpenAI Cookbook <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">OpenAI</p><p>Worked examples of building, evaluating and improving LLM applications.</p></li></ul>
+        </section>
+
+        <section class="panel" id="credits">
+          <h2>Sources for this lesson</h2>
+          <p class="credit-note">The survey example, illustrative responses and interactive labs are original Code With Impact material; the survey data is synthetic. Temperature probabilities are calculated with the standard softmax formula.</p>
+          <ul class="refs"><li><cite>Hands-On Large Language Models</cite>, Jay Alammar &amp; Maarten Grootendorst (O'Reilly, 2024), Chapter 6, “Prompt Engineering”. <a href="https://www.oreilly.com/library/view/hands-on-large-language/9781098150952/" target="_blank" rel="noopener noreferrer">Publisher page <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></li><li><cite>AI Engineering</cite>, Chip Huyen (O'Reilly, 2024), Chapter 5, on prompt engineering. <a href="https://www.oreilly.com/library/view/ai-engineering/9781098166298/" target="_blank" rel="noopener noreferrer">Publisher page <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></li><li><cite>Agentic Design Patterns: A Hands-On Guide to Building Intelligent Systems</cite>, Antonio Gullí (Springer, 2025), Chapter 1, “Prompt Chaining”. <a href="https://link.springer.com/doi/10.1007/978-3-032-01402-3" target="_blank" rel="noopener noreferrer">Publisher page <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></li></ul>
+          <p class="hint">How we reference: we link and credit, we never copy other educators' text, diagrams or code. See our full <a href="credits.html">Sources &amp; credits</a> register.</p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="inside-an-llm.html"><span>← Previous</span><b>02 · Inside an LLM</b></a><a class="next" href="embeddings-and-search.html"><span>Next →</span><b>04 · Embeddings &amp; Search</b></a></nav>
+      </div>
+
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-prompt">Build a prompt</a><a href="#lab-temp">Temperature</a><a href="#lab-window">Context window</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>We do not use cookies on this website.</p>
+    <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
+    <div class="social-links">
+      <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
+      <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+    </div>
+  </footer>
+  <script>window.LESSON={"slug":"prompting-and-context","steps":["prompt","temperature","window"],"quiz":[{"q":"You ask a model to “summarise the survey” but don't paste the survey in. What is the risk?","choices":["None, because it will ask for the file.","It may produce a plausible summary with invented findings.","It will look the survey up online."],"a":1,"explain":"Without the data in its context, a model fills the gap with plausible-sounding text, including made-up figures."},{"q":"You use a low temperature to extract figures from a report. What still needs checking?","choices":["Nothing; low temperature makes the figures factual.","That each figure matches the report, because predictable output can still be wrong.","Only whether the response uses the requested bullet format."],"a":1,"explain":"Temperature changes the token distribution, not whether a claim is true. Check the figures against the source."},{"q":"In a very long chat, the model stops following an instruction you gave at the start. A likely reason?","choices":["The model got bored.","The instruction fell outside the context window.","Instructions expire after ten minutes."],"a":1,"explain":"The application may have omitted or summarised earlier messages. Check what it actually sent to the model; context handling differs between applications."}]};</script>
+  <script src="lesson-kit.js" defer></script>
+  <script src="lab-prompting.js" defer></script>
+</body>
+</html>

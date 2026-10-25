@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore how language models work through an interactive visual lesson by Code With Impact: tokens, vectors, attention and next-token prediction." />
+  <meta name="theme-color" content="#102033" />
+  <title>Inside an LLM | Learn AI | Code With Impact</title>
+  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
+  <link rel="stylesheet" href="learn.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="logo" href="../index.html"><img class="logo-image" src="../images/logo_for__codewithimpact__features.png" alt="Code With Impact logo" /></a>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html">Projects</a>
+      <a class="active" href="index.html">Learn AI</a>
+      <a href="../get-involved.html">Get Involved</a>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <a class="btn primary small" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer">Partner With Us</a>
+  </header>
+
+  <main id="main">
+    <section class="lesson-top">
+      <p class="crumbs"><a href="index.html">← All lessons</a> / Foundations / Lesson 02 of 07</p>
+      <p class="eyebrow">Interactive lesson</p>
+      <h1>Inside an LLM: from words to predictions.</h1>
+      <p>Follow three worked examples through tokenisation, vectors, attention and next-token prediction. Compare what changes as the context changes.</p>
+      <ul class="lesson-stats"><li>About 20 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Original diagrams</li></ul>
+    </section>
+
+    <div class="lesson-shell">
+      <div class="lesson-content">
+        <section class="panel" id="intro">
+          <h2>What happens when you ask an LLM a question?</h2>
+          <p>At a high level, a language model turns text into <b>tokens</b>, turns each token into a list of numbers (a <b>vector</b>), passes those numbers through many layers of a neural network called a <b>transformer</b>, and finally scores every possible next token. It picks one, adds it to the text, and repeats one token at a time until the response is complete.</p>
+          <div class="flow" aria-label="Text, then tokens, then vectors, then transformer layers, then next token, repeated">
+            <span>Your text</span><i aria-hidden="true">→</i><span>Tokens</span><i aria-hidden="true">→</i><span>Vectors</span><i aria-hidden="true">→</i><span>Transformer layers</span><i aria-hidden="true">→</i><span>Next token</span><i aria-hidden="true">↺</i>
+          </div>
+          <div class="notice"><b>About this lab:</b> these are worked examples, with token splits and numbers chosen for teaching. They are not outputs from a trained model. Choose one of the examples below to follow the four stages. To experiment with your own text using a real model, try the Transformer Explainer linked at the end.</div>
+        </section>
+
+        <section class="panel lab" id="experiment">
+          <p class="lab-tag">Interactive</p>
+          <h2>Follow a worked example</h2>
+          <p>Choose a sentence opening, then step through the four stages. Switching examples keeps you at the same stage so you can compare them.</p>
+          <p class="mini-h" id="example-label">Choose an example</p>
+          <div class="chips" id="sentence-examples" role="group" aria-labelledby="example-label"></div>
+          <p class="notice" id="sentence-preview" aria-live="polite">The charity team reviewed the …</p>
+          <p class="hint">The charity and research examples both end in “the”. Compare their prediction bars to see why the earlier context matters. All values are hand-set for this lesson.</p>
+          <noscript><p>This activity needs JavaScript. The explanations below are still available.</p></noscript>
+          <div class="stage-tabs" role="tablist" aria-label="LLM processing stages">
+            <button type="button" role="tab" id="tab-0" aria-controls="demo" aria-selected="true" data-stage="0">1. Tokens</button>
+            <button type="button" role="tab" id="tab-1" aria-controls="demo" aria-selected="false" tabindex="-1" data-stage="1">2. Vectors</button>
+            <button type="button" role="tab" id="tab-2" aria-controls="demo" aria-selected="false" tabindex="-1" data-stage="2">3. Attention</button>
+            <button type="button" role="tab" id="tab-3" aria-controls="demo" aria-selected="false" tabindex="-1" data-stage="3">4. Prediction</button>
+          </div>
+          <div id="demo" class="demo" role="tabpanel" aria-labelledby="tab-0" tabindex="0" aria-live="polite"></div>
+          <div class="control-strip">
+            <span class="hint" id="stage-caption"></span>
+            <button class="btn primary small" type="button" id="next-stage">Next stage →</button>
+          </div>
+        </section>
+
+        <section class="panel" id="ideas">
+          <h2>Key ideas to take away</h2>
+          <ul class="ideas">
+            <li><b>Tokens aren't always words.</b> Real tokenisers often split words into smaller pieces, so “tokenisation” might become “token”, “isation”.</li>
+            <li><b>Tokens start as vectors.</b> Each token has an initial embedding. The transformer combines it with position and context as it processes the sequence. Lesson 04 explores embeddings for search.</li>
+            <li><b>Attention mixes in context.</b> It lets each position draw on information from earlier tokens, but it is one part of the computation, not a full explanation of the model's “reasoning”.</li>
+            <li><b>Output is a probability, then a choice.</b> The model scores possible next tokens; a decoding setting such as temperature decides how adventurous the pick is. Lesson 03 lets you try this.</li>
+          </ul>
+        </section>
+
+        <section class="panel" id="deeper">
+          <details class="deeper">
+            <summary><span class="deeper-title">Want to go deeper?</span><span class="deeper-sub">Equations, code and research for technical learners. Optional.</span></summary>
+            <div class="deeper-body">
+              <h3>From scores to probabilities: softmax</h3>
+              <p>The final layer produces a score (a <i>logit</i>) <i>z</i> for every token in the vocabulary, which often contains 50,000 to 200,000 tokens. Softmax turns scores into probabilities that add up to 1:</p>
+              <pre class="formula">P(token i) = exp(z_i / T) / Σ_j exp(z_j / T)</pre>
+              <p><i>T</i> is the temperature. With <i>T</i> close to 0 the top token almost always wins; higher <i>T</i> flattens the distribution.</p>
+              <h3>Attention in one line</h3>
+              <pre class="formula">Attention(Q, K, V) = softmax( Q·Kᵀ / √d ) · V</pre>
+              <p>Each token produces a <b>query</b> (what am I looking for?), a <b>key</b> (what do I contain?) and a <b>value</b> (what do I pass on?). The query–key match decides how much of each value flows into the updated representation. In a causal language model, a token can only attend to itself and earlier tokens, which is why the grid in the lab is a triangle. Real models run many attention “heads” in parallel, in dozens of layers.</p>
+              <h3>See real tokens in Python</h3>
+<pre class="code"><code>from transformers import AutoTokenizer
+
+tok = AutoTokenizer.from_pretrained("gpt2")
+ids = tok("The charity team reviewed the tokenisation")["input_ids"]
+print([tok.decode([i]) for i in ids])
+# Words are often split into sub-word pieces.</code></pre>
+              <h3>The paper that started it</h3>
+              <p>Vaswani et al. (2017), <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">“Attention Is All You Need” <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a> introduced the transformer architecture.</p>
+            </div>
+          </details>
+        </section>
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>3 quick questions. You can try again as often as you like; lesson completion is saved in this browser; answers reset when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" id="explore">
+          <h2>Continue exploring</h2>
+          <p>We've picked resources that explain these ideas from different angles. They are independent of Code With Impact.</p>
+          <ul class="explore-list"><li class="explore-card"><span class="explore-kind">Interactive</span><h3><a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener noreferrer">Transformer Explainer <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Polo Club of Data Science, Georgia Tech</p><p>Type your own text and see how a real GPT-2 model processes it in your browser.</p></li><li class="explore-card"><span class="explore-kind">Interactive</span><h3><a href="https://bbycroft.net/llm" target="_blank" rel="noopener noreferrer">LLM Visualization <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Brendan Bycroft</p><p>Walk through a small GPT model in 3D and watch each calculation happen.</p></li><li class="explore-card"><span class="explore-kind">Article</span><h3><a href="https://jalammar.github.io/illustrated-gpt2/" target="_blank" rel="noopener noreferrer">The Illustrated GPT-2 <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Jay Alammar</p><p>Step-by-step diagrams of how a generative language model is put together.</p></li><li class="explore-card"><span class="explore-kind">Video</span><h3><a href="https://www.3blue1brown.com/lessons/attention/" target="_blank" rel="noopener noreferrer">Attention in Transformers, visually explained <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">3Blue1Brown</p><p>Beautiful animations that build intuition for attention and the maths behind it.</p></li></ul>
+        </section>
+
+        <section class="panel" id="credits">
+          <h2>Sources for this lesson</h2>
+          <p class="credit-note">Our explanations, diagrams and three worked examples are original. The idea of following a sentence stage by stage was inspired by the Transformer Explainer and The Illustrated GPT-2; we use none of their code, text or graphics.</p>
+          <ul class="refs"><li><cite>Hands-On Large Language Models</cite>, Jay Alammar &amp; Maarten Grootendorst (O'Reilly, 2024), Chapter 2, “Tokens and Embeddings”, and Chapter 3, “Looking Inside Transformer LLMs”. <a href="https://www.oreilly.com/library/view/hands-on-large-language/9781098150952/" target="_blank" rel="noopener noreferrer">Publisher page <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></li><li><cite>An Illustrated Guide to AI Agents</cite>, Maarten Grootendorst &amp; Jay Alammar (O'Reilly, 2026), Chapter 2, “Large Language Models”. <a href="https://www.oreilly.com/library/view/an-illustrated-guide/9798341662681/" target="_blank" rel="noopener noreferrer">Publisher page <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></li></ul>
+          <p class="hint">How we reference: we link and credit, we never copy other educators' text, diagrams or code. See our full <a href="credits.html">Sources &amp; credits</a> register.</p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="ai-made-simple.html"><span>← Previous</span><b>01 · AI Made Simple</b></a><a class="next" href="prompting-and-context.html"><span>Next →</span><b>03 · Prompting &amp; Context</b></a></nav>
+      </div>
+
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#experiment">Interactive lab</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>We do not use cookies on this website.</p>
+    <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
+    <div class="social-links">
+      <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
+      <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+    </div>
+  </footer>
+  <script>window.LESSON={"slug": "inside-an-llm", "steps": ["stage-0", "stage-1", "stage-2", "stage-3"], "quiz": [{"q": "Which statement about tokens is accurate?", "choices": ["Every token is exactly one complete word.", "Tokens may be words, parts of words, or punctuation.", "Tokens are the same as attention heads."], "a": 1, "explain": "A tokeniser can produce whole words, sub-word pieces or punctuation, depending on its vocabulary."}, {"q": "What is a key role of attention in a transformer?", "choices": ["Retrieving live facts from the internet.", "Storing every training document exactly.", "Combining relevant information across token positions."], "a": 2, "explain": "Attention lets each position use information from other positions. In a causal model, it can use only the current and earlier tokens."}, {"q": "Are the probability bars in this lab real model outputs?", "choices": ["No, they are an educational illustration.", "Yes, they come from a live transformer API.", "Yes, they are actual probabilities from GPT-2."], "a": 0, "explain": "This self-contained demonstration runs no real language model. It deliberately uses synthetic values."}]};</script>
+  <script src="lesson-kit.js" defer></script>
+  <script src="llm-lab.js?v=guided-examples" defer></script>
+</body>
+</html>
