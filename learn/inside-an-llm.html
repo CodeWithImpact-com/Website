@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#102033" />
   <title>Inside an LLM | Learn AI | Code With Impact</title>
   <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css" />
+  <link rel="stylesheet" href="learn.css?v=20261025-review" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -26,7 +26,7 @@
 
   <main id="main">
     <section class="lesson-top">
-      <p class="crumbs"><a href="index.html">← All lessons</a> / Foundations / Lesson 02 of 07</p>
+      <p class="crumbs"><a href="index.html">← All lessons</a> / Foundations / Lesson 02 of 12</p>
       <p class="eyebrow">Interactive lesson</p>
       <h1>Inside an LLM: from words to predictions.</h1>
       <p>Follow three worked examples through tokenisation, vectors, attention and next-token prediction. Compare what changes as the context changes.</p>
@@ -72,6 +72,7 @@
             <li><b>Tokens aren't always words.</b> Real tokenisers often split words into smaller pieces, so “tokenisation” might become “token”, “isation”.</li>
             <li><b>Tokens start as vectors.</b> Each token has an initial embedding. The transformer combines it with position and context as it processes the sequence. Lesson 04 explores embeddings for search.</li>
             <li><b>Attention mixes in context.</b> It lets each position draw on information from earlier tokens, but it is one part of the computation, not a full explanation of the model's “reasoning”.</li>
+            <li><b>The numbers are learned, in two stages.</b> In <i>pretraining</i>, the model adjusts billions of internal numbers (its parameters) to get better at predicting the next token across vast amounts of text. <i>Fine-tuning</i> with instructions and human feedback then teaches it to follow requests, which is why chat tools behave like assistants rather than autocomplete.</li>
             <li><b>Output is a probability, then a choice.</b> The model scores possible next tokens; a decoding setting such as temperature decides how adventurous the pick is. Lesson 03 lets you try this.</li>
           </ul>
         </section>
@@ -85,7 +86,8 @@
               <pre class="formula">P(token i) = exp(z_i / T) / Σ_j exp(z_j / T)</pre>
               <p><i>T</i> is the temperature. With <i>T</i> close to 0 the top token almost always wins; higher <i>T</i> flattens the distribution.</p>
               <h3>Attention in one line</h3>
-              <pre class="formula">Attention(Q, K, V) = softmax( Q·Kᵀ / √d ) · V</pre>
+              <pre class="formula">Attention(Q, K, V) = softmax( Q·Kᵀ / √d_k ) · V</pre>
+              <p><i>d_k</i> is the length of each key vector. Dividing by its square root keeps the scores in a range where softmax still works well.</p>
               <p>Each token produces a <b>query</b> (what am I looking for?), a <b>key</b> (what do I contain?) and a <b>value</b> (what do I pass on?). The query–key match decides how much of each value flows into the updated representation. In a causal language model, a token can only attend to itself and earlier tokens, which is why the grid in the lab is a triangle. Real models run many attention “heads” in parallel, in dozens of layers.</p>
               <h3>See real tokens in Python</h3>
 <pre class="code"><code>from transformers import AutoTokenizer
@@ -102,7 +104,7 @@ print([tok.decode([i]) for i in ids])
 
         <section class="panel" id="quiz">
           <h2>Check your understanding</h2>
-          <p>3 quick questions. You can try again as often as you like; lesson completion is saved in this browser; answers reset when you reload.</p>
+          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
           <div id="quiz-content"></div>
           <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
@@ -135,7 +137,7 @@ print([tok.decode([i]) for i in ids])
   </main>
 
   <footer class="site-footer">
-    <p>We do not use cookies on this website.</p>
+    <p>No cookies. We count visits with privacy-friendly analytics. <a href="../privacy.html" style="text-decoration:underline">Privacy</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Get updates</a></p>
     <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
     <div class="social-links">
       <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
@@ -143,7 +145,8 @@ print([tok.decode([i]) for i in ids])
     </div>
   </footer>
   <script>window.LESSON={"slug": "inside-an-llm", "steps": ["stage-0", "stage-1", "stage-2", "stage-3"], "quiz": [{"q": "Which statement about tokens is accurate?", "choices": ["Every token is exactly one complete word.", "Tokens may be words, parts of words, or punctuation.", "Tokens are the same as attention heads."], "a": 1, "explain": "A tokeniser can produce whole words, sub-word pieces or punctuation, depending on its vocabulary."}, {"q": "What is a key role of attention in a transformer?", "choices": ["Retrieving live facts from the internet.", "Storing every training document exactly.", "Combining relevant information across token positions."], "a": 2, "explain": "Attention lets each position use information from other positions. In a causal model, it can use only the current and earlier tokens."}, {"q": "Are the probability bars in this lab real model outputs?", "choices": ["No, they are an educational illustration.", "Yes, they come from a live transformer API.", "Yes, they are actual probabilities from GPT-2."], "a": 0, "explain": "This self-contained demonstration runs no real language model. It deliberately uses synthetic values."}]};</script>
-  <script src="lesson-kit.js" defer></script>
+  <script src="lesson-kit.js?v=20261025-review" defer></script>
   <script src="llm-lab.js?v=guided-examples" defer></script>
+  <script src="../analytics.js" defer></script>
 </body>
 </html>

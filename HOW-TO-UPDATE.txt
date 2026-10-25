@@ -1,0 +1,23 @@
+Code With Impact website: complete copy (25 October 2026)
+=========================================================
+This folder is the WHOLE website, with every change made today included.
+
+PREVIEW IT
+Double-click learn/index.html (or index.html) to open it in your browser. Everything works offline,
+including the interactive labs. (GoatCounter skips localhost and common private-network previews by default.
+Public preview domains need an explicit filter if you want to exclude their visits.)
+
+PUT IT LIVE (easiest way, GitHub website)
+1. Open github.com/CodeWithImpact-com/Website
+2. Delete these files from the repo (open each one, ... menu, Delete file, Commit):
+   - lesson-review.html
+   - wording-review.html
+   - images/ChatGPT Image Jun 5, 2026, 07_38_32 PM.png
+3. Click Add file > Upload files, drag in EVERYTHING from this folder
+   (keep the folders: images, learn, .github). Existing files are overwritten.
+4. Commit to main. The site updates automatically in a minute or two.
+   (You don't need to upload this HOW-TO-UPDATE.txt file.)
+
+THEN
+- Create the GoatCounter account with site code: codewithimpact
+- Fill in the yellow placeholders in privacy.html

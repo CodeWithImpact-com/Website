@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#102033" />
   <title>AI Made Simple | Learn AI | Code With Impact</title>
   <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css" />
+  <link rel="stylesheet" href="learn.css?v=20261025-review" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -26,7 +26,7 @@
 
   <main id="main">
     <section class="lesson-top">
-      <p class="crumbs"><a href="index.html">← All lessons</a> / Foundations / Lesson 01 of 07</p>
+      <p class="crumbs"><a href="index.html">← All lessons</a> / Foundations / Lesson 01 of 12</p>
       <p class="eyebrow">Interactive lesson</p>
       <h1>AI made simple: what it is, and what it isn't.</h1>
       <p>Before the jargon: what does “AI” actually mean, how does a system learn from examples, and when should a charity or research team use it? When would another approach work better?</p>
@@ -37,19 +37,21 @@
       <div class="lesson-content">
         <section class="panel" id="intro">
           <h2>So what is AI?</h2>
+          <p><b>Artificial intelligence (AI)</b> is the broad field of getting computers to do tasks that usually need human judgement, such as recognising images, understanding language or making predictions.</p>
           <p>Most of the AI you meet today is <b>machine learning</b>: instead of a person writing every rule, a system is shown many examples and learns patterns from them. Show it thousands of emails marked “spam” or “not spam” and it learns which features tend to signal spam.</p>
           <p><b>Generative AI</b>, including tools like ChatGPT, Claude or Gemini, uses the same idea at a huge scale. It learned patterns from vast amounts of text, and uses them to predict what words are likely to come next. That is why it can write fluently, and also why it can sound confident while being wrong.</p>
           <div class="compare">
             <div><h3>Traditional software</h3><p>A person writes the rules.<br><i>“If the email contains <b>prize</b>, mark it spam.”</i></p></div>
             <div><h3>Machine learning</h3><p>The system learns the rules from examples.<br><i>“Here are 10,000 labelled emails. Find the pattern.”</i></p></div>
-            <div><h3>Generative AI</h3><p>A model learns patterns in language, then produces new text, images or code.</p></div>
+            <div><h3>Generative AI</h3><p>A model learns patterns from huge collections of text or images, then produces new content. Text models predict the next word; image models use different techniques.</p></div>
           </div>
+          <div class="notice" style="margin-top:18px"><b>What AI isn't.</b> It isn't thinking or understanding in the way people do. It isn't a database of checked facts. And it isn't automatically up to date: it only knows what was in its training data, plus anything you give it.</div>
         </section>
 
         <section class="panel lab" id="lab-train">
           <p class="lab-tag">Interactive</p>
           <h2>Teach a tiny model to triage an inbox</h2>
-          <p>A charity receives these eight messages. Each one is labelled <b>Urgent</b> or <b>Can wait</b>. Press <b>Train the model</b>, and a small but real model learns which words point to urgency. Then see how it handles four messages it has never seen.</p>
+          <p>A charity receives these eight messages. Each one is labelled <b>Urgent</b> or <b>Can wait</b>. Press <b>Train the model</b>, and a small but real model learns which words point to urgency. Then see how it handles four messages it has never seen. These are its <b>test data</b>: the only fair way to judge a model is on examples it didn't learn from.</p>
           <p class="hint">Try this: switch a few labels to the “wrong” answer and train again. What happens to the predictions?</p>
           <div id="train-set" class="train-set"></div>
           <div class="lab-actions"><button type="button" class="btn dark" id="train-btn">Train the model</button><span class="hint" id="train-status" aria-live="polite">Not trained yet.</span></div>
@@ -108,7 +110,7 @@ print(model.predict(vectoriser.transform(["Venue flooded before the event"])))</
 
         <section class="panel" id="quiz">
           <h2>Check your understanding</h2>
-          <p>4 quick questions. You can try again as often as you like; lesson completion is saved in this browser; answers reset when you reload.</p>
+          <p>4 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
           <div id="quiz-content"></div>
           <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
@@ -141,7 +143,7 @@ print(model.predict(vectoriser.transform(["Venue flooded before the event"])))</
   </main>
 
   <footer class="site-footer">
-    <p>We do not use cookies on this website.</p>
+    <p>No cookies. We count visits with privacy-friendly analytics. <a href="../privacy.html" style="text-decoration:underline">Privacy</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Get updates</a></p>
     <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
     <div class="social-links">
       <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
@@ -149,7 +151,8 @@ print(model.predict(vectoriser.transform(["Venue flooded before the event"])))</
     </div>
   </footer>
   <script>window.LESSON={"slug":"ai-made-simple","steps":["train","fit"],"quiz":[{"q":"How does the supervised learning system in this lesson learn to classify messages?","choices":["A programmer writes every rule by hand.","It learns patterns from labelled examples.","It searches the internet each time it runs."],"a":1,"explain":"This classifier learns from labelled examples. Other learning methods use unlabelled data or different feedback."},{"q":"In the lab, you mislabel several messages and retrain. What is most likely?","choices":["The model ignores the mistakes.","The model learns the wrong pattern and its predictions get worse.","The model refuses to train."],"a":1,"explain":"Incorrect labels can teach misleading patterns. Test on separate examples to see how much the errors affect predictions."},{"q":"A generative AI tool gives you a confident statistic with a source. What should you do?","choices":["Use it: confident answers are usually right.","Check the statistic and that the source exists and says this.","Ask the tool if it is sure, and use it if it says yes."],"a":1,"explain":"Generative AI predicts plausible text; it can invent figures and references. Verify against the original source."},{"q":"Which task is the poorest fit for AI acting on its own?","choices":["Drafting a thank-you email for staff to edit.","Grouping survey comments into themes.","Deciding whether a person qualifies for support."],"a":2,"explain":"Decisions about individuals need fairness, accountability and human judgement. AI can support, not decide."}]};</script>
-  <script src="lesson-kit.js" defer></script>
+  <script src="lesson-kit.js?v=20261025-review" defer></script>
   <script src="lab-ai-made-simple.js" defer></script>
+  <script src="../analytics.js" defer></script>
 </body>
 </html>

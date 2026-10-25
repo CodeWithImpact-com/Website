@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#102033" />
   <title>Build a RAG System | Learn AI | Code With Impact</title>
   <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css" />
+  <link rel="stylesheet" href="learn.css?v=20261025-review" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -26,7 +26,7 @@
 
   <main id="main">
     <section class="lesson-top">
-      <p class="crumbs"><a href="index.html">← All lessons</a> / Building blocks / Lesson 05 of 07</p>
+      <p class="crumbs"><a href="index.html">← All lessons</a> / Building blocks / Lesson 05 of 12</p>
       <p class="eyebrow">Interactive lesson</p>
       <h1>Build a RAG system: give an AI the right facts at the right time.</h1>
       <p>Retrieval-augmented generation lets a model answer from your own documents instead of its memory. Build one step by step, and see what happens when retrieval goes wrong.</p>
@@ -67,6 +67,7 @@
           <h2>Key ideas to take away</h2>
           <ul class="ideas">
             <li><b>RAG grounds answers in your documents.</b> The model answers from retrieved text, and can cite it, instead of guessing.</li>
+            <li><b>Check the citations, not just the answer.</b> A model can cite a source that doesn't actually support its claim. Spot-check that each cited passage says what the answer says it does.</li>
             <li><b>Retrieval quality limits answer quality.</b> If the right passage isn't retrieved, even the best model can't use it.</li>
             <li><b>Chunking is a design decision.</b> Chunks that are too small lose context; chunks that are too large dilute the signal and waste the context window.</li>
             <li><b>Tell the model what to do when the answer isn't there.</b> “Say you can't find it” is far safer than a confident guess.</li>
@@ -113,7 +114,7 @@ prompt = ("Answer using only the sources. Cite them like [1]. "
 
         <section class="panel" id="quiz">
           <h2>Check your understanding</h2>
-          <p>3 quick questions. You can try again as often as you like; lesson completion is saved in this browser; answers reset when you reload.</p>
+          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
           <div id="quiz-content"></div>
           <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
@@ -146,7 +147,7 @@ prompt = ("Answer using only the sources. Cite them like [1]. "
   </main>
 
   <footer class="site-footer">
-    <p>We do not use cookies on this website.</p>
+    <p>No cookies. We count visits with privacy-friendly analytics. <a href="../privacy.html" style="text-decoration:underline">Privacy</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Get updates</a></p>
     <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
     <div class="social-links">
       <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
@@ -154,7 +155,8 @@ prompt = ("Answer using only the sources. Cite them like [1]. "
     </div>
   </footer>
   <script>window.LESSON={"slug": "build-a-rag-system", "steps": ["chunk", "retrieve", "generate", "norag"], "quiz": [{"q": "What problem does RAG mainly solve?", "choices": ["Models are too slow.", "Models don't know your documents or recent facts, so they guess.", "Models can't write in British English."], "a": 1, "explain": "RAG retrieves relevant passages and gives them to the model, so answers are grounded in your sources."}, {"q": "The right passage exists in your documents, but the answer is still wrong. Where should you look first?", "choices": ["Retrieval: was the passage actually retrieved?", "The font size of the documents.", "There is no need to check. RAG answers are always correct."], "a": 0, "explain": "If retrieval misses the passage, the model never sees it. Measuring retrieval separately is essential."}, {"q": "Why were the answers without RAG risky in the lab?", "choices": ["They were too short.", "They sounded confident but didn't reflect the charity's actual policies.", "They cited too many sources."], "a": 1, "explain": "Without retrieval, the model produced plausible guesses, including advice that broke the data protection policy."}]};</script>
-  <script src="lesson-kit.js" defer></script>
+  <script src="lesson-kit.js?v=20261025-review" defer></script>
   <script src="lab-rag.js" defer></script>
+  <script src="../analytics.js" defer></script>
 </body>
 </html>

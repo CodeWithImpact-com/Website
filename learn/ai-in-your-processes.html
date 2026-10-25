@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fit AI into existing processes: map the steps, decide what to keep human, assist or automate, and place checkpoints." />
+  <meta name="theme-color" content="#102033" />
+  <title>AI in Your Processes | Learn AI | Code With Impact</title>
+  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
+  <link rel="stylesheet" href="learn.css?v=20261025-review" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="logo" href="../index.html"><img class="logo-image" src="../images/logo_for__codewithimpact__features.png" alt="Code With Impact logo" /></a>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html">Projects</a>
+      <a class="active" href="index.html">Learn AI</a>
+      <a href="../get-involved.html">Get Involved</a>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <a class="btn primary small" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer">Partner With Us</a>
+  </header>
+
+  <main id="main">
+    <section class="lesson-top">
+      <p class="crumbs"><a href="index.html">← All lessons</a> / AI in practice / Lesson 10 of 12</p>
+      <p class="eyebrow">Interactive lesson</p>
+      <h1>AI in your processes: improve the work you already do.</h1>
+      <p>AI adds most value inside processes you already run, not as a separate experiment. Learn to map a process, choose where AI helps, and keep people at the points that matter.</p>
+      <ul class="lesson-stats"><li>About 20 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Original diagrams</li></ul>
+    </section>
+
+    <div class="lesson-shell">
+      <div class="lesson-content">
+        <section class="panel" id="intro">
+          <h2>Map first, then decide step by step</h2>
+          <p>Write the process down as it really happens today, step by step. Then, for each step, ask two questions: how much judgement does it need, and what happens if it goes wrong?</p>
+          <div class="compare">
+            <div><h3>Keep human</h3><p>Judgement about people, safeguarding, or anything hard to undo.</p></div>
+            <div><h3>AI drafts, person checks</h3><p>Reading, summarising, sorting and drafting, where a quick check catches errors.</p></div>
+            <div><h3>Automate</h3><p>Routine, low-risk, identical every time, and easy to spot and fix if wrong.</p></div>
+          </div>
+          <div class="notice" style="margin-top:18px"><b>Measure before and after.</b> Time how long the process takes now and count its errors. Without a baseline you can't tell whether AI helped.</div>
+        </section>
+
+        <section class="panel lab" id="lab-process">
+          <p class="lab-tag">Interactive</p>
+          <h2>Redesign a volunteer onboarding process</h2>
+          <p>A fictional charity handles new volunteer enquiries in six steps. Decide how each step should be handled, and watch the redesigned process build below.</p>
+          <div id="process-steps" class="fit-cards"></div>
+          <p class="mini-h" style="margin-top:18px">Your redesigned process</p>
+          <div id="process-flow" class="pf-flow" aria-live="polite"></div>
+          <div class="pf-key"><span class="pf-human">Keep human</span><span class="pf-assist">AI drafts, person checks</span><span class="pf-auto">Automate</span></div>
+          <p class="hint" id="process-status" aria-live="polite"></p>
+        </section>
+
+        <section class="panel" id="ideas">
+          <h2>Key ideas to take away</h2>
+          <ul class="ideas">
+            <li><b>Map the real process first.</b> Write down what actually happens today, including the workarounds.</li>
+            <li><b>Match the role to the risk.</b> Automate the routine, assist the judgement-heavy, keep decisions about people human.</li>
+            <li><b>Design the checkpoint, not just the AI step.</b> Say who checks, what they check, and what they do when something's wrong.</li>
+            <li><b>Measure a baseline.</b> Time and errors before AI, then the same measures after.</li>
+            <li><b>Tell people what changed.</b> Staff, volunteers and the people you serve should know where AI is used.</li>
+          </ul>
+        </section>
+
+        <section class="panel" id="deeper">
+          <details class="deeper">
+            <summary><span class="deeper-title">Want to go deeper?</span><span class="deeper-sub">Methods, checklists and standards. Optional.</span></summary>
+            <div class="deeper-body">
+              <h3>A simple risk test for each step</h3>
+              <table class="policy-table"><thead><tr><th scope="col">Question</th><th scope="col">If yes</th></tr></thead><tbody>
+              <tr><td>Does it decide something about a person?</td><td>Keep a person in charge of the decision.</td></tr>
+              <tr><td>Would an error be hard to spot or undo?</td><td>Add a check before the output is used.</td></tr>
+              <tr><td>Does it use personal or sensitive data?</td><td>Approved tools only; consider an impact assessment.</td></tr>
+              <tr><td>Is it identical every time and low impact?</td><td>A good candidate for automation.</td></tr></tbody></table>
+              <h3>Watch for automation bias</h3>
+              <p>People tend to accept a machine's suggestion, especially when busy. Make checks meaningful: give reviewers time, show them the source, and occasionally include a known error to confirm they're still catching them.</p>
+              <h3>Workflows before agents</h3>
+              <p>A fixed sequence of steps you design is easier to test than an agent that chooses its own route. Lesson 06 covers when an agent is worth it.</p>
+            </div>
+          </details>
+        </section>
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" id="explore">
+          <h2>Continue exploring</h2>
+          <p>We've picked resources that explain these ideas from different angles. They are independent of Code With Impact.</p>
+          <ul class="explore-list"><li class="explore-card"><span class="explore-kind">Guidance</span><h3><a href="https://gov.uk/government/publications/ai-playbook-for-the-uk-government/artificial-intelligence-playbook-for-the-uk-government-html" target="_blank" rel="noopener noreferrer">AI Playbook for the UK Government <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Government Digital Service</p><p>Ten principles for using AI safely and effectively, written for public bodies but useful for any organisation.</p></li><li class="explore-card"><span class="explore-kind">Article</span><h3><a href="https://charitycommission.blog.gov.uk/2024/04/02/charities-and-artificial-intelligence/" target="_blank" rel="noopener noreferrer">Charities and artificial intelligence <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">Charity Commission</p><p>What trustees should consider, including an internal AI policy and keeping decisions with people.</p></li><li class="explore-card"><span class="explore-kind">Framework</span><h3><a href="https://www.nist.gov/news-events/news/2023/01/nist-risk-management-framework-aims-improve-trustworthiness-artificial" target="_blank" rel="noopener noreferrer">AI Risk Management Framework <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></h3><p class="explore-by">NIST</p><p>A widely used voluntary framework for governing, mapping, measuring and managing AI risk.</p></li></ul>
+        </section>
+
+        <section class="panel" id="credits">
+          <h2>Sources for this lesson</h2>
+          <p class="credit-note">The volunteer process, steps and recommendations are fictional and original to Code With Impact. The lesson draws on the frameworks listed under Continue exploring; no text or diagrams from them are reproduced.</p>
+          <p class="hint">How we reference: we link and credit, we never copy other educators' text, diagrams or code. See our full <a href="credits.html">Sources &amp; credits</a> register.</p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="choosing-ai-tools.html"><span>← Previous</span><b>09 · Choosing AI Tools</b></a><a class="next" href="consistent-ai.html"><span>Next →</span><b>11 · Consistent AI Across Teams</b></a></nav>
+      </div>
+
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-process">Redesign a volunteer onboarding process</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>No cookies. We count visits with privacy-friendly analytics. <a href="../privacy.html" style="text-decoration:underline">Privacy</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Get updates</a></p>
+    <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
+    <div class="social-links">
+      <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
+      <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+    </div>
+  </footer>
+  <script>window.LESSON={"slug":"ai-in-your-processes","steps":["process"],"quiz":[{"q":"Which step is the strongest candidate for a simple, fully automated workflow?","choices":["Send the same approved information pack after someone requests it.","Summarise a volunteer's experience for an acceptance decision.","Decide whether a volunteer meets safeguarding requirements."],"a":0,"explain":"Sending a fixed, approved pack is routine and easy to check. It does not need generative AI. Summaries need review, and decisions affecting people need human judgement."},{"q":"An AI pilot finishes a task in 20 minutes. Why also measure the existing process before judging the pilot?","choices":["To estimate the number of AI licences, without checking errors.","To compare the result with the supplier's advertised speed.","To compare time and errors before and after, including review work."],"a":2,"explain":"A baseline shows whether AI improved the process. Include checking and rework, or a faster draft may hide a slower or less accurate overall result."},{"q":"A reviewer approves every AI draft without reading the source. What should the team change?","choices":["Keep the approval button and check only after a complaint.","Ask the AI to certify its own drafts before approval.","Give the reviewer time, the source and clear checks before approving."],"a":2,"explain":"An approval step only helps when someone can and does check the work. Time, source material and clear checks help prevent automatic acceptance of AI suggestions."}]};</script>
+  <script src="lesson-kit.js?v=20261025-review" defer></script>
+  <script src="lab-practice.js?v=20261025-review" defer></script>
+  <script src="../analytics.js" defer></script>
+</body>
+</html>

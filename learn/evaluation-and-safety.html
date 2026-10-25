@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#102033" />
   <title>Evaluation &amp; Safety | Learn AI | Code With Impact</title>
   <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css" />
+  <link rel="stylesheet" href="learn.css?v=20261025-review" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -26,7 +26,7 @@
 
   <main id="main">
     <section class="lesson-top">
-      <p class="crumbs"><a href="index.html">← All lessons</a> / Responsible AI / Lesson 07 of 07</p>
+      <p class="crumbs"><a href="index.html">← All lessons</a> / Responsible AI / Lesson 07 of 12</p>
       <p class="eyebrow">Interactive lesson</p>
       <h1>Evaluation and safety: how do we know the AI is right?</h1>
       <p>An AI system that sounds right isn't necessarily right. Learn to test answers against evidence, define what “good” means, and put guardrails around what goes in and what comes out.</p>
@@ -101,7 +101,7 @@ def test_cites_its_source():
     assert "45p" in reply and "[1]" in reply
 
 def test_says_when_it_does_not_know():
-    reply = answer("What is the CEO's home address?")
+    reply = answer("What is our policy on bringing pets to events?")   # not in the documents
     assert "can't find" in reply.lower()
 
 def test_refuses_medical_advice():
@@ -121,7 +121,7 @@ def test_refuses_medical_advice():
 
         <section class="panel" id="quiz">
           <h2>Check your understanding</h2>
-          <p>4 quick questions. You can try again as often as you like; lesson completion is saved in this browser; answers reset when you reload.</p>
+          <p>4 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
           <div id="quiz-content"></div>
           <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
@@ -139,7 +139,7 @@ def test_refuses_medical_advice():
           <p class="hint">How we reference: we link and credit, we never copy other educators' text, diagrams or code. See our full <a href="credits.html">Sources &amp; credits</a> register.</p>
         </section>
 
-        <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="ai-agents.html"><span>← Previous</span><b>06 · AI Agents</b></a><a class="next" href="resources.html"><span>Continue exploring →</span><b>Learning resources</b></a></nav>
+        <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="ai-agents.html"><span>← Previous</span><b>06 · AI Agents</b></a><a class="next" href="ai-in-your-organisation.html"><span>Next →</span><b>08 · AI in Your Organisation</b></a></nav>
       </div>
 
       <aside class="toc" aria-label="On this page">
@@ -154,7 +154,7 @@ def test_refuses_medical_advice():
   </main>
 
   <footer class="site-footer">
-    <p>We do not use cookies on this website.</p>
+    <p>No cookies. We count visits with privacy-friendly analytics. <a href="../privacy.html" style="text-decoration:underline">Privacy</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Get updates</a></p>
     <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
     <div class="social-links">
       <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
@@ -162,7 +162,8 @@ def test_refuses_medical_advice():
     </div>
   </footer>
   <script>window.LESSON={"slug": "evaluation-and-safety", "steps": ["evaluate", "guard"], "quiz": [{"q": "An answer reads well and cites a source, but quotes a figure the source doesn't contain. How should it be graded?", "choices": ["Pass, because it is well written.", "Fail on accuracy, however fluent it sounds.", "Pass, because the citation makes it trustworthy."], "a": 1, "explain": "Faithfulness to the source is the key test. Fluent, cited and wrong is the most dangerous kind of answer."}, {"q": "Why use a fixed test set of questions?", "choices": ["So you can compare versions of the system fairly over time.", "Because models only accept a fixed number of questions.", "To make the system faster."], "a": 0, "explain": "Re-running the same questions after every change shows whether you improved things or broke something."}, {"q": "A volunteer pastes a service user's NHS number into an AI assistant. What should a good input guardrail do?", "choices": ["Nothing, because it's internal.", "Redact or block the personal data before it is sent.", "Store it for later."], "a": 1, "explain": "Personal and health data should be removed or blocked before reaching an external AI service."}, {"q": "Which message should be routed to a person rather than answered by the AI?", "choices": ["“Summarise this newsletter.”", "“Should I stop taking my medication?”", "“Suggest a title for our blog post.”"], "a": 1, "explain": "Medical advice needs a qualified professional. The safe response is to signpost to a doctor or pharmacist."}]};</script>
-  <script src="lesson-kit.js" defer></script>
+  <script src="lesson-kit.js?v=20261025-review" defer></script>
   <script src="lab-evaluation.js" defer></script>
+  <script src="../analytics.js" defer></script>
 </body>
 </html>

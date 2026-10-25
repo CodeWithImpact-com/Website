@@ -8,7 +8,12 @@ const lessons=[
  {n:4,stage:"BUILDING BLOCKS",title:"Embeddings & Search",detail:"Discover how meaning becomes numbers, and how similarity search works.",minutes:25,explore:false,url:"embeddings-and-search.html"},
  {n:5,stage:"BUILDING BLOCKS",title:"Build a RAG System",detail:"Chunk, retrieve and ground answers in your own documents.",minutes:30,explore:false,url:"build-a-rag-system.html"},
  {n:6,stage:"BUILDING BLOCKS",title:"AI Agents",detail:"Tools, memory, planning and keeping a human in control.",minutes:30,explore:false,url:"ai-agents.html"},
- {n:7,stage:"RESPONSIBLE AI",title:"Evaluation & Safety",detail:"Test answers against evidence and add guardrails.",minutes:25,explore:true,url:"evaluation-and-safety.html"}
+ {n:7,stage:"RESPONSIBLE AI",title:"Evaluation & Safety",detail:"Test answers against evidence and add guardrails.",minutes:25,explore:true,url:"evaluation-and-safety.html"},
+ {n:8,stage:"RESPONSIBLE AI",title:"AI in Your Organisation",detail:"Use AI safely and legally, and write a one-page AI policy.",minutes:25,explore:true,url:"ai-in-your-organisation.html"},
+ {n:9,stage:"AI IN PRACTICE",title:"Choosing AI Tools",detail:"Set must-haves, weight what matters, and compare tools fairly.",minutes:20,explore:true,url:"choosing-ai-tools.html"},
+ {n:10,stage:"AI IN PRACTICE",title:"AI in Your Processes",detail:"Map a process and decide what to keep human, assist or automate.",minutes:20,explore:true,url:"ai-in-your-processes.html"},
+ {n:11,stage:"AI IN PRACTICE",title:"Consistent AI Across Teams",detail:"Shared templates, an AI register and clear owners across teams.",minutes:20,explore:true,url:"consistent-ai.html"},
+ {n:12,stage:"AI IN PRACTICE",title:"Validating AI in Use",detail:"Sample checks, uncertainty and spotting drift after launch.",minutes:25,explore:true,url:"validating-ai-in-use.html"}
 ];
 const box=document.getElementById("module-container"),help=document.getElementById("track-help");
 function isDone(l){try{return localStorage.getItem("cwi-learn-"+(l.slug||l.url.replace(".html","")))==="complete";}catch(_e){return false;}}

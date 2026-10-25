@@ -79,7 +79,7 @@
       res.append(el("strong",null,`You scored ${score} out of ${L.quiz.length}.`),
         el("p",null,quizPassed?"You've completed the knowledge check. Well done!":"Read the explanations above, then try again."));
       const b=el("button","btn secondary small","Try again ↺");b.type="button";
-      b.addEventListener("click",()=>{answers.fill(null);quizPassed=false;drawQuiz();progress();root.scrollIntoView({block:"start"});});
+      b.addEventListener("click",()=>{answers.fill(null);quizPassed=false;store(KEY,null);drawQuiz();progress();root.scrollIntoView({block:"start"});});
       res.append(b);
       progress();
     }

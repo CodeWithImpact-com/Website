@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#102033" />
   <title>Prompting &amp; Context | Learn AI | Code With Impact</title>
   <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css" />
+  <link rel="stylesheet" href="learn.css?v=20261025-review" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -26,7 +26,7 @@
 
   <main id="main">
     <section class="lesson-top">
-      <p class="crumbs"><a href="index.html">← All lessons</a> / Foundations / Lesson 03 of 07</p>
+      <p class="crumbs"><a href="index.html">← All lessons</a> / Foundations / Lesson 03 of 12</p>
       <p class="eyebrow">Interactive lesson</p>
       <h1>Prompting and context: why the same AI gives different answers.</h1>
       <p>A model only knows what it learned in training and what you put in front of it. Learn how to write clear instructions, give useful context, and understand why outputs vary.</p>
@@ -74,10 +74,11 @@
           <h2>Key ideas to take away</h2>
           <ul class="ideas">
             <li><b>Be specific about the task, audience and format.</b> “Three bullet points for trustees” beats “summarise this”.</li>
+            <li><b>Never paste personal or sensitive data into public AI tools.</b> Names, health details, case notes and donor records should only go into tools your organisation has approved for that data, and only when it is needed. Use synthetic or anonymised examples while you experiment.</li>
             <li><b>Give the model the facts.</b> Without your data in the context, it may guess, ask for the missing data or decline to answer. Check that the response uses the evidence you supplied.</li>
             <li><b>Tell it what to do when unsure.</b> Ask it to say “not in the data”, then test whether it follows that instruction. A prompt cannot guarantee that it will.</li>
             <li><b>Temperature changes variety, not truth.</b> Lower settings concentrate the next-token probabilities. They can still produce the same wrong answer repeatedly, so verify factual claims at any setting.</li>
-            <li><b>Context windows are finite.</b> In long conversations, early instructions can drop out of view. Restate what matters, or start a fresh conversation.</li>
+            <li><b>Context windows are finite.</b> In long conversations, early instructions can drop out of view. Quality can also slip well before the limit, especially for details buried in the middle of a long input. Restate what matters, or start a fresh conversation.</li>
           </ul>
         </section>
 
@@ -96,7 +97,7 @@
               <ul>
                 <li><b>Temperature</b> rescales scores before softmax: <code>P(i) ∝ exp(z_i / T)</code>.</li>
                 <li><b>Top-p</b> (nucleus sampling) only samples from the smallest set of tokens whose probabilities add up to <i>p</i>.</li>
-                <li><b>Greedy decoding</b> always picks the top token. This gives consistent results, but the wording can be repetitive.</li>
+                <li><b>Greedy decoding</b> always picks the top token, which is roughly what temperature 0 does. Results are more consistent, but the wording can be repetitive, and many services still vary slightly from run to run.</li>
               </ul>
               <h3>Techniques worth knowing</h3>
               <dl class="glossary">
@@ -111,7 +112,7 @@
 
         <section class="panel" id="quiz">
           <h2>Check your understanding</h2>
-          <p>3 quick questions. You can try again as often as you like; lesson completion is saved in this browser; answers reset when you reload.</p>
+          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
           <div id="quiz-content"></div>
           <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
@@ -144,7 +145,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>We do not use cookies on this website.</p>
+    <p>No cookies. We count visits with privacy-friendly analytics. <a href="../privacy.html" style="text-decoration:underline">Privacy</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Get updates</a></p>
     <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
     <div class="social-links">
       <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
@@ -152,7 +153,8 @@
     </div>
   </footer>
   <script>window.LESSON={"slug":"prompting-and-context","steps":["prompt","temperature","window"],"quiz":[{"q":"You ask a model to “summarise the survey” but don't paste the survey in. What is the risk?","choices":["None, because it will ask for the file.","It may produce a plausible summary with invented findings.","It will look the survey up online."],"a":1,"explain":"Without the data in its context, a model fills the gap with plausible-sounding text, including made-up figures."},{"q":"You use a low temperature to extract figures from a report. What still needs checking?","choices":["Nothing; low temperature makes the figures factual.","That each figure matches the report, because predictable output can still be wrong.","Only whether the response uses the requested bullet format."],"a":1,"explain":"Temperature changes the token distribution, not whether a claim is true. Check the figures against the source."},{"q":"In a very long chat, the model stops following an instruction you gave at the start. A likely reason?","choices":["The model got bored.","The instruction fell outside the context window.","Instructions expire after ten minutes."],"a":1,"explain":"The application may have omitted or summarised earlier messages. Check what it actually sent to the model; context handling differs between applications."}]};</script>
-  <script src="lesson-kit.js" defer></script>
+  <script src="lesson-kit.js?v=20261025-review" defer></script>
   <script src="lab-prompting.js" defer></script>
+  <script src="../analytics.js" defer></script>
 </body>
 </html>

@@ -5,27 +5,27 @@
   // dimensions: volunteering, money, research, health, events
   const TOPICS = {vol:["Volunteering","#C2453D"], money:["Fundraising","#B07A1E"], research:["Research","#102033"], health:["Health & care","#2F7A5C"], events:["Events","#6A5AA8"]};
   const DOCS = [
-    {t:"Giving up your Saturday to help at the food bank", s:"Food bank Saturdays", v:[.9,0,0,.2,.3], topic:"vol", x:70, y:70},
-    {t:"Joining our team of helpers", s:"Join our helpers", v:[.95,0,0,.1,.1], topic:"vol", x:130, y:110},
-    {t:"Sharing your skills with a local charity", s:"Share your skills", v:[.85,.1,.1,.1,0], topic:"vol", x:60, y:150},
-    {t:"Running a marathon for charity", s:"Charity marathon", v:[.2,.8,0,.2,.7], topic:"money", x:400, y:95},
-    {t:"Setting up a monthly direct debit donation", s:"Monthly direct debit", v:[0,.95,0,.05,0], topic:"money", x:330, y:40},
-    {t:"Gift Aid on your donation", s:"Gift Aid", v:[0,.9,0,0,0], topic:"money", x:265, y:75},
-    {t:"Clinical trial results for a new MND drug", s:"MND drug trial", v:[0,0,.9,.6,0], topic:"research", x:470, y:290},
-    {t:"Analysing patient data to find early signs of disease", s:"Early signs in data", v:[.05,0,.85,.5,0], topic:"research", x:545, y:250},
-    {t:"Peer-reviewed study on dementia risk", s:"Dementia study", v:[0,0,.9,.5,0], topic:"research", x:520, y:345},
-    {t:"Support for carers looking after a family member", s:"Support for carers", v:[.35,0,0,.9,0], topic:"health", x:120, y:290},
-    {t:"Managing anxiety and low mood", s:"Anxiety & low mood", v:[0,0,.25,.85,0], topic:"health", x:210, y:340},
-    {t:"Physiotherapy at home after a stroke", s:"Home physiotherapy", v:[0,0,.3,.8,.1], topic:"health", x:250, y:275},
-    {t:"Summer garden party tickets", s:"Garden party", v:[.1,.4,0,0,.9], topic:"events", x:540, y:60},
-    {t:"Charity quiz night at the village hall", s:"Quiz night", v:[.2,.4,0,0,.9], topic:"events", x:585, y:130},
+    {t:"Giving up your Saturday to help at the food bank", s:"Food bank Saturdays", v:[.9,0,0,.2,.3], topic:"vol", x:60, y:55},
+    {t:"Joining our team of helpers", s:"Join our helpers", v:[.95,0,0,.1,.1], topic:"vol", x:95, y:100},
+    {t:"Sharing your skills with a local charity", s:"Share your skills", v:[.85,.1,.1,.1,0], topic:"vol", x:60, y:145},
+    {t:"Running a marathon for charity", s:"Charity marathon", v:[.2,.8,0,.2,.7], topic:"money", x:370, y:165},
+    {t:"Setting up a monthly direct debit donation", s:"Monthly direct debit", v:[0,.95,0,.05,0], topic:"money", x:270, y:45},
+    {t:"Gift Aid on your donation", s:"Gift Aid", v:[0,.9,0,0,0], topic:"money", x:250, y:95},
+    {t:"Clinical trial results for a new MND drug", s:"MND drug trial", v:[0,0,.9,.6,0], topic:"research", x:440, y:262},
+    {t:"Analysing patient data to find early signs of disease", s:"Early signs in data", v:[.05,0,.85,.5,0], topic:"research", x:470, y:315},
+    {t:"Peer-reviewed study on dementia risk", s:"Dementia study", v:[0,0,.9,.5,0], topic:"research", x:440, y:365},
+    {t:"Support for carers looking after a family member", s:"Support for carers", v:[.35,0,0,.9,0], topic:"health", x:60, y:262},
+    {t:"Managing anxiety and low mood", s:"Anxiety & low mood", v:[0,0,.25,.85,0], topic:"health", x:60, y:362},
+    {t:"Physiotherapy at home after a stroke", s:"Home physiotherapy", v:[0,0,.3,.8,.1], topic:"health", x:110, y:312},
+    {t:"Summer garden party tickets", s:"Garden party", v:[.1,.4,0,0,.9], topic:"events", x:545, y:55},
+    {t:"Charity quiz night at the village hall", s:"Quiz night", v:[.2,.4,0,0,.9], topic:"events", x:595, y:125},
   ];
   const QUERIES = [
-    {q:"people offering their time", v:[.95,0,0,.1,.1]},
-    {q:"ways to donate money", v:[0,.95,0,0,.1]},
-    {q:"latest medical research", v:[0,0,.95,.4,0]},
-    {q:"help for someone caring for a relative", v:[.3,0,0,.95,0]},
-    {q:"fun fundraising events", v:[.1,.6,0,0,.85]},
+    {q:"people offering their time", v:[.95,0,0,.1,.1], x:215, y:195, ly:222},
+    {q:"ways to donate money", v:[0,.95,0,0,.1], x:300, y:230, ly:257},
+    {q:"latest medical research", v:[0,0,.95,.4,0], x:320, y:315, ly:343},
+    {q:"help for someone caring for a relative", v:[.3,0,0,.95,0], x:250, y:225, ly:206},
+    {q:"fun fundraising events", v:[.1,.6,0,0,.85], x:490, y:195, ly:222},
   ];
   const CMP = [
     {q:"people offering their time", v:[.95,0,0,.1,.1], note:"This exact-word matcher finds nothing: no text uses these words. Our hand-set vectors rank the volunteering texts highly."},
@@ -43,14 +43,19 @@
     svg.replaceChildren();
     const q = qi===null?null:QUERIES[qi], ranked = q?rank(q.v):[];
     let qx=0,qy=0;
-    if(q){ // place the query at the similarity-weighted centre of its closest texts
-      const top=ranked.slice(0,3), w=top.map(r=>Math.pow(Math.max(r.s,0),4)), sw=w.reduce((a,b)=>a+b,0);
-      top.forEach((r,i)=>{qx+=r.d.x*w[i]/sw;qy+=r.d.y*w[i]/sw;});
-      qy = Math.min(qy+28, 380);
-      top.forEach(r=>svg.append(node("line",{x1:qx,y1:qy,x2:r.d.x,y2:r.d.y,class:"map-link"})));
+    if(q){ // hand-placed in open space near its closest texts, so labels never collide
+      qx=q.x; qy=q.y;
+      ranked.slice(0,3).forEach(r=>svg.append(node("line",{x1:qx,y1:qy,x2:r.d.x,y2:r.d.y,class:"map-link"})));
     }
+    Object.keys(TOPICS).forEach(t=>{ // soft halo behind each topic group
+      const ds=DOCS.filter(d=>d.topic===t); if(!ds.length) return;
+      const cx=ds.reduce((a,d)=>a+d.x,0)/ds.length, cy=ds.reduce((a,d)=>a+d.y,0)/ds.length;
+      const r=Math.max(...ds.map(d=>Math.hypot(d.x-cx,d.y-cy)))+30;
+      svg.insertBefore(node("circle",{cx,cy,r,fill:TOPICS[t][1],class:"map-halo"}),svg.firstChild);
+    });
+    const hits=q?ranked.slice(0,3).map(r=>r.d):[];
     DOCS.forEach(d=>{
-      const g=node("g",{class:"map-dot"+(q&&ranked.slice(0,3).some(r=>r.d===d)?" hit":"")});
+      const g=node("g",{class:"map-dot"+(hits.includes(d)?" hit":q?" dim":"")});
       g.append(node("circle",{cx:d.x,cy:d.y,r:8,fill:TOPICS[d.topic][1]}));
       const anchor=d.x>500?"end":"start", dx=d.x>500?-12:12;
       g.append(node("text",{x:d.x+dx,y:d.y+4,"text-anchor":anchor},d.s));
@@ -58,8 +63,7 @@
     });
     if(q){
       svg.append(node("path",{d:star(qx,qy,13,6),class:"map-star"}));
-      const anchor=qx>460?"end":qx<180?"start":"middle";
-      svg.append(node("text",{x:qx,y:qy>60?qy-20:qy+30,class:"map-qlabel","text-anchor":anchor},"“"+q.q+"”"));
+      svg.append(node("text",{x:qx,y:q.ly,class:"map-qlabel","text-anchor":"middle"},"“"+q.q+"”"));
       const out=document.getElementById("sem-results"); out.replaceChildren();
       ranked.slice(0,3).forEach(r=>{const li=el("li");li.append(el("span",null,r.d.t),el("b","score",r.s.toFixed(2)));out.append(li);});
       mark("map");
