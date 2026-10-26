@@ -1,118 +1,141 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en-GB">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Code With Impact's free, interactive introduction to language models, AI agents, RAG and responsible AI, using examples for social good." />
-  <meta name="theme-color" content="#102033" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Learn AI through original interactive lessons on language models, prompts, RAG, agents and responsible use. Free, practical learning from Code With Impact.">
+  <meta name="theme-color" content="#102033">
   <title>Learn AI | Code With Impact</title>
-  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css?v=20261025-review" />
+  <link rel="stylesheet" href="../style.css?v=c12-4">
+  <link rel="stylesheet" href="../learn-ml/ml.css?v=c12-4">
+  <style>
+    .ai-prompt-demo .ai-demo-controls{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+    .ai-prompt-demo .ai-demo-controls button{border-color:#52657a;background:#1b3047;color:#e3eaf0}
+    .ai-prompt-demo .ai-demo-controls button[aria-pressed="true"]{border-color:var(--ml-gold);background:var(--ml-gold);color:var(--ml-ink)}
+    .ai-prompt-demo .ai-demo-copy{border:1px solid #405063;border-radius:8px;padding:13px 15px;margin:12px 0}
+    .ai-prompt-demo .ai-demo-copy b{display:block;font-size:11px;letter-spacing:1px;color:var(--ml-gold);text-transform:uppercase;margin-bottom:6px}
+    .ai-prompt-demo .ai-demo-copy p{font-size:14px;line-height:1.6;margin:0;color:#e3eaf0;overflow-wrap:anywhere}
+    .ai-prompt-demo .ai-demo-note{font-size:12px;color:#c5d1dd;margin:15px 0 0}
+    #ai-progress-bar{display:block;width:min(280px,100%);height:8px;accent-color:var(--ml-teal);margin-top:10px}
+  </style>
+  <script src="learning-path.js?v=c12-4" defer></script>
+  <link rel="stylesheet" href="../typography.css?v=c12-4">
+  <link rel="stylesheet" href="../colours.css?v=c12-4" />
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
+<body class="ml-page">
+  <a class="ml-skip" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="logo" href="../index.html"><img class="logo-image" src="../images/logo_for__codewithimpact__features.png" alt="Code With Impact logo" /></a>
+    <a class="logo" href="../index.html"><img class="logo-image" src="../images/logo_for__codewithimpact__features.png" alt="Code With Impact logo"></a>
     <nav aria-label="Main navigation">
       <a href="../index.html">Home</a>
       <a href="../projects.html">Projects</a>
-      <a class="active" href="index.html">Learn AI</a>
+      <a class="active" href="index.html" aria-current="page">Learn AI</a>
+      <a href="../learn-ml/index.html">Learn ML</a>
       <a href="../get-involved.html">Get Involved</a>
       <a href="../about.html">About Us</a>
       <a href="../contact.html">Contact</a>
     </nav>
-    <a class="btn primary small" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&ouid=109427088113351453508" target="_blank" rel="noopener noreferrer">Partner With Us</a>
+    <a class="btn primary small" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer">Partner With Us</a>
   </header>
 
-  <main id="main">
-    <section class="learn-hero">
-      <div class="learn-hero-text">
-        <p class="eyebrow">Open learning · Real-world impact</p>
-        <h1>Understand AI. <span>Build with purpose.</span></h1>
-        <p>Free, interactive lessons on language models, RAG, AI agents and trustworthy AI, with hands-on experiments and practical examples from health and research.</p>
-        <div class="actions">
-          <a class="btn primary" href="#learning-path">Explore the learning path</a>
-          <a class="btn secondary" href="ai-made-simple.html">Start lesson 1</a>
-        </div>
-        <ul class="mini-stats">
-          <li><b>12 interactive lessons</b></li>
-          <li><b>2 learning tracks</b></li>
-          <li><b>Free</b>, no sign-up</li>
-        </ul>
-      </div>
-      <div class="hero-art" role="img" aria-label="Illustration: a sentence is split into tokens, processed by a transformer, and the next token is predicted">
-        <p class="art-title">How does a language model work?</p>
-        <div class="art-tokens" aria-hidden="true"><span>The</span><span>charity</span><span>team</span><span>asked</span><span>…</span></div>
-        <div class="art-flow" aria-hidden="true"><b>Text</b><i>→</i><b>Tokens</b><i>→</i><b>Transformer</b><i>→</i><b>Next token</b></div>
-        <p class="art-note">An interactive journey from your words to a generated response.</p>
-      </div>
-    </section>
-
-    <section class="learn-section" id="learning-path">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Your learning journey</p>
-          <h2>Learn a little. Build a lot.</h2>
-          <p class="lead">Get to know the basics, then try building and testing AI systems. Choose the track that suits you.</p>
-        </div>
-        <div class="tracks" role="group" aria-label="Learning track">
-          <button type="button" data-track="explore" aria-pressed="false">Explore AI</button>
-          <button type="button" data-track="builder" aria-pressed="true">Build AI</button>
-        </div>
-      </div>
-      <div class="notice learning-updates">
-        <div>
-          <p>We'll update this section regularly with new lessons, examples and resources. Check back from time to time to see what's new.</p>
-          <p>Subscribe and we'll email you when new lessons or other website updates are available.</p>
-        </div>
-        <a class="btn dark small" href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to website updates (opens in a new tab)">Subscribe</a>
-      </div>
-      <p class="hint" id="track-help" aria-live="polite">Build AI track · 12 lessons · about 4.5 hours</p>
-      <div id="module-container"></div>
-      <p class="muted-note"><b>Explore AI</b> (9 lessons) is for anyone curious about AI, no technical background needed. <b>Build AI</b> (all 12) adds the building blocks for creating AI tools. Every lesson has a “Go deeper” section with equations and code for technical learners. Progress is saved only in your browser.</p>
-    </section>
-
-    <section class="learn-section tinted" id="approach">
-      <p class="eyebrow">Our approach</p>
-      <h2>Learn it. See it. Try it.</h2>
-      <div class="source-grid">
-        <div class="source-card"><div class="source-icon" aria-hidden="true">◎</div><h3>Simple explanations</h3><p>Understand the idea before introducing technical detail or mathematics.</p></div>
-        <div class="source-card"><div class="source-icon gold" aria-hidden="true">◈</div><h3>Interactive experiments</h3><p>Change the inputs, inspect the diagrams and see what changes and why.</p></div>
-        <div class="source-card"><div class="source-icon" aria-hidden="true">♡</div><h3>Social-impact projects</h3><p>Apply new skills to evidence review and data challenges using public or synthetic examples.</p></div>
-      </div>
-    </section>
-
-    <section class="learn-section" id="resources">
-      <p class="eyebrow">Credits and further reading</p>
-      <h2>Built on good ideas. Clearly credited.</h2>
-      <p class="lead">We create our own lessons and illustrations, and recommend the educators, researchers and open-source communities whose work inspired them.</p>
-      <div class="lab-actions"><a class="btn dark" href="resources.html">Browse our resource library</a><a class="btn secondary" href="credits.html">Sources &amp; credits register</a></div>
-      <div class="source-grid">
-        <div class="source-card"><div class="source-icon" aria-hidden="true">↗</div><h3>LLM Visualization</h3><p>Brendan Bycroft's interactive 3D explanation of a language model.</p><a href="https://bbycroft.net/llm" target="_blank" rel="noopener noreferrer">Visit the original project ↗</a></div>
-        <div class="source-card"><div class="source-icon" aria-hidden="true">↗</div><h3>Transformer Explainer</h3><p>An interactive transformer learning experience from Georgia Tech's Polo Club.</p><a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener noreferrer">Visit the original project ↗</a></div>
-        <div class="source-card"><div class="source-icon" aria-hidden="true">↗</div><h3>The Illustrated GPT-2</h3><p>Jay Alammar's accessible visual explanation of generative language models.</p><a href="https://jalammar.github.io/illustrated-gpt2/" target="_blank" rel="noopener noreferrer">Read the original article ↗</a></div>
-      </div>
-      <p class="muted-note">Our lessons use no code, diagrams or text copied from third-party resources. Linked resources have their own terms and licences.</p>
-    </section>
-
-    <div class="cta-band learn-cta">
+  <main id="main" class="ml-main">
+    <section class="ml-hero">
       <div>
-        <h3>Technology is most powerful when it helps people.</h3>
-        <p>Code With Impact connects volunteer talent with healthcare and research organisations to solve meaningful challenges.</p>
+        <p class="ml-eyebrow"><span class="ml-kicker-dot" aria-hidden="true"></span> Open learning / Artificial intelligence</p>
+        <h1>Understand AI.<br><em>Use it with purpose.</em></h1>
+        <p class="ml-hero-copy">Find out how AI works, try its building blocks and judge when it helps. Small experiments. Practical choices. Clear explanations for everyday work and social impact.</p>
+        <div class="ml-actions">
+          <a class="ml-btn" id="hero-start-link" href="ai-made-simple.html">Start learning <span aria-hidden="true">↗</span></a>
+          <a class="ml-text-link" href="#learning-path">See the learning path ↓</a>
+        </div>
+        <p class="ml-quiet">Free to explore · No code needed to start · Your pace</p>
       </div>
-      <a class="btn dark" href="../get-involved.html">Get involved</a>
+      <div class="ml-hero-lab ai-prompt-demo" aria-labelledby="prompt-demo-title">
+        <div class="ml-window-bar"><span aria-hidden="true"><i></i><i></i><i></i></span><b>THE PROMPT LAB</b><span>TRY AN IDEA</span></div>
+        <h2 class="ml-mini-label" id="prompt-demo-title" style="font-size:20px;letter-spacing:0;margin-top:24px">What changes when you add context?</h2>
+        <div class="ai-demo-controls" role="group" aria-label="Choose an example prompt">
+          <button class="ml-small-btn" type="button" data-prompt-example="vague" aria-pressed="true" aria-controls="prompt-demo-example" disabled>Vague request</button>
+          <button class="ml-small-btn" type="button" data-prompt-example="specific" aria-pressed="false" aria-controls="prompt-demo-example" disabled>Clearer request</button>
+        </div>
+        <div id="prompt-demo-example" aria-live="polite" aria-atomic="true">
+          <div class="ai-demo-copy"><b>Prompt</b><p id="prompt-demo-input">Write an update for our volunteers.</p></div>
+          <div class="ai-demo-copy"><b>Illustrative response</b><p id="prompt-demo-output">Hello team! We have some exciting updates to share. Thank you for all your hard work. Stay tuned for more details about our next session.</p></div>
+          <div class="ml-mini-insight"><span class="ml-insight-icon" aria-hidden="true">↳</span><p id="prompt-demo-feedback">The request leaves out the change, the audience's next step and the facts the message needs.</p></div>
+        </div>
+        <p class="ai-demo-note">Both responses are examples written by us, not live AI output. Real responses vary; a clearer prompt still needs a fact check.</p>
+        <a class="ml-lab-link" href="prompting-and-context.html">Try the full prompting lesson <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <div class="ml-facts">
+      <p><strong>12</strong> interactive lessons</p>
+      <p><strong>1</strong> learning path</p>
+      <p><strong>0</strong> installs to get started</p>
+      <span>Original examples<br>for work that helps people</span>
     </div>
+
+    <section class="ml-section ml-start">
+      <div><p class="ml-eyebrow">Start with a useful task</p><h2>A better question.<br>A more useful result.</h2></div>
+      <div><p>Could AI help a community team find evidence, prepare an update or organise information? Begin with the task, then explore what the technology can do and where people need to stay in control.</p><p>You will move from the ideas behind language models to search, agents, evaluation and responsible use. The experiments run in your browser.</p><a class="ml-text-link" href="../learn-ml/index.html">Curious about data and predictions? Try Learn ML ↗</a></div>
+    </section>
+
+    <section class="ml-section" id="learning-path">
+      <div class="ml-section-heading"><div><p class="ml-eyebrow">Your learning path</p><h2>One idea. One experiment.<br>One step forward.</h2><p class="ml-section-lead">Follow the lessons in order, or return to the idea you need.</p></div></div>
+      <div class="ml-progress-strip">
+        <div><b id="course-progress">0 of 12 lessons completed</b><p id="course-description">12 lessons · About 3 hours · No coding required</p><progress id="ai-progress-bar" max="12" value="0" aria-labelledby="course-progress">0 of 12</progress></div>
+        <a class="ml-text-link" id="resume-link" href="ai-made-simple.html">Start lesson 1 ↗</a>
+      </div>
+      <p class="ml-course-note">One learning path for everyone. Each lesson includes an optional <b>Go deeper</b> section with technical detail, code or further reading.</p>
+      <div id="module-container"></div>
+      <noscript>
+        <p>Turn on JavaScript to use the experiments and show saved progress. You can still open every lesson:</p>
+        <ol>
+          <li><a href="ai-made-simple.html">AI Made Simple</a></li><li><a href="inside-an-llm.html">Inside an LLM</a></li><li><a href="prompting-and-context.html">Prompting &amp; Context</a></li><li><a href="embeddings-and-search.html">Embeddings &amp; Search</a></li><li><a href="build-a-rag-system.html">Build a RAG System</a></li><li><a href="ai-agents.html">AI Agents</a></li><li><a href="evaluation-and-safety.html">Evaluation &amp; Safety</a></li><li><a href="ai-in-your-organisation.html">AI in Your Organisation</a></li><li><a href="choosing-ai-tools.html">Choosing AI Tools</a></li><li><a href="ai-in-your-processes.html">AI in Your Processes</a></li><li><a href="consistent-ai.html">Consistent AI Across Teams</a></li><li><a href="validating-ai-in-use.html">Validating AI in Use</a></li>
+        </ol>
+      </noscript>
+      <div class="ml-path-note"><span aria-hidden="true">↳</span><p id="storage-note">Progress is saved only in this browser. A lesson completes when you have tried its activities and answered its questions.</p></div>
+    </section>
+
+    <section class="ml-method" id="approach">
+      <p class="ml-eyebrow">How you will learn</p><h2>Learn it. See it. Try it.</h2>
+      <div class="ml-method-grid">
+        <article><span>01 / UNDERSTAND THE IDEA</span><h3>Start with a clear explanation.</h3><p>Meet a practical question before exploring specialist terms or technical detail.</p></article>
+        <article><span>02 / CHANGE SOMETHING</span><h3>Try the idea for yourself.</h3><p>Change an input, inspect what happens and consider what the example cannot show.</p></article>
+        <article><span>03 / USE YOUR JUDGEMENT</span><h3>Decide what helps.</h3><p>Check understanding, question the result and apply the idea to work that matters.</p></article>
+      </div>
+    </section>
+
+    <section class="ml-section ml-start" id="put-it-together">
+      <div><p class="ml-eyebrow">Put it together</p><h2>From a small idea<br>to a useful project.</h2></div>
+      <div><p>Visit the optional project lab for practical walkthroughs, or use the later lessons to choose tools, review a process and plan checks before using AI in your team.</p><div class="ml-actions"><a class="ml-btn" href="project-lab.html">Open the project lab ↗</a><a class="ml-text-link" href="ai-in-your-processes.html">Review a process ↗</a></div></div>
+    </section>
+
+    <section class="ml-section ml-reading" id="resources">
+      <div><p class="ml-eyebrow">Credits and further reading</p><h2>Good material.<br>A clear next step.</h2><p>We write our own lessons and examples, and credit the educators, researchers and open-source communities whose work informs them. Linked resources have their own terms and licences.</p><a class="ml-btn secondary" href="resources.html">Browse the resource library ↗</a></div>
+      <div class="ml-reading-list">
+        <a href="../glossary.html"><span>Look up a word</span><b>Glossary</b><span aria-hidden="true">→</span></a>
+        <a href="credits.html"><span>Know the source</span><b>Sources &amp; credits register</b><span aria-hidden="true">→</span></a>
+        <a href="https://bbycroft.net/llm" target="_blank" rel="noopener noreferrer"><span>Brendan Bycroft</span><b>LLM Visualization</b><span aria-label="opens in a new tab">↗</span></a>
+        <a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener noreferrer"><span>Polo Club of Data Science, Georgia Tech</span><b>Transformer Explainer</b><span aria-label="opens in a new tab">↗</span></a>
+        <a href="https://jalammar.github.io/illustrated-gpt2/" target="_blank" rel="noopener noreferrer"><span>Jay Alammar</span><b>The Illustrated GPT-2</b><span aria-label="opens in a new tab">↗</span></a>
+      </div>
+    </section>
+
+    <section class="ml-invite" aria-labelledby="invite-title">
+      <div><p class="ml-eyebrow">Questions and ideas welcome</p><h2 id="invite-title">Stuck, curious, or want to help?</h2><p>Ask about a lesson, suggest an improvement or collaborate with us on a real project for a charity or research team.</p></div>
+      <div class="ml-invite-actions"><a class="ml-btn" href="mailto:engagement@codewithimpact.com?subject=Learn%20AI%20question">Ask a question</a><a class="ml-btn secondary" href="../get-involved.html">Get involved</a></div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <p>No cookies. We count visits with privacy-friendly analytics. <a href="../privacy.html" style="text-decoration:underline">Privacy</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Get updates</a></p>
+    <p>No cookies. We count visits with privacy-friendly analytics. <a href="../privacy.html" style="text-decoration:underline">Privacy</a> · <a href="credits.html" style="text-decoration:underline">Sources &amp; credits</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Get updates</a></p>
     <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
     <div class="social-links">
       <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
       <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
     </div>
   </footer>
-  <script src="learning-path.js?v=twelve-lessons" defer></script>
   <script src="../analytics.js" defer></script>
 </body>
 </html>
+

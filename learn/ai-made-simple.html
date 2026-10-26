@@ -6,8 +6,12 @@
   <meta name="description" content="Learn what AI is, how it learns from examples, and where it can help. Train a small model yourself in the interactive lab." />
   <meta name="theme-color" content="#102033" />
   <title>AI Made Simple | Learn AI | Code With Impact</title>
-  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css?v=20261025-review" />
+  <link rel="stylesheet" href="../style.css?v=c12-4" />
+  <link rel="stylesheet" href="learn.css?v=c12-4" />
+  <link rel="stylesheet" href="../glossary.css?v=c12-4" />
+  <link rel="stylesheet" href="../learning.css?v=c12-4">
+  <link rel="stylesheet" href="../typography.css?v=c12-4">
+  <link rel="stylesheet" href="../colours.css?v=c12-4" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -17,6 +21,7 @@
       <a href="../index.html">Home</a>
       <a href="../projects.html">Projects</a>
       <a class="active" href="index.html">Learn AI</a>
+      <a href="../learn-ml/index.html">Learn ML</a>
       <a href="../get-involved.html">Get Involved</a>
       <a href="../about.html">About Us</a>
       <a href="../contact.html">Contact</a>
@@ -34,11 +39,21 @@
     </section>
 
     <div class="lesson-shell">
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-train">Teach a model</a><a href="#lab-fit">Can AI help?</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+
       <div class="lesson-content">
+        <div class="learning-objectives"><b>You’ll learn to</b><ul><li>Distinguish learned patterns from explicit rules.</li><li>Test a tiny model on new messages and inspect its mistakes.</li></ul></div>
         <section class="panel" id="intro">
           <h2>So what is AI?</h2>
           <p><b>Artificial intelligence (AI)</b> is the broad field of getting computers to do tasks that usually need human judgement, such as recognising images, understanding language or making predictions.</p>
-          <p>Most of the AI you meet today is <b>machine learning</b>: instead of a person writing every rule, a system is shown many examples and learns patterns from them. Show it thousands of emails marked “spam” or “not spam” and it learns which features tend to signal spam.</p>
+          <p>Most of the AI you meet today is <b>machine learning</b>: instead of a person writing every rule, a system is shown many examples and learns patterns from them. Show it thousands of emails marked “spam” or “not spam” and it learns which clues, such as particular words, tend to signal spam. These clues are called <span data-term="feature">features</span>. The result of all this learning is called a <span data-term="model">model</span>: the part that has learned the patterns and makes the predictions.</p>
           <p><b>Generative AI</b>, including tools like ChatGPT, Claude or Gemini, uses the same idea at a huge scale. It learned patterns from vast amounts of text, and uses them to predict what words are likely to come next. That is why it can write fluently, and also why it can sound confident while being wrong.</p>
           <div class="compare">
             <div><h3>Traditional software</h3><p>A person writes the rules.<br><i>“If the email contains <b>prize</b>, mark it spam.”</i></p></div>
@@ -76,6 +91,15 @@
           </ul>
         </section>
 
+
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>4 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
+        </section>
+
         <section class="panel" id="deeper">
           <details class="deeper">
             <summary><span class="deeper-title">Want to go deeper?</span><span class="deeper-sub">Equations, code and research for technical learners. Optional.</span></summary>
@@ -108,12 +132,7 @@ print(model.predict(vectoriser.transform(["Venue flooded before the event"])))</
           </details>
         </section>
 
-        <section class="panel" id="quiz">
-          <h2>Check your understanding</h2>
-          <p>4 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
-          <div id="quiz-content"></div>
-          <div id="quiz-result" role="status" aria-live="polite"></div>
-        </section>
+
 
         <section class="panel" id="explore">
           <h2>Continue exploring</h2>
@@ -131,14 +150,7 @@ print(model.predict(vectoriser.transform(["Venue flooded before the event"])))</
         <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="index.html"><span>← Back</span><b>Learning path</b></a><a class="next" href="inside-an-llm.html"><span>Next →</span><b>02 · Inside an LLM</b></a></nav>
       </div>
 
-      <aside class="toc" aria-label="On this page">
-        <strong>In this lesson</strong>
-        <a href="#intro">The big picture</a><a href="#lab-train">Teach a model</a><a href="#lab-fit">Can AI help?</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
-        <div class="toc-progress">
-          <span class="hint" id="progress-text">Progress: 0 activities</span>
-          <div class="progress-bar"><div id="progress-bar"></div></div>
-        </div>
-      </aside>
+
     </div>
   </main>
 
@@ -150,9 +162,11 @@ print(model.predict(vectoriser.transform(["Venue flooded before the event"])))</
       <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
     </div>
   </footer>
-  <script>window.LESSON={"slug":"ai-made-simple","steps":["train","fit"],"quiz":[{"q":"How does the supervised learning system in this lesson learn to classify messages?","choices":["A programmer writes every rule by hand.","It learns patterns from labelled examples.","It searches the internet each time it runs."],"a":1,"explain":"This classifier learns from labelled examples. Other learning methods use unlabelled data or different feedback."},{"q":"In the lab, you mislabel several messages and retrain. What is most likely?","choices":["The model ignores the mistakes.","The model learns the wrong pattern and its predictions get worse.","The model refuses to train."],"a":1,"explain":"Incorrect labels can teach misleading patterns. Test on separate examples to see how much the errors affect predictions."},{"q":"A generative AI tool gives you a confident statistic with a source. What should you do?","choices":["Use it: confident answers are usually right.","Check the statistic and that the source exists and says this.","Ask the tool if it is sure, and use it if it says yes."],"a":1,"explain":"Generative AI predicts plausible text; it can invent figures and references. Verify against the original source."},{"q":"Which task is the poorest fit for AI acting on its own?","choices":["Drafting a thank-you email for staff to edit.","Grouping survey comments into themes.","Deciding whether a person qualifies for support."],"a":2,"explain":"Decisions about individuals need fairness, accountability and human judgement. AI can support, not decide."}]};</script>
-  <script src="lesson-kit.js?v=20261025-review" defer></script>
+  <script>window.LESSON={"slug":"ai-made-simple","steps":["train","fit"],"quiz":[{"q":"How does the model in this lesson learn to sort messages into urgent and can wait?","choices":["A programmer writes every rule by hand.","It learns patterns from labelled examples.","It searches the internet each time it runs."],"a":1,"explain":"It learns from examples that people have already labelled. Learning from labelled examples like this is called supervised learning."},{"q":"In the lab, you mislabel several messages and retrain. What is most likely?","choices":["The model ignores the mistakes.","The model learns the wrong pattern and its predictions get worse.","The model refuses to train."],"a":1,"explain":"Incorrect labels can teach misleading patterns. Test on separate examples to see how much the errors affect predictions."},{"q":"A generative AI tool gives you a confident statistic with a source. What should you do?","choices":["Use it: confident answers are usually right.","Check the statistic and that the source exists and says this.","Ask the tool if it is sure, and use it if it says yes."],"a":1,"explain":"Generative AI predicts plausible text; it can invent figures and references. Verify against the original source."},{"q":"Which task is the poorest fit for AI acting on its own?","choices":["Drafting a thank-you email for staff to edit.","Grouping survey comments into themes.","Deciding whether a person qualifies for support."],"a":2,"explain":"Decisions about individuals need fairness, accountability and human judgement. AI can support, not decide."}]};</script>
+  <script src="lesson-kit.js?v=c12-4" defer></script>
   <script src="lab-ai-made-simple.js" defer></script>
+  <script src="../glossary.js?v=c12-4" defer></script>
   <script src="../analytics.js" defer></script>
+  <script src="../learning-layout.js?v=c12-4" defer></script>
 </body>
 </html>

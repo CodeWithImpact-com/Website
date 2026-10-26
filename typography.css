@@ -1,0 +1,158 @@
+/* Shared text roles for every Code With Impact page. Load last.
+   Colours, page layouts, chart labels and illustrative numbers stay in their
+   component stylesheets. Inter uses the same Arial fallback across the site. */
+:root{
+  --cwi-font-sans:Inter,Arial,sans-serif;
+  --cwi-font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --cwi-text-body:1rem;
+  --cwi-text-lead:1.125rem;
+  --cwi-text-small:.875rem;
+  --cwi-text-meta:.8125rem;
+  --cwi-text-card-copy:.9375rem;
+  --cwi-title-hero:4rem;
+  --cwi-title-page:2.75rem;
+  --cwi-title-section:2.125rem;
+  --cwi-title-reading:1.6875rem;
+  --cwi-title-panel:1.5rem;
+  --cwi-title-card:1.25rem;
+  --cwi-title-subsection:1.125rem;
+  --cwi-leading-body:1.65;
+  --cwi-leading-heading:1.2;
+}
+
+body,body.ml-page{
+  font-family:var(--cwi-font-sans);font-size:var(--cwi-text-body);
+  font-weight:400;line-height:var(--cwi-leading-body);
+}
+button,input,select,textarea{font:inherit}
+b,strong{font-weight:700}
+body :is(h1,h2,h3,h4){font-family:var(--cwi-font-sans);font-weight:700}
+
+/* Display titles are reserved for the three course/home landing heroes. */
+body h1,body.ml-page h1,body .section h1,body .lesson-top h1{
+  font-size:var(--cwi-title-page);font-weight:700;line-height:1.12;letter-spacing:-.025em;
+  margin-top:0;margin-bottom:1rem;
+}
+body .hero h1,body .ml-hero h1{
+  font-size:var(--cwi-title-hero);line-height:1.08;letter-spacing:-.025em;
+  margin-bottom:1.5rem;
+}
+body :is(.section,.learn-section,.ml-section)>h2,body .learn-section h2.res-h,
+body :is(.section-heading,.ml-section-heading,.ml-start,.ml-reading) h2,
+body .ml-method>h2{
+  font-size:var(--cwi-title-section);line-height:var(--cwi-leading-heading);
+  letter-spacing:-.02em;margin-top:0;margin-bottom:1rem;
+}
+body .lesson-content h2,body .ml-lesson-content h2{
+  font-size:var(--cwi-title-reading);line-height:1.25;letter-spacing:-.015em;
+  margin-top:0;margin-bottom:.75rem;
+}
+body .privacy h2{
+  font-size:var(--cwi-title-reading);line-height:1.25;letter-spacing:-.015em;
+  margin:2rem 0 .75rem;
+}
+body .lesson-content h3,body .ml-lesson-content h3{
+  font-size:var(--cwi-title-subsection);line-height:1.35;letter-spacing:0;
+}
+body .lesson-content>.panel.lab>h2,body .lesson-content>.panel#quiz>h2,
+body .ml-experiment-head h2,body .ml-method-panel h2,
+body .mlx-heading h2,body .mg-card h2{
+  font-size:var(--cwi-title-panel)!important;line-height:1.25;letter-spacing:-.015em;
+}
+body :is(.card,.source-card,.res-card,.explore-card,.principles,.involved-grid,.project-card) h3,
+body .module h3,body .ml-lesson-card h4,body .ml-resource h2,body .ml-resource h3{
+  font-size:var(--cwi-title-card);line-height:1.3;letter-spacing:0;
+}
+body .quiz-question,body .ml-question h2{
+  font-size:var(--cwi-text-body)!important;font-weight:700;line-height:1.5;letter-spacing:0;
+}
+
+/* Reading copy, supporting copy and compact interface text have distinct roles. */
+body .lead,body .ml-hero-copy,body .ml-section-lead,
+body .lesson-top>p:not(.eyebrow):not(.crumbs),
+body .ml-lesson-hero>p:not(.ml-eyebrow):not(.ml-breadcrumb){
+  font-size:var(--cwi-text-lead);line-height:1.6;
+}
+body .hero>div>p:not(.eyebrow),body .ml-hero .ml-hero-copy{
+  font-size:1.25rem;line-height:1.6;
+}
+body .card p,body .involved-grid p,body .cta-band p,body .newsletter p,
+body .mission-band p,body .lesson-content>.panel>p:not([class]),
+body .ml-lesson-content>.ml-prose>p:not([class]){
+  line-height:var(--cwi-leading-body);
+}
+body .res-card p:last-child,body .source-card p,body .explore-card>p:not(.explore-by),
+body .principles p,body .ml-resource p,body .ml-lesson-card>p,body .project-card p{
+  font-size:var(--cwi-text-card-copy);line-height:var(--cwi-leading-body);
+}
+body .deeper-body p:not(.hint,.notice),body .ml-tech p:not(.hint,.ml-quiet,.ml-storage){
+  font-size:var(--cwi-text-body);line-height:var(--cwi-leading-body);
+}
+body .ideas,body .ml-prose>ul,body .deeper-body>ul,body .ml-tech>ul{
+  font-size:var(--cwi-text-body);line-height:var(--cwi-leading-body);padding-left:1.25em;
+}
+:is(.ideas,.ml-prose>ul,.deeper-body>ul,.ml-tech>ul)>li+li{margin-top:.5em}
+body .muted-note{
+  font-size:var(--cwi-text-small);line-height:1.6;color:var(--muted,#586170);
+}
+body .hint,body .ml-quiet,body .lesson-stats,body .ml-lesson-meta{
+  font-size:var(--cwi-text-meta);line-height:1.5;
+}
+body .ml-text-link,body .profile-link{font-size:var(--cwi-text-small);font-weight:700;line-height:1.5}
+body .site-footer{font-size:var(--cwi-text-small);line-height:1.6}
+
+/* Equivalent labels must not depend on whether they are inside a large hero. */
+body .eyebrow,body .ml-eyebrow,body .hero .eyebrow,
+body .ml-hero .ml-eyebrow,body .mlx-heading .ml-eyebrow{
+  font-size:.75rem;font-weight:800;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;
+}
+body .learning-objectives>b,body .ml-objectives>b{
+  font-size:var(--cwi-text-meta);font-weight:700;line-height:1.5;letter-spacing:.04em;text-transform:uppercase;
+}
+body .learning-objectives ul,body .ml-objectives ul{
+  font-size:var(--cwi-text-small);line-height:1.6;
+}
+body .lesson-content .mini-h{font-size:var(--cwi-text-meta);font-weight:700;line-height:1.5;letter-spacing:.06em;text-transform:uppercase}
+body .crumbs,body .ml-breadcrumb{
+  font-size:var(--cwi-text-meta);font-weight:400;line-height:1.5;letter-spacing:0;
+}
+body nav.ml-breadcrumb{display:flex;flex-wrap:wrap;gap:.5em;margin-left:0}
+
+/* An anchor and a native button with the same role must look the same.
+   This also overrides ML's more specific native-control font inheritance. */
+body .btn,body .ml-btn{
+  font-family:var(--cwi-font-sans);font-size:var(--cwi-text-small);
+  font-weight:800;line-height:1.5;letter-spacing:0;
+}
+body .btn.small,body .ml-small-btn{
+  font-family:var(--cwi-font-sans);font-size:var(--cwi-text-meta)!important;
+  font-weight:700;line-height:1.5;letter-spacing:0;
+}
+body .choice,body .ml-option{
+  font-family:var(--cwi-font-sans);font-size:var(--cwi-text-card-copy)!important;
+  font-weight:400;line-height:1.5;letter-spacing:0;
+}
+body .project-card label{font-size:var(--cwi-text-small);font-weight:700;line-height:1.5}
+body .project-card textarea,body .gl-search input{font-family:var(--cwi-font-sans);font-size:var(--cwi-text-body);line-height:1.6}
+
+/* Underline links in prose without changing button, card or sidebar navigation. */
+:where(.section,.learn-section,.ml-section,.lesson-content,.ml-lesson-content,.ml-reading,.ml-resource,.mg-card)
+:is(p,dd,td) a:not(.btn,.ml-btn,.ml-small-btn),
+:where(.section,.learn-section,.ml-section,.lesson-content,.ml-lesson-content,.ml-reading,.ml-resource,.mg-card)
+li>a:not(.btn,.ml-btn,.ml-small-btn){text-decoration:underline;text-underline-offset:.16em}
+
+body pre:not(.formula):not(.ml-formula){font-family:var(--cwi-font-mono);font-size:var(--cwi-text-meta);line-height:1.6}
+body pre:not(.formula):not(.ml-formula) code{font-family:inherit;font-size:inherit;line-height:inherit}
+body .gl-tip{font-family:var(--cwi-font-sans)}
+body .gl-entry dt,body .gl-entry dd{font-size:var(--cwi-text-body);line-height:var(--cwi-leading-body)}
+body .gl-entry dd{max-width:70ch}
+body .learn-section>p:not(.eyebrow),body .ml-section>p:not(.ml-eyebrow){max-width:75ch}
+body .privacy table,body .register{font-size:var(--cwi-text-small);line-height:1.5}
+
+@media(max-width:900px){
+  :root{--cwi-title-hero:2.75rem;--cwi-title-page:2.25rem;--cwi-title-section:2rem}
+  body .hero>div>p:not(.eyebrow),body .ml-hero .ml-hero-copy{font-size:var(--cwi-text-lead)}
+}
+@media(max-width:440px){
+  :root{--cwi-title-page:2rem;--cwi-title-section:1.875rem;--cwi-title-reading:1.5625rem}
+}

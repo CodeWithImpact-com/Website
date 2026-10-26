@@ -6,8 +6,12 @@
   <meta name="description" content="Validate AI after launch: set acceptance criteria, sample-check outputs, read uncertainty, monitor for drift and know when to stop." />
   <meta name="theme-color" content="#102033" />
   <title>Validating AI in Use | Learn AI | Code With Impact</title>
-  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css?v=20261025-review" />
+  <link rel="stylesheet" href="../style.css?v=c12-4" />
+  <link rel="stylesheet" href="learn.css?v=c12-4" />
+  <link rel="stylesheet" href="../glossary.css?v=c12-4" />
+  <link rel="stylesheet" href="../learning.css?v=c12-4">
+  <link rel="stylesheet" href="../typography.css?v=c12-4">
+  <link rel="stylesheet" href="../colours.css?v=c12-4" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -17,6 +21,7 @@
       <a href="../index.html">Home</a>
       <a href="../projects.html">Projects</a>
       <a class="active" href="index.html">Learn AI</a>
+      <a href="../learn-ml/index.html">Learn ML</a>
       <a href="../get-involved.html">Get Involved</a>
       <a href="../about.html">About Us</a>
       <a href="../contact.html">Contact</a>
@@ -30,14 +35,24 @@
       <p class="eyebrow">Interactive lesson</p>
       <h1>Validating AI in use: is it still working?</h1>
       <p>Testing before launch isn't enough. Data, processes and models change, and quality drifts. Learn how to validate an AI system in use with regular sample checks, honest uncertainty and clear rules for when to act.</p>
-      <ul class="lesson-stats"><li>About 25 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Original diagrams</li></ul>
+      <ul class="lesson-stats"><li>About 10 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Original diagrams</li></ul>
     </section>
 
     <div class="lesson-shell">
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-monitor">Spot the drift</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#next-steps">What next</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+
       <div class="lesson-content">
+        <div class="learning-objectives"><b>You’ll learn to</b><ul><li>Inspect monitoring samples and their uncertainty.</li><li>Plan a response when inputs or measured quality change.</li></ul></div>
         <section class="panel" id="intro">
           <h2>Validation is a cycle, not a sign-off</h2>
-          <p>Lesson 07 covered testing before you rely on a system. Validation in use asks a different question: <b>is it still good enough, for this purpose, today?</b> The answer can change without anyone touching the AI. A new form, a new kind of enquiry or a quiet model update can all reduce quality.</p>
+          <p>Lesson 07 covered testing before you rely on a system. Validation in use asks a different question: <b>is it still good enough, for this purpose, today?</b> The data a system receives, or the patterns linking its inputs to outcomes, can change. This is called <span data-term="drift">drift</span>. It may happen gradually or suddenly, for example after a new referral form changes the inputs. Performance may change too, so inspect actual outputs. A model update is another reason to revalidate.</p>
           <div class="compare">
             <div><h3>Set the bar</h3><p>Agree acceptance criteria before launch: for example, at least 90% of summaries need no corrections.</p></div>
             <div><h3>Check samples</h3><p>Every week, a person reviews a random sample of outputs against the source.</p></div>
@@ -48,7 +63,7 @@
         <section class="panel lab" id="lab-monitor">
           <p class="lab-tag">Interactive</p>
           <h2>Spot the drift</h2>
-          <p>An AI tool summarises referrals for a fictional charity. Each week, a reviewer checks a random sample and records how many summaries were correct. In week 12 a new referral form is introduced, and the underlying quality drops from 92% to 78%. Change the sample size and the alert level, and see which weekly results fall below your chosen line.</p>
+          <p>An AI tool summarises referrals for a fictional charity. Each week, a reviewer checks a random sample and records how many summaries were correct. In week 12 a new referral form is introduced, and the true quality drops from 92% to 78%. Change the sample size and the alert level, and see which weekly results fall below your chosen line.</p>
           <div class="m-controls">
             <label>Outputs checked each week: <b id="m-n-val">20</b><input type="range" id="m-n" min="10" max="100" step="10" value="20"></label>
             <label>Alert if accuracy is below: <b id="m-th-val">85%</b><input type="range" id="m-th" min="75" max="95" step="1" value="85"></label>
@@ -71,6 +86,15 @@
           </ul>
         </section>
 
+
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>4 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
+        </section>
+
         <section class="panel" id="deeper">
           <details class="deeper">
             <summary><span class="deeper-title">Want to go deeper?</span><span class="deeper-sub">Methods, checklists and standards. Optional.</span></summary>
@@ -88,21 +112,16 @@ half-width = z·√( p̂(1−p̂)/n + z²/4n² ) / (1 + z²/n)        p̂ = k/n,
           </details>
         </section>
 
-        <section class="panel" id="quiz">
-          <h2>Check your understanding</h2>
-          <p>4 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
-          <div id="quiz-content"></div>
-          <div id="quiz-result" role="status" aria-live="polite"></div>
-        </section>
+
 
         <section class="panel path-complete" id="next-steps">
           <p class="lab-tag">You've finished the path</p>
           <h2>Put what you've learned to work</h2>
           <p>You now know how AI works, how to use it responsibly, and how to choose, embed and validate it in real work. That's exactly what healthcare and research teams need help with.</p>
           <div class="path-actions">
-            <a class="btn dark" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" data-goatcounter-click="learn-complete-volunteer" data-goatcounter-title="Learn path end: Volunteer">Volunteer with us</a>
-            <a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" data-goatcounter-click="learn-complete-partner" data-goatcounter-title="Learn path end: Partner">Partner with us</a>
-            <a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" data-goatcounter-click="learn-complete-subscribe" data-goatcounter-title="Learn path end: Subscribe">Get updates on new lessons</a>
+            <a class="btn dark" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" data-cwi-analytics-event="learn-complete-volunteer" data-cwi-analytics-title="Learn path end: Volunteer">Volunteer with us</a>
+            <a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" data-cwi-analytics-event="learn-complete-partner" data-cwi-analytics-title="Learn path end: Partner">Partner with us</a>
+            <a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" data-cwi-analytics-event="learn-complete-subscribe" data-cwi-analytics-title="Learn path end: Subscribe">Get updates on new lessons</a>
           </div>
         </section>
 
@@ -121,14 +140,7 @@ half-width = z·√( p̂(1−p̂)/n + z²/4n² ) / (1 + z²/n)        p̂ = k/n,
         <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="consistent-ai.html"><span>← Previous</span><b>11 · Consistent AI Across Teams</b></a><a class="next" href="resources.html"><span>Continue exploring →</span><b>Learning resources</b></a></nav>
       </div>
 
-      <aside class="toc" aria-label="On this page">
-        <strong>In this lesson</strong>
-        <a href="#intro">The big picture</a><a href="#lab-monitor">Spot the drift</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#next-steps">What next</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
-        <div class="toc-progress">
-          <span class="hint" id="progress-text">Progress: 0 activities</span>
-          <div class="progress-bar"><div id="progress-bar"></div></div>
-        </div>
-      </aside>
+
     </div>
   </main>
 
@@ -141,8 +153,10 @@ half-width = z·√( p̂(1−p̂)/n + z²/4n² ) / (1 + z²/n)        p̂ = k/n,
     </div>
   </footer>
   <script>window.LESSON={"slug":"validating-ai-in-use","steps":["monitor"],"quiz":[{"q":"A weekly sample of 10 summaries falls below the alert line once. No urgent harm has been found. What is the best next step?","choices":["Treat the sample as proof of a lasting quality drop.","Wait until the next scheduled review without investigating.","Investigate the errors and check a larger sample under the response plan."],"a":2,"explain":"Small samples are noisy, so one result does not establish a lasting change. Investigate promptly and use the agreed response plan; an urgent or serious error could still require an immediate pause."},{"q":"Quality drops just after a new referral form is introduced, while the AI model stays the same. What should you investigate first?","choices":["Whether changed fields or wording have altered the inputs the AI receives.","Whether unchanged model settings rule out any problem with the workflow.","Whether the alert line should be lowered before inspecting errors."],"a":0,"explain":"Changed inputs can reduce performance even when the model is unchanged. This is a possible cause to test by comparing examples from the old and new forms."},{"q":"When should a team agree who acts, and whether to investigate, add checks or pause, if quality falls?","choices":["Once several poor weeks reveal who has time to respond.","At the next contract renewal, when supplier terms can change.","Before launch, alongside acceptance criteria and monitoring."],"a":2,"explain":"Agree owners and responses in advance so a quality concern leads to timely action rather than a debate about responsibility."},{"q":"Who should ideally review whether the AI meets its acceptance criteria?","choices":["The person who selected it, checking without another perspective.","A reviewer with task knowledge who is independent of its selection or build.","The supplier, using only its general product benchmarks."],"a":1,"explain":"An independent reviewer with relevant task knowledge can challenge assumptions and judge real outputs against the agreed criteria. Supplier benchmarks alone do not validate this particular use."}]};</script>
-  <script src="lesson-kit.js?v=20261025-review" defer></script>
-  <script src="lab-practice.js?v=20261025-review" defer></script>
+  <script src="lesson-kit.js?v=c12-4" defer></script>
+  <script src="lab-practice.js?v=c12-4" defer></script>
+  <script src="../glossary.js?v=c12-4" defer></script>
   <script src="../analytics.js" defer></script>
+  <script src="../learning-layout.js?v=c12-4" defer></script>
 </body>
 </html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Turn the Learn ML lessons into a small, original community-kitchen project. Write a decision brief, check your evaluation and download a model note.">
+  <title>Your first ML project | Learn ML | Code With Impact</title>
+  <link rel="icon" href="../images/logo_for__codewithimpact__features.png">
+  <link rel="stylesheet" href="../style.css?v=c12-4">
+  <link rel="stylesheet" href="ml.css?v=c12-4">
+  <script src="project.js" defer></script>
+  <style>
+    .project-intro{max-width:780px}.project-intro .ml-hero-copy{max-width:720px}
+    .project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .project-card{padding:25px;border:1px solid var(--ml-border);border-radius:14px;background:#fff;min-width:0}
+    .project-card h3{font-size:22px;letter-spacing:-.3px}.project-card label{display:block;font-weight:750;margin:0 0 8px}
+    .project-card p{font-size:14px;color:var(--ml-muted)}.project-card textarea{display:block;width:100%;min-height:160px;padding:12px;border:1px solid #82919e;border-radius:7px;background:#fff;color:var(--ml-ink);font:15px/1.6 Inter,Arial,sans-serif;resize:vertical}
+    .project-card textarea:focus-visible{outline:3px solid #217c8a;outline-offset:3px}
+    .project-card .ml-eyebrow{margin-bottom:12px}.project-steps{padding-left:22px}.project-steps li{margin:8px 0}
+    .project-links a{text-decoration:underline;font-weight:700}.project-download{margin-top:25px}
+    @media(max-width:760px){.project-grid{grid-template-columns:1fr}.project-card{padding:20px}}
+  </style>
+  <link rel="stylesheet" href="../typography.css?v=c12-4">
+  <link rel="stylesheet" href="../colours.css?v=c12-4" />
+</head>
+<body class="ml-page">
+  <a class="ml-skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="logo" href="../index.html"><img class="logo-image" src="../images/logo_for__codewithimpact__features.png" alt="Code With Impact logo"></a>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../learn/index.html">Learn AI</a><a class="active" href="index.html">Learn ML</a><a href="../get-involved.html">Get Involved</a><a href="../about.html">About Us</a><a href="../contact.html">Contact</a>
+    </nav>
+    <a class="btn primary small" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer">Partner With Us</a>
+  </header>
+  <main id="main" class="ml-main">
+    <section class="ml-section">
+      <nav class="ml-breadcrumb" aria-label="Breadcrumb"><a href="index.html">Learn ML</a><span aria-hidden="true"> / </span><span aria-current="page">Your first project</span></nav>
+      <div class="project-intro">
+        <p class="ml-eyebrow">PUT THE SIX LESSONS TOGETHER</p>
+        <h1>Make a prediction.<br>Make a useful decision.</h1>
+        <p class="ml-hero-copy">A fictional community kitchen needs tomorrow's meal plan. Use the lesson experiments to gather evidence, then write a short project note that another person can question and use.</p>
+        <p>This worksheet joins the existing course. Work through it as you finish each lesson; the optional notebook puts the same workflow into Python.</p>
+      </div>
+      <div class="ml-callout project-links">
+        <strong>Choose a sensible decision rule before looking at scores.</strong>
+        <p>For this exercise, prefer a model only if it reduces validation MAE by at least 2 meals against the baseline. Ask separately whether its underestimates are acceptable: MAE alone gives shortages and surplus equal weight. This threshold is a teaching choice, not evidence about a real kitchen. Passing it does not establish a reliable improvement; that needs more time-aware assessment and a decision with the people using the service.</p>
+      </div>
+      <ol class="project-steps project-links">
+        <li><a href="lesson.html?lesson=framing">Frame the question</a> and identify information available before the decision.</li>
+        <li><a href="lesson.html?lesson=data">Inspect the data</a>, protect later days, and fit preparation on training rows.</li>
+        <li>Use the <a href="lesson.html?lesson=regression">regression</a> and <a href="lesson.html?lesson=comparison">model comparison</a> experiments to explain the evidence you would need.</li>
+        <li>Record what remains uncertain. A synthetic-data exercise is practice, not a model ready to deploy.</li>
+      </ol>
+      <p class="ml-quiet">Experiments use small lesson-specific synthetic datasets. The notebook independently generates 180 fictional days; its scores will differ. Label the source of each result you record.</p>
+    </section>
+    <section class="ml-section" style="padding-top:0" aria-labelledby="worksheet-title">
+      <p class="ml-eyebrow">YOUR PROJECT NOTE</p>
+      <h2 id="worksheet-title">Six decisions worth writing down.</h2>
+      <p id="worksheet-privacy">Your answers stay in this open page. They are not submitted or saved by this worksheet. Download your note before leaving or refreshing. Avoid entering personal information.</p>
+      <form id="project-form" aria-describedby="worksheet-privacy">
+        <div class="project-grid">
+          <article class="project-card">
+            <p class="ml-eyebrow">01 / THE DECISION</p>
+            <h3>Start with the person using it.</h3>
+            <label for="project-problem">What question will your prediction help answer?</label>
+            <p id="problem-help">Who plans the meals? At what time? What action follows? How do shortages and leftovers affect people?</p>
+            <textarea id="project-problem" name="problem" rows="6" maxlength="6000" aria-describedby="problem-help" placeholder="At 16:00 the coordinator plans meals for tomorrow…"></textarea>
+          </article>
+          <article class="project-card">
+            <p class="ml-eyebrow">02 / THE EVIDENCE</p>
+            <h3>Make the inputs earn their place.</h3>
+            <label for="project-data">What data do you have, and what could be missing?</label>
+            <p id="data-help">List the target and inputs available at prediction time. Describe missing values, unusual days, weekday coverage and any leakage you excluded.</p>
+            <textarea id="project-data" name="data" rows="6" maxlength="6000" aria-describedby="data-help" placeholder="Target: meals needed tomorrow. Inputs known today: visitor estimate and tomorrow's day type…"></textarea>
+          </article>
+          <article class="project-card">
+            <p class="ml-eyebrow">03 / THE SPLIT</p>
+            <h3>Practise the future honestly.</h3>
+            <label for="project-split">How will you separate learning, selection and final testing?</label>
+            <p id="split-help">For future-day prediction, keep chronological order. The notebook uses the first 108 days for training, next 36 for validation and last 36 for the final test. Learn imputation, scaling and categories from training rows only.</p>
+            <textarea id="project-split" name="split" rows="6" maxlength="6000" aria-describedby="split-help" placeholder="I will lock the last block before comparing models. I will not shuffle later days into training…"></textarea>
+          </article>
+          <article class="project-card">
+            <p class="ml-eyebrow">04 / THE COMPARISON</p>
+            <h3>Beat something simple.</h3>
+            <label for="project-baseline">What is your baseline and your rule for choosing a model?</label>
+            <p id="baseline-help">The notebook predicts the training median as its baseline. Set your useful improvement and error-cost checks before selection. Compare every candidate on the same validation days.</p>
+            <textarea id="project-baseline" name="baseline" rows="6" maxlength="6000" aria-describedby="baseline-help" placeholder="Baseline: the training-set median. A candidate must improve validation MAE by at least 2 meals…"></textarea>
+          </article>
+          <article class="project-card">
+            <p class="ml-eyebrow">05 / THE RESULT</p>
+            <h3>Report what happened.</h3>
+            <label for="project-result">What did the evidence support, and how strong was it?</label>
+            <p id="result-help">Name your dataset or experiment. Record validation scores, variability and selection reason. Report the locked final-test result only after choosing. A small advantage may need more evidence.</p>
+            <textarea id="project-result" name="result" rows="6" maxlength="6000" aria-describedby="result-help" placeholder="Dataset: … Baseline validation MAE: … Candidate MAE: … Final test: not yet opened…"></textarea>
+          </article>
+          <article class="project-card">
+            <p class="ml-eyebrow">06 / THE LIMITS</p>
+            <h3>Leave a plan for mistakes.</h3>
+            <label for="project-limits">What could fail, and what will you monitor or do next?</label>
+            <p id="limits-help">Mention synthetic data, changes over time, uncertainty and affected groups. Set a review trigger, a fallback and a person responsible. A prediction does not decide the right meal buffer for you.</p>
+            <textarea id="project-limits" name="limits" rows="6" maxlength="6000" aria-describedby="limits-help" placeholder="Check weekly MAE and shortage frequency. If errors rise for two weeks, review inputs with the coordinator and return to a manual planning rule…"></textarea>
+          </article>
+        </div>
+        <div class="ml-actions project-download"><button class="ml-btn" id="project-download" type="button">Download my project note <span aria-hidden="true">↓</span></button><span id="project-status" role="status" aria-live="polite">0 of 6 sections started. You can download a partial draft.</span></div>
+      </form>
+      <noscript><p>JavaScript enables the Markdown download. You can still write in the fields and copy your answers into a local document.</p></noscript>
+    </section>
+    <section class="ml-section" style="padding-top:0" aria-labelledby="notebook-title">
+      <div class="ml-resource-grid">
+        <article class="ml-resource">
+          <span class="ml-tag">OPTIONAL PYTHON</span>
+          <h2 id="notebook-title">Run the whole workflow.</h2>
+          <p>An original notebook generates 180 fictional days, inspects only the training block, fits preprocessing inside pipelines, compares a median baseline, Ridge and a small random forest, then opens the final test once.</p>
+          <p>It exports the fitted pipeline and a model note. You need Python, Jupyter and the listed packages; the notebook runs on your computer, not on this page.</p>
+          <p class="ml-quiet">Tested on 26 October 2026 with Python 3.13, NumPy 2.5, pandas 3.0 and scikit-learn 1.9: it runs from start to finish. Outputs are left empty so you see the results yourself.</p><div class="ml-callout"><b>What happens when you run it.</b> Ridge regression is chosen on validation (6.5 meals average error, against 12.2 for the median baseline). On the final test it does worse: 9.0 meals, and it underestimates 72% of days. That gap is the point: a model chosen on one period can drift on later days, which is why the notebook ends with a monitoring plan.</div>
+          <p class="project-links"><a href="notebooks/README.md">Setup and expected outputs</a> · <a href="notebooks/requirements.txt" download>Package requirements</a></p>
+          <a class="ml-btn secondary" href="notebooks/kitchen-project.ipynb" download>Download the notebook <span aria-hidden="true">↓</span></a>
+        </article>
+        <article class="ml-resource project-links">
+          <span class="ml-tag">SOURCES &amp; CREDITS</span>
+          <h2>Learn from useful ideas.</h2>
+          <p>The end-to-end workflow is informed by Aurélien Géron's teaching. Attention to sampling and evaluation is informed by Peter Bruce, Andrew Bruce and Peter Gedeck.</p>
+          <p>The explanations, worksheet, notebook code and generated data here were written independently for Code With Impact. No code, notebook cells, figures or datasets were copied from their repositories.</p>
+          <a class="ml-text-link" href="sources.html">Read the specific references and credits →</a>
+        </article>
+      </div>
+    </section>
+  <section class="ml-invite" aria-labelledby="invite-title"><div><p class="ml-eyebrow">QUESTIONS AND IDEAS WELCOME</p><h2 id="invite-title">Stuck, curious, or want to help?</h2><p>There’s no such thing as a silly question. Ask us about anything in these lessons, suggest an improvement, or collaborate with us on a lesson or a real project for a charity or research team.</p></div><div class="ml-invite-actions"><a class="ml-btn" href="mailto:engagement@codewithimpact.com?subject=Learn%20ML%20question">Ask a question</a><a class="ml-btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer">Collaborate with us</a></div></section></main>
+  <footer class="site-footer">
+    <p>No cookies. We count visits with privacy-friendly analytics. <a href="../privacy.html" style="text-decoration:underline">Privacy</a> · <a href="sources.html" style="text-decoration:underline">Sources &amp; credits</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ/viewform?usp=sharing&amp;ouid=109427088113351453508" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Get updates</a></p>
+    <a class="footer-support" href="https://buymeacoffee.com/codewithimpact" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span> Buy us a coffee</a>
+    <div class="social-links">
+      <a class="linkedin" href="https://www.linkedin.com/company/106826547/" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
+      <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+    </div>
+  </footer>
+</body>
+</html>

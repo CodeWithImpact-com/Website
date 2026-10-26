@@ -6,8 +6,12 @@
   <meta name="description" content="Choose AI tools with a clear process: agree what matters, set must-haves, and compare options with a weighted scorecard." />
   <meta name="theme-color" content="#102033" />
   <title>Choosing AI Tools | Learn AI | Code With Impact</title>
-  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css?v=20261025-review" />
+  <link rel="stylesheet" href="../style.css?v=c12-4" />
+  <link rel="stylesheet" href="learn.css?v=c12-4" />
+  <link rel="stylesheet" href="../glossary.css?v=c12-4" />
+  <link rel="stylesheet" href="../learning.css?v=c12-4">
+  <link rel="stylesheet" href="../typography.css?v=c12-4">
+  <link rel="stylesheet" href="../colours.css?v=c12-4" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -17,6 +21,7 @@
       <a href="../index.html">Home</a>
       <a href="../projects.html">Projects</a>
       <a class="active" href="index.html">Learn AI</a>
+      <a href="../learn-ml/index.html">Learn ML</a>
       <a href="../get-involved.html">Get Involved</a>
       <a href="../about.html">About Us</a>
       <a href="../contact.html">Contact</a>
@@ -30,18 +35,28 @@
       <p class="eyebrow">Interactive lesson</p>
       <h1>Choosing AI tools: agree what matters before you shop.</h1>
       <p>Most organisations pick an AI tool because someone tried it and liked it. Learn a simple, defensible way to choose: set must-haves, weight what matters, then compare.</p>
-      <ul class="lesson-stats"><li>About 20 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Original diagrams</li></ul>
+      <ul class="lesson-stats"><li>About 10 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Original diagrams</li></ul>
     </section>
 
     <div class="lesson-shell">
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-score">Compare three tools with a scorecard</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+
       <div class="lesson-content">
+        <div class="learning-objectives"><b>You’ll learn to</b><ul><li>Separate essential requirements from weighted preferences.</li><li>Compare fictional tools and explain your assumptions.</li></ul></div>
         <section class="panel" id="intro">
           <h2>Start with the problem, not the product</h2>
           <p>The first question isn't “which AI tool?” but “what problem are we solving, and do we need AI for it?” A good template, a better form or a simple automation is often cheaper and more reliable.</p>
-          <p>When AI is the right answer, choose in three steps. Agree your <b>must-haves</b>: anything that fails one is out, however good it looks. Then agree how much each <b>criterion</b> matters. Only then look at products, and score them.</p>
+          <p>When AI is the right answer, choose in three steps. Agree your <b>must-haves</b>: anything that fails one is out, however good it looks. Then agree how much each <b>criterion</b> matters (its <b>weight</b>). Only then look at products, and score them.</p>
           <div class="compare">
-            <div><h3>Buy off the shelf</h3><p>Quick and cheap to start. You accept the supplier's choices about data, features and price.</p></div>
-            <div><h3>Add to what you have</h3><p>AI features in software you already use. Often the easiest to approve and support.</p></div>
+            <div><h3>Buy off the shelf</h3><p>Quick and cheap to start. You accept the supplier's choices about data, what the tool can do and price.</p></div>
+            <div><h3>Add to what you have</h3><p>AI tools built into software you already use. Often the easiest to approve and support.</p></div>
             <div><h3>Build your own</h3><p>Fits exactly, but needs skills to build, test and maintain. Rarely the first step.</p></div>
           </div>
         </section>
@@ -50,7 +65,7 @@
           <p class="lab-tag">Interactive</p>
           <h2>Compare three tools with a scorecard</h2>
           <p>Three fictional tools for drafting and summarising. Compare their ratings below, then choose how important each criterion is. The office add-on fits existing systems well; the specialist scores higher on the quality of case-note summaries. Try different priorities while keeping the must-have enabled, then see what happens when you switch it off.</p>
-          <label class="check must"><input type="checkbox" id="must-have" checked><span><b>Apply our must-have:</b> the tool signs a data processing agreement and doesn't train on our data. Untick to see what happens without it.</span></label>
+          <label class="check must"><input type="checkbox" id="must-have" checked><span><b>Apply our must-have:</b> the tool signs a data processing agreement (a contract promising to protect our data and use it only as we instruct) and doesn't train on our data. Untick to see what happens without it.</span></label>
           <div id="tool-ratings" class="tool-ratings" role="region" aria-label="Fictional tool ratings" tabindex="0"></div>
           <div class="score-grid"><div id="scorecard" class="weights"></div><div id="score-out" class="tools"></div></div>
           <p class="hint" id="score-status" aria-live="polite"></p>
@@ -64,8 +79,17 @@
             <li><b>Must-haves come first.</b> A tool that fails on data protection is out, however cheap or easy it is.</li>
             <li><b>Agree the weights before looking at products.</b> Otherwise the favourite tool decides the criteria, not the other way round.</li>
             <li><b>Plan the exit.</b> Check you can export your data and stop paying without losing your work.</li>
-            <li><b>Pilot small, with real tasks.</b> Run a time-boxed trial with a few users and measure the result before rolling out.</li>
+            <li><b>Pilot small, with real tasks.</b> Run a short trial, with a fixed end date, with a few users and measure the result before rolling out.</li>
           </ul>
+        </section>
+
+
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
 
         <section class="panel" id="deeper">
@@ -83,12 +107,7 @@
           </details>
         </section>
 
-        <section class="panel" id="quiz">
-          <h2>Check your understanding</h2>
-          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
-          <div id="quiz-content"></div>
-          <div id="quiz-result" role="status" aria-live="polite"></div>
-        </section>
+
 
         <section class="panel" id="explore">
           <h2>Continue exploring</h2>
@@ -105,14 +124,7 @@
         <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="ai-in-your-organisation.html"><span>← Previous</span><b>08 · AI in Your Organisation</b></a><a class="next" href="ai-in-your-processes.html"><span>Next →</span><b>10 · AI in Your Processes</b></a></nav>
       </div>
 
-      <aside class="toc" aria-label="On this page">
-        <strong>In this lesson</strong>
-        <a href="#intro">The big picture</a><a href="#lab-score">Compare three tools with a scorecard</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
-        <div class="toc-progress">
-          <span class="hint" id="progress-text">Progress: 0 activities</span>
-          <div class="progress-bar"><div id="progress-bar"></div></div>
-        </div>
-      </aside>
+
     </div>
   </main>
 
@@ -125,8 +137,10 @@
     </div>
   </footer>
   <script>window.LESSON={"slug":"choosing-ai-tools","steps":["scorecard"],"quiz":[{"q":"Your team has a must-have: the provider must not train on uploaded data. The cheapest tool allows this in its terms. What should you do?","choices":["Keep it in the shortlist and lower its privacy score.","Offset the privacy concern with its savings on cost.","Exclude it unless its terms can meet the must-have."],"a":2,"explain":"A must-have is a filter, not a weighted preference. Savings elsewhere cannot compensate for failing it."},{"q":"You are about to compare suppliers. When should you agree the criteria and initial weights?","choices":["Before scoring products, using the team's needs.","After scoring products, to match the highest-rated tool.","After choosing a supplier, to explain the purchase."],"a":0,"explain":"Agreeing criteria and weights first reduces bias towards a favourite tool. If a trial reveals a missing requirement, record the reason for changing it and reassess every option fairly."},{"q":"Staff spend hours turning enquiry emails into a tracking sheet. What should you do first?","choices":["Compare AI products that can summarise emails.","Map the problem and check whether a better form or simple automation would solve it.","Build an AI prototype before deciding what success looks like."],"a":1,"explain":"Start with the task and the result you need. A structured form or simple automation may solve it more reliably and at lower cost."}]};</script>
-  <script src="lesson-kit.js?v=20261025-review" defer></script>
-  <script src="lab-practice.js?v=20261025-review" defer></script>
+  <script src="lesson-kit.js?v=c12-4" defer></script>
+  <script src="lab-practice.js?v=c12-4" defer></script>
+  <script src="../glossary.js?v=c12-4" defer></script>
   <script src="../analytics.js" defer></script>
+  <script src="../learning-layout.js?v=c12-4" defer></script>
 </body>
 </html>

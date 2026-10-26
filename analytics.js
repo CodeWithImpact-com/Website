@@ -6,17 +6,19 @@
  * site code below ("codewithimpact"). If that code is taken, change GC_CODE.
  *
  * Analytics is skipped when:
+ *  - the page is not on codewithimpact.com or www.codewithimpact.com, or
  *  - the visitor has opted out on privacy.html (stored on their device only), or
  *  - their browser sends Global Privacy Control or Do Not Track.
  */
 (function () {
   var GC_CODE = 'codewithimpact';
 
-  var optedOut = false;
-  try { optedOut = window.localStorage.getItem('skipgc') === 't'; } catch (e) {}
-  if (navigator.globalPrivacyControl === true || navigator.doNotTrack === '1') optedOut = true;
-  window.cwiAnalyticsOff = optedOut;
-  if (optedOut) return;
+  function isOptedOut() {
+    if (window.cwiAnalyticsOff === true || navigator.globalPrivacyControl === true || navigator.doNotTrack === '1') return true;
+    try { return window.localStorage.getItem('skipgc') === 't'; } catch (e) { return false; }
+  }
+  window.cwiAnalyticsOff = isOptedOut();
+  if (window.cwiAnalyticsOff || !/^(www\.)?codewithimpact\.com$/i.test(location.hostname)) return;
 
   var s = document.createElement('script');
   s.async = true;
@@ -25,11 +27,13 @@
   document.head.appendChild(s);
 
   // Count clicks on the actions that matter: forms, donations, socials, email, live projects.
-  // Links with a data-goatcounter-click attribute are counted by GoatCounter itself.
+  // Site-owned event attributes use the same opt-out checks as ordinary links.
   var VOL_FORM = '1FAIpQLSdKV3MCejsBWqHJJTQsNKtXnq5dQZwMrV2oWecGjBSsBYtOkg';
   var SUB_FORM = '1FAIpQLSf5lx7s6qApnilmF91cXnFFweXpXip7QSle1LdDbivNnrTJNQ';
 
   function classify(a) {
+    var event = a.getAttribute('data-cwi-analytics-event');
+    if (event) return event;
     var href = a.getAttribute('href') || '';
     var text = (a.textContent || '').toLowerCase();
     if (href.indexOf(SUB_FORM) > -1) return 'click-subscribe';
@@ -43,10 +47,11 @@
   }
 
   document.addEventListener('click', function (e) {
+    if (isOptedOut()) return;
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-    if (!a || a.hasAttribute('data-goatcounter-click')) return;
+    if (!a) return;
     var name = classify(a);
     if (!name || !window.goatcounter || !window.goatcounter.count) return;
-    window.goatcounter.count({ path: name, title: 'From ' + location.pathname, event: true });
+    window.goatcounter.count({ path: name, title: a.getAttribute('data-cwi-analytics-title') || 'From ' + location.pathname, event: true });
   });
 })();

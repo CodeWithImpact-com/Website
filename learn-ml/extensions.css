@@ -1,0 +1,56 @@
+/* Original companion activities for the single Learn ML course. */
+.ml-extension{margin:32px 0;background:#fff;border:1px solid var(--ml-border,#dfd5c8);border-top:4px solid var(--ml-teal,#287d85);border-radius:14px;overflow:hidden;scroll-margin-top:24px}
+.mlx-heading{padding:22px 23px;background:#edf3f0;border-bottom:1px solid var(--ml-border,#dfd5c8)}
+.mlx-heading .ml-eyebrow{font-size:11px;margin-bottom:8px;color:var(--ml-teal,#287d85)}
+.mlx-heading h2{font-size:24px!important;margin:0 0 10px;line-height:1.25}
+.mlx-heading>p:last-child{font-size:14px!important;color:var(--ml-muted,#62717d);margin:0;line-height:1.65}
+.mlx-body{padding:22px 23px}
+.mlx-body>h3{margin-top:28px;font-size:18px!important}
+.mlx-body>h3:first-child{margin-top:0}
+.mlx-controls{display:flex;align-items:end;gap:18px;flex-wrap:wrap;margin:18px 0 22px}
+.mlx-control{flex:1;min-width:150px}
+.mlx-control label{display:block;font-size:13px;font-weight:750;line-height:1.45;margin-bottom:9px}
+.mlx-control output{float:right;color:var(--ml-coral,#c05a50);font-variant-numeric:tabular-nums;margin-left:8px}
+.mlx-control input[type=range]{display:block;width:100%;accent-color:var(--ml-teal,#287d85);cursor:pointer;min-height:24px}
+.mlx-control select,.mlx-control textarea{display:block;width:100%;font:inherit;font-size:14px;color:var(--ml-ink,#102033);padding:9px 10px;background:#fff;border:1px solid #b7c3c2;border-radius:6px;line-height:1.55;box-sizing:border-box}
+.mlx-control textarea{resize:vertical;min-height:80px}
+.ml-extension input:focus-visible,.ml-extension select:focus-visible,.ml-extension textarea:focus-visible,.ml-extension button:focus-visible,.mlx-table:focus-visible,.mlx-details summary:focus-visible{outline:3px solid var(--ml-teal,#287d85);outline-offset:3px}
+.mlx-toggles{display:flex;flex-wrap:wrap;gap:10px 24px;padding:14px 0 18px}
+.mlx-toggles label{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer}
+.mlx-toggles input{width:17px;height:17px;accent-color:var(--ml-teal,#287d85)}
+.mlx-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+.mlx-metrics>div{border:1px solid #e0e6e3;border-radius:10px;background:#f6f8f6;padding:13px 12px;min-width:0}
+.mlx-metrics dt{font-size:12px;color:var(--ml-muted,#62717d);line-height:1.5}
+.mlx-metrics dd{margin:7px 0 0;font-size:24px;line-height:1.2;font-weight:800;letter-spacing:-.5px;font-variant-numeric:tabular-nums;color:var(--ml-ink,#102033)}
+.mlx-chart{display:block;width:100%;height:auto;max-height:330px;margin:16px 0;background:#f9faf9;border:1px solid #e1e7e5;border-radius:9px}
+.mlx-chart text{font-family:inherit;font-size:11px;fill:#51616c}
+.mlx-table{overflow:auto;max-width:100%;margin:14px 0;border:1px solid var(--ml-border,#dfd5c8);border-radius:8px}
+.mlx-table table{min-width:360px!important;font-variant-numeric:tabular-nums}
+.mlx-table caption{text-align:left;padding:12px 10px;font-size:12px;font-weight:750;background:#f6f4ee;color:var(--ml-ink,#102033)}
+.mlx-table th,.mlx-table td{font-size:12px!important;line-height:1.5;padding:10px!important}
+.mlx-table tbody th{font-weight:650;color:var(--ml-ink,#102033)}
+.mlx-table tbody tr:last-child th,.mlx-table tbody tr:last-child td{border-bottom:0}
+.mlx-note{font-size:13px!important;line-height:1.7;color:var(--ml-muted,#62717d);margin:13px 0!important}
+.mlx-source{border-top:1px solid var(--ml-border,#dfd5c8);padding:15px 23px;margin:0!important;background:#faf7f1;font-size:12px!important;line-height:1.65;color:var(--ml-muted,#62717d)}
+.mlx-source+.mlx-source{border-top:0;padding-top:0}
+.mlx-source a{color:var(--ml-ink,#102033);text-decoration:underline;text-underline-offset:2px}
+.mlx-callout{border-left:3px solid var(--ml-gold,#bf8629);background:#fff7e6;padding:14px 16px;margin-top:20px;font-size:14px;line-height:1.65}
+.mlx-details{border-block:1px solid var(--ml-border,#dfd5c8);padding:13px 0;margin:20px 0}
+.mlx-details summary{font-size:14px;font-weight:750;cursor:pointer;color:var(--ml-teal,#287d85)}
+.mlx-brief{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.mlx-brief .mlx-note,.mlx-brief button{grid-column:1/-1}
+.mlx-brief button{justify-self:start;cursor:pointer}
+.mlx-legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:var(--ml-muted,#62717d)}
+.mlx-legend span:first-child{color:#a84940}.mlx-legend span:nth-child(2){color:#287d85}.mlx-legend span:last-child{color:#102033}
+@media(max-width:640px){.mlx-heading,.mlx-body{padding:19px 16px}.mlx-source{padding-inline:16px}.mlx-heading h2{font-size:22px!important}.mlx-brief{grid-template-columns:1fr}.mlx-metrics{gap:6px}.mlx-metrics>div{padding:10px 8px}.mlx-metrics dd{font-size:21px}.mlx-metrics dt{font-size:11px}.mlx-control{min-width:140px}.mlx-chart text{font-size:13px}.mlx-controls{gap:18px}.mlx-toggles{display:grid;gap:14px}}
+@media(max-width:480px){.mlx-chart text{font-size:22px}.mlx-metrics{grid-template-columns:1fr}.mlx-metrics>div{display:flex;align-items:center;justify-content:space-between;gap:16px}.mlx-metrics dt{font-size:12px;max-width:70%}.mlx-metrics dd{margin:0;font-size:22px;white-space:nowrap}}
+@media(max-width:380px){.mlx-metrics{grid-template-columns:1fr}.mlx-metrics>div{display:flex;align-items:center;justify-content:space-between;gap:12px}.mlx-metrics dd{margin:0;flex-shrink:0}.mlx-control{min-width:100%}}
+@media(prefers-reduced-motion:reduce){.ml-extension *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Residual reading guide and lesson box (Claude_12) */
+.mlx-read{margin:0 0 12px;padding-left:20px;font-size:15px}
+.mlx-read li{margin:4px 0}
+.mlx-lesson{margin-top:16px;background:#fff3d9;border-left:4px solid #f5bd69;border-radius:10px;padding:14px 18px}
+.mlx-lesson p{margin:0 0 6px}
+.mlx-lesson ol{margin:0;padding-left:20px}
+.mlx-lesson li{margin:6px 0;line-height:1.55}

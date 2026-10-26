@@ -6,8 +6,12 @@
   <meta name="description" content="Use AI safely and legally in a charity or research team: spot risky everyday uses, understand the data protection basics, and build a one-page AI policy." />
   <meta name="theme-color" content="#102033" />
   <title>AI in Your Organisation | Learn AI | Code With Impact</title>
-  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css?v=20261025-review" />
+  <link rel="stylesheet" href="../style.css?v=c12-4" />
+  <link rel="stylesheet" href="learn.css?v=c12-4" />
+  <link rel="stylesheet" href="../glossary.css?v=c12-4" />
+  <link rel="stylesheet" href="../learning.css?v=c12-4">
+  <link rel="stylesheet" href="../typography.css?v=c12-4">
+  <link rel="stylesheet" href="../colours.css?v=c12-4" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -17,6 +21,7 @@
       <a href="../index.html">Home</a>
       <a href="../projects.html">Projects</a>
       <a class="active" href="index.html">Learn AI</a>
+      <a href="../learn-ml/index.html">Learn ML</a>
       <a href="../get-involved.html">Get Involved</a>
       <a href="../about.html">About Us</a>
       <a href="../contact.html">Contact</a>
@@ -30,11 +35,21 @@
       <p class="eyebrow">Interactive lesson</p>
       <h1>AI in your organisation: safe, legal and genuinely useful.</h1>
       <p>Most AI risk in a charity or research team isn't in the technology. It's in everyday choices: what gets pasted in, who checks the output, and who decides. Learn to spot the risky cases and write a policy your team will actually follow.</p>
-      <ul class="lesson-stats"><li>About 25 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Not legal advice</li></ul>
+      <ul class="lesson-stats"><li>About 15 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Not legal advice</li></ul>
     </section>
 
     <div class="lesson-shell">
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-traffic">Traffic-light the request</a><a href="#lab-policy">Build your AI policy</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+
       <div class="lesson-content">
+        <div class="learning-objectives"><b>You’ll learn to</b><ul><li>Identify data risks and who could be affected by an AI use.</li><li>Draft a practical policy with approved uses and named responsibilities.</li></ul></div>
         <section class="panel" id="intro">
           <h2>Three questions before any AI use</h2>
           <p>A volunteer pastes case notes into a free chatbot. A manager forwards an AI summary without checking the figures. A panel lets a scoring tool reject applicants. None of these needed advanced technology to go wrong. Each one fails one of three simple questions.</p>
@@ -43,7 +58,7 @@
             <div><h3>Who is affected?</h3><p>Could the output change something for a real person: their support, funding or reputation?</p></div>
             <div><h3>Who is accountable?</h3><p>Which person checks the output and owns the decision?</p></div>
           </div>
-          <div class="notice" style="margin-top:18px"><b>The rules don't pause for AI.</b> If personal data is involved, UK GDPR applies exactly as it does to a spreadsheet or an email: you need a lawful reason, you should use as little data as possible, tell people what you're doing, and keep it secure.</div>
+          <div class="notice" style="margin-top:18px"><b>The rules don't pause for AI.</b> If personal data is involved, UK GDPR (the UK’s main data protection law) applies exactly as it does to a spreadsheet or an email: you need a lawful reason, you should use as little data as possible, tell people what you're doing, and keep it secure.</div>
         </section>
 
         <section class="panel lab" id="lab-traffic">
@@ -92,9 +107,18 @@
             <li><b>Most AI risk is in everyday use.</b> What gets pasted in, and whether anyone checks what comes out, matter more than which model you choose.</li>
             <li><b>Check the tool before the task.</b> Where is the data stored, how long is it kept, and is it used to train the provider's models? Free consumer tools and business accounts often answer these differently.</li>
             <li><b>People decide about people.</b> UK law adds safeguards when a significant decision about someone is made without meaningful human involvement, and is stricter still with health data. Use AI to help reviewers, not replace them.</li>
-            <li><b>Assess high-risk uses first.</b> Health data, vulnerable people or new kinds of automated processing usually call for a data protection impact assessment before you start.</li>
+            <li><b>Assess high-risk uses first.</b> A <span data-term="dpia">data protection impact assessment (DPIA)</span> checks how using personal data could harm people or affect their rights, and how to reduce those risks. It is required before processing likely to create high risks. Health data, vulnerable people and new automated processing are reasons to assess that risk carefully.</li>
             <li><b>Write it down and keep it short.</b> A one-page policy, an approved-tools list and a named person to ask prevent most problems.</li>
           </ul>
+        </section>
+
+
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>4 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
 
         <section class="panel" id="deeper">
@@ -127,12 +151,7 @@
           </details>
         </section>
 
-        <section class="panel" id="quiz">
-          <h2>Check your understanding</h2>
-          <p>4 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
-          <div id="quiz-content"></div>
-          <div id="quiz-result" role="status" aria-live="polite"></div>
-        </section>
+
 
         <section class="panel" id="explore">
           <h2>Continue exploring</h2>
@@ -157,14 +176,7 @@
         <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="evaluation-and-safety.html"><span>← Previous</span><b>07 · Evaluation &amp; Safety</b></a><a class="next" href="choosing-ai-tools.html"><span>Next →</span><b>09 · Choosing AI Tools</b></a></nav>
       </div>
 
-      <aside class="toc" aria-label="On this page">
-        <strong>In this lesson</strong>
-        <a href="#intro">The big picture</a><a href="#lab-traffic">Traffic-light the request</a><a href="#lab-policy">Build your AI policy</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
-        <div class="toc-progress">
-          <span class="hint" id="progress-text">Progress: 0 activities</span>
-          <div class="progress-bar"><div id="progress-bar"></div></div>
-        </div>
-      </aside>
+
     </div>
   </main>
 
@@ -176,9 +188,11 @@
       <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
     </div>
   </footer>
-  <script>window.LESSON={"slug": "ai-in-your-organisation", "steps": ["traffic", "policy"], "quiz": [{"q": "A volunteer wants to paste a service user's case notes into a free chatbot to draft a letter. What's the best response?", "choices": ["Fine, as long as they delete the chat afterwards.", "Stop: use an approved tool, or remove identifying details first.", "Fine, because the letter will help the service user."], "a": 1, "explain": "Health details are special category data, and a free consumer tool may keep or train on what you paste. Good intentions don't change that."}, {"q": "Which use most needs a data protection impact assessment first?", "choices": ["Drafting a newsletter introduction.", "A website chatbot that answers questions from people seeking health support.", "Brainstorming event names."], "a": 1, "explain": "It processes personal and possibly health data from potentially vulnerable people, using new technology. That's the kind of use a DPIA is for."}, {"q": "An AI tool scores grant applications. What keeps a person genuinely in charge?", "choices": ["A reviewer clicks 'approve' on every AI decision without reading the application.", "Reviewers read the applications, use the score as one input, and make and record the decision.", "Nobody, because the AI is more consistent."], "a": 1, "explain": "Rubber-stamping isn't meaningful human involvement. The person must be able to understand, question and change the outcome."}, {"q": "What makes an AI policy most likely to work?", "choices": ["A detailed 30-page document covering every possible tool.", "A short page with approved tools, what never goes in, and who to ask.", "No policy, so people can experiment freely."], "a": 1, "explain": "People follow guidance they can remember. Most problems are prevented by a few clear rules and a named person to ask."}]};</script>
-  <script src="lesson-kit.js?v=20261025-review" defer></script>
+  <script>window.LESSON={"slug": "ai-in-your-organisation", "steps": ["traffic", "policy"], "quiz": [{"q": "A volunteer wants to paste a service user's case notes into a free chatbot to draft a letter. What's the best response?", "choices": ["Fine, as long as they delete the chat afterwards.", "Stop: use an approved tool, or remove identifying details first.", "Fine, because the letter will help the service user."], "a": 1, "explain": "Health details count as “special category data”, the most sensitive kind under data protection law, and a free consumer tool may keep or train on what you paste. Good intentions don't change that."}, {"q": "Which use most needs a data protection impact assessment first?", "choices": ["Drafting a newsletter introduction.", "A website chatbot that answers questions from people seeking health support.", "Brainstorming event names."], "a": 1, "explain": "It processes personal and possibly health data from potentially vulnerable people, using new technology. That's the kind of use a DPIA is for."}, {"q": "An AI tool scores grant applications. What keeps a person genuinely in charge?", "choices": ["A reviewer clicks 'approve' on every AI decision without reading the application.", "Reviewers read the applications, use the score as one input, and make and record the decision.", "Nobody, because the AI is more consistent."], "a": 1, "explain": "Rubber-stamping isn't meaningful human involvement. The person must be able to understand, question and change the outcome."}, {"q": "What makes an AI policy most likely to work?", "choices": ["A detailed 30-page document covering every possible tool.", "A short page with approved tools, what never goes in, and who to ask.", "No policy, so people can experiment freely."], "a": 1, "explain": "People follow guidance they can remember. Most problems are prevented by a few clear rules and a named person to ask."}]};</script>
+  <script src="lesson-kit.js?v=c12-4" defer></script>
   <script src="lab-organisation.js" defer></script>
+  <script src="../glossary.js?v=c12-4" defer></script>
   <script src="../analytics.js" defer></script>
+  <script src="../learning-layout.js?v=c12-4" defer></script>
 </body>
 </html>

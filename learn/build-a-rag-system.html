@@ -6,8 +6,12 @@
   <meta name="description" content="Learn retrieval-augmented generation (RAG) by building one step by step: chunk documents, retrieve with real BM25 scoring, assemble a prompt and compare grounded answers with guesses." />
   <meta name="theme-color" content="#102033" />
   <title>Build a RAG System | Learn AI | Code With Impact</title>
-  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css?v=20261025-review" />
+  <link rel="stylesheet" href="../style.css?v=c12-4" />
+  <link rel="stylesheet" href="learn.css?v=c12-4" />
+  <link rel="stylesheet" href="../glossary.css?v=c12-4" />
+  <link rel="stylesheet" href="../learning.css?v=c12-4">
+  <link rel="stylesheet" href="../typography.css?v=c12-4">
+  <link rel="stylesheet" href="../colours.css?v=c12-4" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -17,6 +21,7 @@
       <a href="../index.html">Home</a>
       <a href="../projects.html">Projects</a>
       <a class="active" href="index.html">Learn AI</a>
+      <a href="../learn-ml/index.html">Learn ML</a>
       <a href="../get-involved.html">Get Involved</a>
       <a href="../about.html">About Us</a>
       <a href="../contact.html">Contact</a>
@@ -30,18 +35,29 @@
       <p class="eyebrow">Interactive lesson</p>
       <h1>Build a RAG system: give an AI the right facts at the right time.</h1>
       <p>Retrieval-augmented generation lets a model answer from your own documents instead of its memory. Build one step by step, and see what happens when retrieval goes wrong.</p>
-      <ul class="lesson-stats"><li>About 30 minutes</li><li>Intermediate</li><li>No account required</li><li>Original diagrams</li></ul>
+      <ul class="lesson-stats"><li>About 20 minutes</li><li>Intermediate</li><li>No account required</li><li>Original diagrams</li></ul>
     </section>
 
     <div class="lesson-shell">
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-rag">Build the pipeline</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+
       <div class="lesson-content">
+        <div class="learning-objectives"><b>You’ll learn to</b><ul><li>Explore how passage size and retrieval choices change the available evidence.</li><li>Spot answers that are unsupported by their sources.</li></ul></div>
         <section class="panel" id="intro">
           <h2>Why models need retrieval</h2>
-          <p>A language model's knowledge stops at its training date, and it has never read your charity's policies. Ask it about your expenses rules and it will produce a plausible guess. <b>Retrieval-augmented generation (RAG)</b> fixes this by finding the relevant passages first and handing them to the model along with the question.</p>
+          <p>A language model's knowledge stops at the date its training data was collected, and it has never read your charity's policies. Ask it about your expenses rules and it will produce a plausible guess. <b>Retrieval-augmented generation (RAG)</b> fixes this by finding the relevant passages first and handing them to the model along with the question.</p>
           <div class="flow" aria-label="RAG pipeline: documents are chunked, the question retrieves chunks, the prompt is augmented, the model generates an answer with citations">
             <span>Documents</span><i aria-hidden="true">→</i><span>Chunks</span><i aria-hidden="true">→</i><span>Retrieve</span><i aria-hidden="true">→</i><span>Augment prompt</span><i aria-hidden="true">→</i><span>Generate + cite</span>
           </div>
-          <div class="notice"><b>About this lab:</b> the five documents belong to a <i>fictional</i> charity, the Riverside Community Health Trust. Chunking and retrieval run for real in your browser using BM25 keyword scoring. The final answers were written by our team to illustrate grounded answers, refusals and unsupported guesses. This is a demonstration, not an experiment showing that RAG always succeeds or that a model without retrieval always guesses.</div>
+          <p>Here is how it works. First, the documents are split into short passages called <span data-term="chunk">chunks</span>. When a question arrives, the system fetches the few chunks that match it best (how many it fetches is called <span data-term="top-k">top-k</span>) and adds them to the prompt. The model then answers from those passages and cites them. An answer based on the sources like this is called <span data-term="grounded">grounded</span>.</p>
+          <div class="notice"><b>About this lab:</b> the five documents belong to a <i>fictional</i> charity, the Riverside Community Health Trust. Splitting and searching run for real in your browser, using a standard keyword-scoring method called BM25. The final answers were written by our team to illustrate grounded answers, refusals and unsupported guesses. This is a demonstration, not an experiment showing that RAG always succeeds or that a model without retrieval always guesses.</div>
         </section>
 
         <section class="panel lab" id="lab-rag">
@@ -69,10 +85,19 @@
             <li><b>RAG grounds answers in your documents.</b> The model answers from retrieved text, and can cite it, instead of guessing.</li>
             <li><b>Check the citations, not just the answer.</b> A model can cite a source that doesn't actually support its claim. Spot-check that each cited passage says what the answer says it does.</li>
             <li><b>Retrieval quality limits answer quality.</b> If the right passage isn't retrieved, even the best model can't use it.</li>
-            <li><b>Chunking is a design decision.</b> Chunks that are too small lose context; chunks that are too large dilute the signal and waste the context window.</li>
+            <li><b>Chunking is a design decision.</b> Chunks that are too small lose context; chunks that are too large bury the useful sentence among irrelevant ones and fill up the context window.</li>
             <li><b>Tell the model what to do when the answer isn't there.</b> “Say you can't find it” is far safer than a confident guess.</li>
-            <li><b>Mind what goes in.</b> Only index documents that people using the tool are allowed to see.</li>
+            <li><b>Mind what goes in.</b> Only add documents to the search that people using the tool are allowed to see.</li>
           </ul>
+        </section>
+
+
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
 
         <section class="panel" id="deeper">
@@ -112,12 +137,7 @@ prompt = ("Answer using only the sources. Cite them like [1]. "
           </details>
         </section>
 
-        <section class="panel" id="quiz">
-          <h2>Check your understanding</h2>
-          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
-          <div id="quiz-content"></div>
-          <div id="quiz-result" role="status" aria-live="polite"></div>
-        </section>
+
 
         <section class="panel" id="explore">
           <h2>Continue exploring</h2>
@@ -135,14 +155,7 @@ prompt = ("Answer using only the sources. Cite them like [1]. "
         <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="embeddings-and-search.html"><span>← Previous</span><b>04 · Embeddings &amp; Search</b></a><a class="next" href="ai-agents.html"><span>Next →</span><b>06 · AI Agents</b></a></nav>
       </div>
 
-      <aside class="toc" aria-label="On this page">
-        <strong>In this lesson</strong>
-        <a href="#intro">The big picture</a><a href="#lab-rag">Build the pipeline</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
-        <div class="toc-progress">
-          <span class="hint" id="progress-text">Progress: 0 activities</span>
-          <div class="progress-bar"><div id="progress-bar"></div></div>
-        </div>
-      </aside>
+
     </div>
   </main>
 
@@ -155,8 +168,10 @@ prompt = ("Answer using only the sources. Cite them like [1]. "
     </div>
   </footer>
   <script>window.LESSON={"slug": "build-a-rag-system", "steps": ["chunk", "retrieve", "generate", "norag"], "quiz": [{"q": "What problem does RAG mainly solve?", "choices": ["Models are too slow.", "Models don't know your documents or recent facts, so they guess.", "Models can't write in British English."], "a": 1, "explain": "RAG retrieves relevant passages and gives them to the model, so answers are grounded in your sources."}, {"q": "The right passage exists in your documents, but the answer is still wrong. Where should you look first?", "choices": ["Retrieval: was the passage actually retrieved?", "The font size of the documents.", "There is no need to check. RAG answers are always correct."], "a": 0, "explain": "If retrieval misses the passage, the model never sees it. Measuring retrieval separately is essential."}, {"q": "Why were the answers without RAG risky in the lab?", "choices": ["They were too short.", "They sounded confident but didn't reflect the charity's actual policies.", "They cited too many sources."], "a": 1, "explain": "Without retrieval, the model produced plausible guesses, including advice that broke the data protection policy."}]};</script>
-  <script src="lesson-kit.js?v=20261025-review" defer></script>
+  <script src="lesson-kit.js?v=c12-4" defer></script>
   <script src="lab-rag.js" defer></script>
+  <script src="../glossary.js?v=c12-4" defer></script>
   <script src="../analytics.js" defer></script>
+  <script src="../learning-layout.js?v=c12-4" defer></script>
 </body>
 </html>

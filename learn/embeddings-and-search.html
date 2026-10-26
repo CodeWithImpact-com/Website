@@ -6,8 +6,12 @@
   <meta name="description" content="See how AI represents meaning as numbers, and why that lets computers search by meaning rather than exact words. Interactive meaning map and search comparison." />
   <meta name="theme-color" content="#102033" />
   <title>Embeddings &amp; Search | Learn AI | Code With Impact</title>
-  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css?v=20261025-review" />
+  <link rel="stylesheet" href="../style.css?v=c12-4" />
+  <link rel="stylesheet" href="learn.css?v=c12-4" />
+  <link rel="stylesheet" href="../glossary.css?v=c12-4" />
+  <link rel="stylesheet" href="../learning.css?v=c12-4">
+  <link rel="stylesheet" href="../typography.css?v=c12-4">
+  <link rel="stylesheet" href="../colours.css?v=c12-4" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -17,6 +21,7 @@
       <a href="../index.html">Home</a>
       <a href="../projects.html">Projects</a>
       <a class="active" href="index.html">Learn AI</a>
+      <a href="../learn-ml/index.html">Learn ML</a>
       <a href="../get-involved.html">Get Involved</a>
       <a href="../about.html">About Us</a>
       <a href="../contact.html">Contact</a>
@@ -30,32 +35,43 @@
       <p class="eyebrow">Interactive lesson</p>
       <h1>Embeddings and search: finding meaning, not just matching words.</h1>
       <p>How can a computer know that “people giving their time” is about volunteering, even though the word never appears? Embeddings make this possible. They are used in semantic search and RAG.</p>
-      <ul class="lesson-stats"><li>About 25 minutes</li><li>Intermediate</li><li>No account required</li><li>Original diagrams</li></ul>
+      <ul class="lesson-stats"><li>About 10 minutes</li><li>Intermediate</li><li>No account required</li><li>Original diagrams</li></ul>
     </section>
 
     <div class="lesson-shell">
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-map">Meaning map</a><a href="#lab-compare">Keywords vs meaning</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+
       <div class="lesson-content">
+        <div class="learning-objectives"><b>You’ll learn to</b><ul><li>Compare exact-word matching with similarity search.</li><li>Judge whether a retrieved passage is relevant to the question.</li></ul></div>
         <section class="panel" id="intro">
           <h2>Meaning as a location</h2>
-          <p>An <b>embedding</b> turns a piece of text into a list of numbers, representing a point in a “meaning space”. An embedding model is trained so that texts with similar meanings land close together, even when they use completely different words.</p>
-          <p>Once text is a point, searching becomes geometry: turn the question into a point too, and find the nearest neighbours. This is called <b>semantic search</b>, and it is the engine inside most “chat with your documents” tools.</p>
-          <div class="notice"><b>About this lab:</b> real embeddings have hundreds or thousands of dimensions and are learned by a model. Ours have just five hand-labelled dimensions: <i>volunteering, money, research, health</i> and <i>events</i>, so you can see exactly what is going on. In real embeddings, individual dimensions don't have human-readable names like these: meaning is spread across all of them. The similarity calculations are real.</div>
+          <p>An <span data-term="embedding">embedding</span> turns a piece of text into a list of numbers, representing a point in a “meaning space”. An embedding model is trained so that texts with similar meanings land close together, even when they use completely different words.</p>
+          <p>Once text is a point, searching becomes geometry: turn the question into a point too, and find the nearest neighbours. This is called <span data-term="semantic-search">semantic search</span>, and it is the engine inside most “chat with your documents” tools.</p>
+          <div class="notice"><b>About this lab:</b> real embeddings have hundreds or thousands of numbers (called <b>dimensions</b>) and are learned by a model. Ours have just five hand-labelled dimensions: <i>volunteering, money, research, health</i> and <i>events</i>, so you can see exactly what is going on. In real embeddings, individual dimensions don't have human-readable names like these: meaning is spread across all of them. The similarity calculations are real.</div>
         </section>
 
         <section class="panel lab" id="lab-map">
           <p class="lab-tag">Interactive</p>
           <h2>Explore the meaning map</h2>
-          <p>Each dot is a short piece of text from a charity's website. Choose a search question: it appears as a navy star, placed among the texts it is closest to, and the three most similar texts are linked to it. The map positions are arranged for illustration; they are not a projection of the five-dimensional vectors. Compare the similarity scores rather than distances on the drawing.</p>
+          <p>Each dot is a short piece of text from a charity's website. Choose a search question: it appears as a navy star, placed among the texts it is closest to, and the three most similar texts are linked to it. The map positions are arranged for illustration; they are not calculated from the five numbers. Compare the similarity scores rather than distances on the drawing.</p>
           <div class="chips" role="group" aria-label="Search questions" id="queries"></div>
           <div class="map-wrap"><svg id="map" viewBox="0 0 640 400" role="img" aria-label="Map of texts grouped by meaning"></svg></div>
           <div class="legend" id="legend"></div>
-          <h3 class="mini-h">Closest matches (cosine similarity)</h3>
+          <h3 class="mini-h">Closest matches</h3>
+          <p class="hint">This lab uses <span data-term="cosine-similarity">cosine similarity</span> to compare the directions of its illustrative vectors. A score closer to 1 means more aligned vectors; it does not prove a passage answers the question.</p>
           <ol class="results" id="sem-results" aria-live="polite"></ol>
         </section>
         <section class="panel lab" id="lab-compare">
           <p class="lab-tag">Interactive</p>
           <h2>Keyword search versus meaning search</h2>
-          <p>Run the same question through both kinds of search. Our simple keyword matcher counts exact shared words; meaning search compares hand-set vectors. Real keyword systems can also use stemming and synonym lists. Which wins depends on the question. Try each one and compare the results.</p>
+          <p>Run the same question through both kinds of search. Our simple keyword matcher counts exact shared words; meaning search compares hand-set vectors. Real keyword systems can also match word endings (so “donate” finds “donation”) and synonyms. Which wins depends on the question. Try each one and compare the results.</p>
           <div class="chips" role="group" aria-label="Questions to compare" id="cmp-queries"></div>
           <div class="two-col">
             <div><h3 class="mini-h">Keyword search</h3><ol class="results" id="kw-out" aria-live="polite"></ol></div>
@@ -72,6 +88,15 @@
             <li><b>Keyword search still matters</b> for exact names, codes and acronyms such as “Gift Aid” or “MND”. Many real systems combine both (<i>hybrid search</i>).</li>
             <li><b>Embeddings are only as good as the model that made them.</b> General models may not understand specialist medical or legal language well.</li>
           </ul>
+        </section>
+
+
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
 
         <section class="panel" id="deeper">
@@ -100,12 +125,7 @@ print(scores)   # the carers text scores much higher</code></pre>
           </details>
         </section>
 
-        <section class="panel" id="quiz">
-          <h2>Check your understanding</h2>
-          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
-          <div id="quiz-content"></div>
-          <div id="quiz-result" role="status" aria-live="polite"></div>
-        </section>
+
 
         <section class="panel" id="explore">
           <h2>Continue exploring</h2>
@@ -123,14 +143,7 @@ print(scores)   # the carers text scores much higher</code></pre>
         <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="prompting-and-context.html"><span>← Previous</span><b>03 · Prompting &amp; Context</b></a><a class="next" href="build-a-rag-system.html"><span>Next →</span><b>05 · Build a RAG System</b></a></nav>
       </div>
 
-      <aside class="toc" aria-label="On this page">
-        <strong>In this lesson</strong>
-        <a href="#intro">The big picture</a><a href="#lab-map">Meaning map</a><a href="#lab-compare">Keywords vs meaning</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
-        <div class="toc-progress">
-          <span class="hint" id="progress-text">Progress: 0 activities</span>
-          <div class="progress-bar"><div id="progress-bar"></div></div>
-        </div>
-      </aside>
+
     </div>
   </main>
 
@@ -142,9 +155,11 @@ print(scores)   # the carers text scores much higher</code></pre>
       <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
     </div>
   </footer>
-  <script>window.LESSON={"slug":"embeddings-and-search","steps":["map","compare"],"quiz":[{"q":"What does an embedding represent?","choices":["A compressed copy of the text that can be turned back into it.","The meaning of a text as a point in a numerical space.","A list of the keywords in the text."],"a":1,"explain":"An embedding is a vector placing the text in a space where similar meanings are close together."},{"q":"In this lab's exact-word matcher, why might “ways to donate money” miss “Setting up a monthly direct debit donation”?","choices":["The words don't match exactly (“donate” vs “donation”).","Keyword search can't read long texts.","Direct debits are excluded from search."],"a":0,"explain":"This lab requires exact shared words. Production keyword systems can use stemming or synonyms; semantic search is another approach to test."},{"q":"When is keyword search often better than meaning search?","choices":["For vague, conversational questions.","For exact terms, names or acronyms such as “Gift Aid”.","Never. Meaning search is always better."],"a":1,"explain":"Exact identifiers are where keyword matching shines. Hybrid search combines the strengths of both."}]};</script>
-  <script src="lesson-kit.js?v=20261025-review" defer></script>
+  <script>window.LESSON={"slug":"embeddings-and-search","steps":["map","compare"],"quiz":[{"q":"What does an embedding represent?","choices":["A compressed copy of the text that can be turned back into it.","The meaning of a text as a point in a numerical space.","A list of the keywords in the text."],"a":1,"explain":"An embedding is a vector placing the text in a space where similar meanings are close together."},{"q":"In this lab's exact-word matcher, why might “ways to donate money” miss “Setting up a monthly direct debit donation”?","choices":["The words don't match exactly (“donate” vs “donation”).","Keyword search can't read long texts.","Direct debits are excluded from search."],"a":0,"explain":"This lab requires exact shared words. Real keyword systems can match word endings and synonyms; meaning search is another way round the problem."},{"q":"When is keyword search often better than meaning search?","choices":["For vague, conversational questions.","For exact terms, names or acronyms such as “Gift Aid”.","Never. Meaning search is always better."],"a":1,"explain":"Exact identifiers are where keyword matching shines. Hybrid search combines the strengths of both."}]};</script>
+  <script src="lesson-kit.js?v=c12-4" defer></script>
   <script src="lab-embeddings.js" defer></script>
+  <script src="../glossary.js?v=c12-4" defer></script>
   <script src="../analytics.js" defer></script>
+  <script src="../learning-layout.js?v=c12-4" defer></script>
 </body>
 </html>

@@ -6,8 +6,12 @@
   <meta name="description" content="Learn how instructions, context and settings shape an AI model&#x27;s answers: build a prompt, experiment with temperature, and see the limits of a context window." />
   <meta name="theme-color" content="#102033" />
   <title>Prompting &amp; Context | Learn AI | Code With Impact</title>
-  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css?v=20261025-review" />
+  <link rel="stylesheet" href="../style.css?v=c12-4" />
+  <link rel="stylesheet" href="learn.css?v=c12-4" />
+  <link rel="stylesheet" href="../glossary.css?v=c12-4" />
+  <link rel="stylesheet" href="../learning.css?v=c12-4">
+  <link rel="stylesheet" href="../typography.css?v=c12-4">
+  <link rel="stylesheet" href="../colours.css?v=c12-4" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -17,6 +21,7 @@
       <a href="../index.html">Home</a>
       <a href="../projects.html">Projects</a>
       <a class="active" href="index.html">Learn AI</a>
+      <a href="../learn-ml/index.html">Learn ML</a>
       <a href="../get-involved.html">Get Involved</a>
       <a href="../about.html">About Us</a>
       <a href="../contact.html">Contact</a>
@@ -34,11 +39,22 @@
     </section>
 
     <div class="lesson-shell">
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-prompt">Build a prompt</a><a href="#lab-temp">Temperature</a><a href="#lab-window">Context window</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+
       <div class="lesson-content">
+        <div class="learning-objectives"><b>You’ll learn to</b><ul><li>Write a clear brief with relevant facts and constraints.</li><li>Explain how context limits and temperature affect a response.</li></ul></div>
         <section class="panel" id="intro">
           <h2>A prompt is a brief, not a magic spell</h2>
           <p>Think of a language model as a capable new volunteer on their first day. They know a lot in general, but nothing about <i>your</i> charity, your data or your audience unless you tell them. A good prompt is simply a good brief.</p>
-          <p>Everything the model can “see” at once, including your instructions, pasted documents and the conversation so far, is called the <b>context</b>. It has a size limit, called the <b>context window</b>. And even with the same context, settings like <b>temperature</b> change how predictable the answer is.</p>
+          <p>Everything the model can “see” at once, including your instructions, pasted documents and the conversation so far, is called the <b>context</b>. It has a size limit, called the <span data-term="context-window">context window</span>. And even with the same context, settings like <span data-term="temperature">temperature</span> change how predictable the answer is.</p>
+          <p><b>What is temperature?</b> After the model has scored every possible next word, it still has to pick one. Temperature is a dial that controls how adventurous that pick is. Turned low, it almost always picks the top-scoring word: predictable, sometimes repetitive. Turned up, lower-scoring words get picked more often: more varied, sometimes odd. It changes variety, not accuracy: a low temperature can repeat the same wrong answer every time.</p>
         </section>
 
         <section class="panel lab" id="lab-prompt">
@@ -55,7 +71,7 @@
         <section class="panel lab" id="lab-temp">
           <p class="lab-tag">Interactive</p>
           <h2>Experiment: temperature and randomness</h2>
-          <p>We have assigned example scores to possible next words for <b>“Our volunteers are …”</b>. Move the temperature slider: the probabilities below are calculated live with the real softmax formula. Then generate ten completions to see how often each word is picked.</p>
+          <p>We have assigned example scores to possible next words for <b>“Our volunteers are …”</b>. Move the temperature slider: the probabilities below are calculated live with the same formula real models use (called softmax). Then generate ten completions to see how often each word is picked.</p>
           <div class="slider-row"><label for="temp">Temperature: <b id="temp-val">1.0</b></label><input type="range" id="temp" min="0.1" max="2" step="0.1" value="1" /></div>
           <div class="bars" id="temp-bars"></div>
           <div class="lab-actions"><button type="button" class="btn dark" id="sample-btn">Generate 10 completions</button></div>
@@ -80,6 +96,15 @@
             <li><b>Temperature changes variety, not truth.</b> Lower settings concentrate the next-token probabilities. They can still produce the same wrong answer repeatedly, so verify factual claims at any setting.</li>
             <li><b>Context windows are finite.</b> In long conversations, early instructions can drop out of view. Quality can also slip well before the limit, especially for details buried in the middle of a long input. Restate what matters, or start a fresh conversation.</li>
           </ul>
+        </section>
+
+
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
 
         <section class="panel" id="deeper">
@@ -110,12 +135,7 @@
           </details>
         </section>
 
-        <section class="panel" id="quiz">
-          <h2>Check your understanding</h2>
-          <p>3 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
-          <div id="quiz-content"></div>
-          <div id="quiz-result" role="status" aria-live="polite"></div>
-        </section>
+
 
         <section class="panel" id="explore">
           <h2>Continue exploring</h2>
@@ -133,14 +153,7 @@
         <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="inside-an-llm.html"><span>← Previous</span><b>02 · Inside an LLM</b></a><a class="next" href="embeddings-and-search.html"><span>Next →</span><b>04 · Embeddings &amp; Search</b></a></nav>
       </div>
 
-      <aside class="toc" aria-label="On this page">
-        <strong>In this lesson</strong>
-        <a href="#intro">The big picture</a><a href="#lab-prompt">Build a prompt</a><a href="#lab-temp">Temperature</a><a href="#lab-window">Context window</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
-        <div class="toc-progress">
-          <span class="hint" id="progress-text">Progress: 0 activities</span>
-          <div class="progress-bar"><div id="progress-bar"></div></div>
-        </div>
-      </aside>
+
     </div>
   </main>
 
@@ -152,9 +165,11 @@
       <a class="instagram" href="https://www.instagram.com/code_with_impact" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
     </div>
   </footer>
-  <script>window.LESSON={"slug":"prompting-and-context","steps":["prompt","temperature","window"],"quiz":[{"q":"You ask a model to “summarise the survey” but don't paste the survey in. What is the risk?","choices":["None, because it will ask for the file.","It may produce a plausible summary with invented findings.","It will look the survey up online."],"a":1,"explain":"Without the data in its context, a model fills the gap with plausible-sounding text, including made-up figures."},{"q":"You use a low temperature to extract figures from a report. What still needs checking?","choices":["Nothing; low temperature makes the figures factual.","That each figure matches the report, because predictable output can still be wrong.","Only whether the response uses the requested bullet format."],"a":1,"explain":"Temperature changes the token distribution, not whether a claim is true. Check the figures against the source."},{"q":"In a very long chat, the model stops following an instruction you gave at the start. A likely reason?","choices":["The model got bored.","The instruction fell outside the context window.","Instructions expire after ten minutes."],"a":1,"explain":"The application may have omitted or summarised earlier messages. Check what it actually sent to the model; context handling differs between applications."}]};</script>
-  <script src="lesson-kit.js?v=20261025-review" defer></script>
+  <script>window.LESSON={"slug":"prompting-and-context","steps":["prompt","temperature","window"],"quiz":[{"q":"You ask a model to “summarise the survey” but don't paste the survey in. What is the risk?","choices":["None, because it will ask for the file.","It may produce a plausible summary with invented findings.","It will look the survey up online."],"a":1,"explain":"Without the data in its context, a model fills the gap with plausible-sounding text, including made-up figures."},{"q":"You use a low temperature to extract figures from a report. What still needs checking?","choices":["Nothing; low temperature makes the figures factual.","That each figure matches the report, because predictable output can still be wrong.","Only whether the response uses the requested bullet format."],"a":1,"explain":"Temperature changes how varied the word choices are, not whether a claim is true. Check the figures against the source."},{"q":"In a very long chat, the model stops following an instruction you gave at the start. A likely reason?","choices":["The model got bored.","The instruction fell outside the context window.","Instructions expire after ten minutes."],"a":1,"explain":"The application may have omitted or summarised earlier messages. Check what it actually sent to the model; context handling differs between applications."}]};</script>
+  <script src="lesson-kit.js?v=c12-4" defer></script>
   <script src="lab-prompting.js" defer></script>
+  <script src="../glossary.js?v=c12-4" defer></script>
   <script src="../analytics.js" defer></script>
+  <script src="../learning-layout.js?v=c12-4" defer></script>
 </body>
 </html>

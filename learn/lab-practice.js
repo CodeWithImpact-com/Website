@@ -17,11 +17,11 @@
       {k:"exit", n:"Support and exit"},
     ];
     const TOOLS = [
-      {n:"QuickWrite Free", d:"A free public chatbot. Very easy to start with. Its terms allow it to use what you type to improve its models.",
+      {n:"QuickWrite Free", d:"A free chatbot anyone can use. Quick to start, but what you type may be used to train its AI.",
        s:{data:1,quality:2,cost:5,ease:5,fit:2,exit:1}, must:false},
-      {n:"OfficeAI Business", d:"An AI add-on for the office software you already use. Paid per user. Signs a data processing agreement and doesn't train on your data.",
+      {n:"OfficeAI Business", d:"An AI add-on for the office software you already use. You pay per person. Your data stays protected under a contract and isn't used to train its AI.",
        s:{data:5,quality:3,cost:3,ease:4,fit:5,exit:3}, must:true},
-      {n:"CaseNotes AI", d:"A specialist tool that performs best on the fictional team's case-note checks. UK hosting and a data processing agreement, but the most expensive, and exporting your data is awkward.",
+      {n:"CaseNotes AI", d:"Built specially for charities, and the best of the three at summarising case notes. Your data stays in the UK and is protected under a contract. But it's the most expensive, and it's hard to take your records with you if you leave.",
        s:{data:5,quality:5,cost:2,ease:3,fit:3,exit:2}, must:true},
     ];
     const w = {data:3,quality:3,cost:3,ease:3,fit:3,exit:3};
@@ -79,7 +79,7 @@
         const bar = el("div","tool-bar"), fill = el("div"); fill.style.width = r.score+"%"; bar.append(fill);
         card.append(head, bar);
         if(r.out) card.append(el("p","tool-badge","Ruled out by the must-have"));
-        if(leading) card.append(el("p","tool-badge",leaders.length>1?"Joint highest eligible score":"Highest eligible score"));
+        if(leading) card.append(el("p","tool-badge win",leaders.length>1?"Joint highest eligible score":"Highest eligible score"));
         card.append(el("p","tool-desc",r.t.d));
         out.append(card);
       });
@@ -107,7 +107,7 @@
     const STEPS = [
       {t:"Read a new volunteer's enquiry and work out what they're asking", ours:1, why:"AI can help summarise and sort enquiries. A person checks the original enquiry against the summary, including anything unusual."},
       {t:"Send the standard information pack", ours:2, why:"Low risk, the same for everyone, and easy to check later. Ordinary rules-based software can send it; this does not need AI."},
-      {t:"Check safeguarding and DBS requirements for the role", ours:0, why:"Safeguarding judgements must stay with a trained person. Getting this wrong could put people at risk."},
+      {t:"Check safeguarding and criminal record (DBS) check requirements for the role", ours:0, why:"Safeguarding judgements must stay with a trained person. Getting this wrong could put people at risk."},
       {t:"Suggest roles that match their skills and availability", ours:1, why:"AI can shortlist suitable roles quickly. A coordinator makes the actual match, because they know the teams and people involved."},
       {t:"Write a personalised welcome email", ours:1, why:"A good drafting task. A person checks names, dates and tone before it's sent."},
       {t:"Decide whether to accept someone who disclosed a concern", ours:0, why:"A significant decision about a person, needing context and discretion. This stays human, and the reasons should be recorded."},
@@ -249,8 +249,8 @@
       $("m-status").textContent =
         `Checking ${n} outputs a week: ${beforeAlerts} alert${beforeAlerts===1?"":"s"} before the form changes in week ${CHANGE}. `+
         (firstAlert ? `The first sample below the quality target from week ${CHANGE} onward is in week ${firstAlert}.` : `No sample from week ${CHANGE} onward falls below the quality target.`)+
-        (th>P_BEFORE ? ` Your ${Math.round(th*100)}% target is above the simulated 92% baseline, so earlier alerts can reflect an existing quality gap.` : " Even before the change, sampling variation can produce alerts.")+
-        " An alert means the sample missed the target; it does not prove what caused it. The bars show 95% Wilson intervals for each week's sample.";
+        (th>P_BEFORE ? ` Your ${Math.round(th*100)}% target is above the simulated 92% baseline, so earlier alerts can reflect an existing quality gap.` : " Even before the change, chance alone can produce alerts.")+
+        " An alert means the sample missed the target; it does not prove what caused it. The grey bars show the range the true quality could plausibly be in, given how few outputs were checked (a 95% Wilson interval).";
     }
     [nIn,thIn].forEach(i=>i.addEventListener("input",()=>{draw();mark("monitor");}));
     draw();

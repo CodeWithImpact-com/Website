@@ -1,0 +1,7 @@
+# Python 3.10 or later; use an isolated environment.
+# Ranges are compatibility requirements, not a record of an executed environment.
+numpy>=1.26,<3
+pandas>=2.0,<4
+scikit-learn>=1.4,<2
+joblib>=1.3,<2
+jupyterlab>=4,<5

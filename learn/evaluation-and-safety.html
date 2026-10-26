@@ -6,8 +6,12 @@
   <meta name="description" content="Learn how to test whether an AI system is accurate, relevant and safe: grade answers against a source, and try guardrails that catch personal data and risky requests." />
   <meta name="theme-color" content="#102033" />
   <title>Evaluation &amp; Safety | Learn AI | Code With Impact</title>
-  <link rel="stylesheet" href="../style.css?v=coffee-spotlight" />
-  <link rel="stylesheet" href="learn.css?v=20261025-review" />
+  <link rel="stylesheet" href="../style.css?v=c12-4" />
+  <link rel="stylesheet" href="learn.css?v=c12-4" />
+  <link rel="stylesheet" href="../glossary.css?v=c12-4" />
+  <link rel="stylesheet" href="../learning.css?v=c12-4">
+  <link rel="stylesheet" href="../typography.css?v=c12-4">
+  <link rel="stylesheet" href="../colours.css?v=c12-4" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -17,6 +21,7 @@
       <a href="../index.html">Home</a>
       <a href="../projects.html">Projects</a>
       <a class="active" href="index.html">Learn AI</a>
+      <a href="../learn-ml/index.html">Learn ML</a>
       <a href="../get-involved.html">Get Involved</a>
       <a href="../about.html">About Us</a>
       <a href="../contact.html">Contact</a>
@@ -30,14 +35,24 @@
       <p class="eyebrow">Interactive lesson</p>
       <h1>Evaluation and safety: how do we know the AI is right?</h1>
       <p>An AI system that sounds right isn't necessarily right. Learn to test answers against evidence, define what “good” means, and put guardrails around what goes in and what comes out.</p>
-      <ul class="lesson-stats"><li>About 25 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Original diagrams</li></ul>
+      <ul class="lesson-stats"><li>About 15 minutes</li><li>Beginner friendly</li><li>No account required</li><li>Original diagrams</li></ul>
     </section>
 
     <div class="lesson-shell">
+      <aside class="toc" aria-label="On this page">
+        <strong>In this lesson</strong>
+        <a href="#intro">The big picture</a><a href="#lab-grade">Be the evaluator</a><a href="#lab-guard">Guardrail check</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
+        <div class="toc-progress">
+          <span class="hint" id="progress-text">Progress: 0 activities</span>
+          <div class="progress-bar"><div id="progress-bar"></div></div>
+        </div>
+      </aside>
+
       <div class="lesson-content">
+        <div class="learning-objectives"><b>You’ll learn to</b><ul><li>Use consistent criteria to assess AI answers against evidence.</li><li>Try input checks and recognise what they can miss.</li></ul></div>
         <section class="panel" id="intro">
           <h2>Test your AI system before you rely on it</h2>
-          <p>You wouldn't publish a research finding without checking the method. AI outputs deserve the same discipline. <b>Evaluation</b> means deciding what a good answer looks like, writing it down as a <b>rubric</b>, and testing the system against a set of realistic questions before and after every change.</p>
+          <p>You wouldn't publish a research finding without checking the method. AI outputs deserve the same discipline. <b>Evaluation</b> means deciding what a good answer looks like, writing it down as a <span data-term="rubric">rubric</span>, and testing the system against a set of realistic questions before and after every change.</p>
           <p><b>Safety</b> means limiting harm: stopping personal data from leaking, refusing requests the system isn't qualified to answer, resisting manipulation, and keeping a person accountable for important decisions.</p>
           <div class="compare">
             <div><h3>Accurate</h3><p>Every claim is supported by the source. No invented figures.</p></div>
@@ -74,11 +89,20 @@
           <h2>Key ideas to take away</h2>
           <ul class="ideas">
             <li><b>Define “good” before you test.</b> A short written rubric makes evaluation consistent and debatable.</li>
-            <li><b>Test with a fixed set of realistic questions</b>, including tricky and adversarial ones, and re-run it after every change.</li>
-            <li><b>Fluent is not the same as faithful.</b> The most dangerous answers sound confident and are partly true.</li>
-            <li><b>Guard the inputs and the outputs.</b> Redact personal data, block manipulation, route medical and safeguarding questions to people.</li>
+            <li><b>Test with a fixed set of realistic questions</b>, including tricky ones and deliberate attempts to make it fail, and re-run it after every change.</li>
+            <li><b>Fluent is not the same as faithful (sticking to what the source actually says).</b> The most dangerous answers sound confident and are partly true.</li>
+            <li><b>Guard the inputs and the outputs.</b> Remove (redact) personal data, block manipulation, route medical and safeguarding questions to people.</li>
             <li><b>Keep humans accountable.</b> Automated checks help at scale, but people should own decisions that affect others.</li>
           </ul>
+        </section>
+
+
+
+        <section class="panel" id="quiz">
+          <h2>Check your understanding</h2>
+          <p>4 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
+          <div id="quiz-content"></div>
+          <div id="quiz-result" role="status" aria-live="polite"></div>
         </section>
 
         <section class="panel" id="deeper">
@@ -119,12 +143,7 @@ def test_refuses_medical_advice():
           </details>
         </section>
 
-        <section class="panel" id="quiz">
-          <h2>Check your understanding</h2>
-          <p>4 quick questions. Try as often as you like. Your progress stays on this device; answers clear when you reload.</p>
-          <div id="quiz-content"></div>
-          <div id="quiz-result" role="status" aria-live="polite"></div>
-        </section>
+
 
         <section class="panel" id="explore">
           <h2>Continue exploring</h2>
@@ -142,14 +161,7 @@ def test_refuses_medical_advice():
         <nav class="lesson-nav" aria-label="Lesson navigation"><a class="prev" href="ai-agents.html"><span>← Previous</span><b>06 · AI Agents</b></a><a class="next" href="ai-in-your-organisation.html"><span>Next →</span><b>08 · AI in Your Organisation</b></a></nav>
       </div>
 
-      <aside class="toc" aria-label="On this page">
-        <strong>In this lesson</strong>
-        <a href="#intro">The big picture</a><a href="#lab-grade">Be the evaluator</a><a href="#lab-guard">Guardrail check</a><a href="#ideas">Key ideas</a><a href="#deeper">Go deeper</a><a href="#quiz">Knowledge check</a><a href="#explore">Continue exploring</a><a href="#credits">Sources for this lesson</a>
-        <div class="toc-progress">
-          <span class="hint" id="progress-text">Progress: 0 activities</span>
-          <div class="progress-bar"><div id="progress-bar"></div></div>
-        </div>
-      </aside>
+
     </div>
   </main>
 
@@ -162,8 +174,10 @@ def test_refuses_medical_advice():
     </div>
   </footer>
   <script>window.LESSON={"slug": "evaluation-and-safety", "steps": ["evaluate", "guard"], "quiz": [{"q": "An answer reads well and cites a source, but quotes a figure the source doesn't contain. How should it be graded?", "choices": ["Pass, because it is well written.", "Fail on accuracy, however fluent it sounds.", "Pass, because the citation makes it trustworthy."], "a": 1, "explain": "Faithfulness to the source is the key test. Fluent, cited and wrong is the most dangerous kind of answer."}, {"q": "Why use a fixed test set of questions?", "choices": ["So you can compare versions of the system fairly over time.", "Because models only accept a fixed number of questions.", "To make the system faster."], "a": 0, "explain": "Re-running the same questions after every change shows whether you improved things or broke something."}, {"q": "A volunteer pastes a service user's NHS number into an AI assistant. What should a good input guardrail do?", "choices": ["Nothing, because it's internal.", "Redact or block the personal data before it is sent.", "Store it for later."], "a": 1, "explain": "Personal and health data should be removed or blocked before reaching an external AI service."}, {"q": "Which message should be routed to a person rather than answered by the AI?", "choices": ["“Summarise this newsletter.”", "“Should I stop taking my medication?”", "“Suggest a title for our blog post.”"], "a": 1, "explain": "Medical advice needs a qualified professional. The safe response is to signpost to a doctor or pharmacist."}]};</script>
-  <script src="lesson-kit.js?v=20261025-review" defer></script>
+  <script src="lesson-kit.js?v=c12-4" defer></script>
   <script src="lab-evaluation.js" defer></script>
+  <script src="../glossary.js?v=c12-4" defer></script>
   <script src="../analytics.js" defer></script>
+  <script src="../learning-layout.js?v=c12-4" defer></script>
 </body>
 </html>

@@ -13,11 +13,41 @@
   function store(k,v){try{ if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v);}catch(_e){}}
 
   /* ---------- Progress ---------- */
+  // Plain names for each activity, shown as a checklist like Learn ML's "Your progress" box.
+  const STEP_LABELS = {
+    train:"Train the tiny model", fit:"Decide whether AI can help",
+    "stage-0":"Explore tokens", "stage-1":"Explore vectors", "stage-2":"Explore attention", "stage-3":"Explore prediction",
+    prompt:"Build a better prompt", temperature:"Try the temperature dial", window:"Fill the context window",
+    map:"Explore the meaning map", compare:"Compare keyword and meaning search",
+    chunk:"Split the documents", retrieve:"Retrieve the best passages", generate:"Generate a grounded answer", norag:"Compare with no retrieval",
+    toolcall:"Look inside a tool call", agent:"Be the agent", patterns:"Explore agent design patterns",
+    evaluate:"Be the evaluator", guard:"Try a guardrail",
+    traffic:"Traffic-light the request", policy:"Build your AI policy",
+    scorecard:"Compare tools with the scorecard", process:"Redesign the onboarding process",
+    consistency:"Compare three volunteers' results", template:"Build a shared template", monitor:"Spot the drift"
+  };
+  function buildChecklist(){
+    const holder = document.querySelector(".toc-progress");
+    if(!holder || holder.querySelector(".ml-progress-box")) return;
+    const box = el("div","ml-progress-box ai-progress-box");
+    box.append(el("p","ml-eyebrow","Your progress"));
+    const list = el("ul");
+    L.steps.forEach(s=>{const li=el("li","",STEP_LABELS[s]||"Try the activity");li.id="ai-step-"+s;list.append(li);});
+    if(L.quiz.length){const li=el("li","",`Answer all ${L.quiz.length} questions correctly`);li.id="ai-step-quiz";list.append(li);}
+    box.append(list);
+    const text = document.getElementById("progress-text");
+    if(text){text.className="ml-progress-state";text.setAttribute("role","status");text.setAttribute("aria-live","polite");box.append(text);}
+    const bar = holder.querySelector(".progress-bar"); if(bar) bar.hidden = true;
+    holder.prepend(box);
+  }
   function progress(){
+    buildChecklist();
+    L.steps.forEach(s=>{const li=document.getElementById("ai-step-"+s); if(li) li.classList.toggle("done",done.has(s));});
+    const q=document.getElementById("ai-step-quiz"); if(q) q.classList.toggle("done",quizPassed);
     const total = L.steps.length + (L.quiz.length ? 1 : 0);
     const count = L.steps.filter(s=>done.has(s)).length + (quizPassed ? 1 : 0);
     const text = document.getElementById("progress-text"), bar = document.getElementById("progress-bar");
-    if(text) text.textContent = count===total ? "Lesson complete ✓" : `Progress: ${count} of ${total} activities`;
+    if(text) text.textContent = count===total ? "Lesson complete ✓" : "Not complete yet.";
     if(bar) bar.style.width = (total ? Math.round(100*count/total) : 0) + "%";
     if(count===total && total>0) store(KEY,"complete");
   }

@@ -618,3 +618,10 @@ button:disabled{cursor:not-allowed}
 .m-pt{fill:var(--navy)}.m-pt.alert{fill:var(--coral-ink)}
 .m-key-pt{background:#e8ebef;color:var(--navy)}.m-key-alert{background:#fdeceb;color:#8a2f28}.m-key-ci{background:#f0f2f4;color:#52606d}
 @media(max-width:860px){.score-grid,.cons-grid,.m-controls{grid-template-columns:1fr}}
+
+/* Version 11: Words you'll meet */
+.words-box{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:16px 20px;margin:18px 0}
+.words-box h3{margin:0 0 10px}
+.words-box dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0}
+.words-box dt{font-weight:800;color:var(--navy)}.words-box dd{margin:0}
+@media(max-width:640px){.words-box dl{grid-template-columns:1fr}.words-box dd{margin-bottom:8px}}

@@ -1,0 +1,116 @@
+/* Code With Impact: shared colour roles (Claude_12).
+   Loaded last on every page, after typography.css. Brand fills stay the same;
+   this file decides WHERE each colour is used and makes text on it readable.
+
+   Roles
+   - Cream   #FFFAF3  reading surfaces
+   - Navy    #102033  body text, headings, demonstrations, repeated lab actions
+   - Coral   #ED7B74  primary actions and decorative accents (fill, border, icon)
+   - Dark coral #A8443C  coral used as TEXT (links, eyebrows, headline accents)
+   - Gold    #F5BD69  secondary actions, notices, highlights
+   - Teal and other chart colours: data and feedback only, always labelled */
+
+:root{
+  --cwi-coral:#ED7B74;
+  --cwi-coral-ink:#A8443C;
+  --cwi-gold:#F5BD69;
+  --cwi-gold-soft:#FFF3D9;
+  --cwi-navy:#102033;
+  --cwi-cream:#FFFAF3;
+  --cwi-warm:#F1EBE1;
+  --cwi-border:#E4DBD0;
+  --cwi-muted:#586371;
+}
+
+/* 1. Primary buttons: coral fill, navy label (6.0:1 instead of 2.7:1) */
+.btn.primary,.ml-btn:not(.secondary){color:var(--cwi-navy)!important}
+.btn.primary{box-shadow:0 6px 14px rgba(237,123,116,.22)}
+/* Secondary buttons: gold fill, navy label */
+.btn.secondary,.ml-btn.secondary{background:var(--cwi-gold);border-color:var(--cwi-gold);color:var(--cwi-navy)!important}
+
+/* 2. Coral used as text becomes dark coral */
+nav a.active,nav a:hover{color:var(--cwi-coral-ink)}
+.eyebrow,.ml-eyebrow{color:var(--cwi-coral-ink)}
+.hero h1 span,.ml-hero h1 em,.ml-hero h1 span{color:var(--cwi-coral-ink)}
+.profile-link,.image-card a{color:var(--cwi-coral-ink);text-decoration:underline;text-underline-offset:3px}
+.privacy a,.lesson-content p a,.ml-prose a{color:var(--cwi-coral-ink)}
+
+/* 3. Coral bands keep their fill; copy turns navy */
+.mission-band,.newsletter{background:linear-gradient(135deg,#F28B83,var(--cwi-coral));color:var(--cwi-navy)}
+.newsletter h2,.newsletter h3,.newsletter p{color:var(--cwi-navy)}
+.mission-icons article{border-left-color:rgba(16,32,51,.25)}
+
+/* 4. One action hierarchy: the coffee link is a quiet outline, not a fifth bright colour */
+.hero .coffee-button{background:transparent;color:var(--cwi-navy);border:2px solid var(--cwi-gold);box-shadow:none}
+.hero .coffee-button:hover{background:var(--cwi-gold-soft)}
+.footer-support{background:transparent;color:var(--cwi-navy);border:1px solid var(--cwi-border);padding:10px 18px}
+.footer-support:hover{background:var(--cwi-gold-soft);color:var(--cwi-navy)}
+
+/* 5. Quiet footer: social links are underlined text, not filled pills */
+.social-links{gap:20px}
+.social-links a,.social-links a.linkedin,.social-links a.instagram{
+  background:none;color:var(--cwi-navy);padding:6px 0;border-radius:0;
+  text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--cwi-coral);
+  text-decoration-thickness:2px}
+.social-links a:hover{transform:none;box-shadow:none;color:var(--cwi-coral-ink)}
+
+/* 6. Same cream title area for every learning page (Learn AI resources and credits had navy) */
+.lesson-top{background:var(--cwi-cream);color:var(--cwi-navy);border-bottom:1px solid var(--cwi-border)}
+.lesson-top h1{color:var(--cwi-navy)}
+.lesson-top p,.lesson-top .crumbs{color:var(--cwi-muted)}
+.lesson-top .crumbs a{color:var(--cwi-navy)}
+.lesson-top .eyebrow{color:var(--cwi-coral-ink)}
+
+/* 7. Course cards: ready lessons get a coral edge and a gold "ready" tag */
+.ml-lesson-card:not(.planned){border-left:4px solid var(--cwi-coral)}
+.ml-tag.live{background:#FFF0CE;border-color:#F1D7A3;color:var(--cwi-navy)}
+
+/* 8. One activity frame in ML lessons: companion activities match the main lab */
+.ml-extension{border-top:1px solid var(--cwi-border)}
+.mlx-heading{background:var(--cwi-warm)}
+.mlx-heading .ml-eyebrow{color:var(--cwi-coral-ink)}
+.mlx-control input[type=range],.mlx-toggles input,.ml-extension input[type=checkbox],.ml-extension input[type=radio]{accent-color:var(--cwi-coral-ink)}
+.mlx-details summary{color:var(--cwi-navy)}
+.ml-explain{border-left-color:var(--cwi-gold)}
+.ml-piles{border-top-color:var(--cwi-gold)}
+.ml-method-task,.ml-task-feedback{color:var(--cwi-navy)}
+/* Training pile: darker so its white label is readable; validation stays teal (it is data) */
+.pile.train{background:var(--cwi-coral-ink)}
+
+/* 9. Learn AI: progress uses the same coral as lessons; winner badge is gold, exclusions stay coral */
+.tool-badge.win{color:var(--cwi-navy);background:#FFF0CE}
+
+/* 10. One focus ring everywhere */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--cwi-coral-ink);outline-offset:3px}
+
+/* 11. Get Involved: one prominent support area (the gold coffee panel); newsletter is a quiet card */
+.newsletter{background:#fff;border:1px solid var(--cwi-border);border-left:5px solid var(--cwi-coral);border-radius:14px}
+.lesson-top>p:not(.eyebrow):not(.crumbs){color:var(--cwi-muted)}
+
+/* 12. Course landings: coral primary + gold secondary, the same pair as the homepage */
+.ml-hero .ml-actions .ml-btn+.ml-text-link{
+  display:inline-flex;align-items:center;padding:15px 24px;border-radius:28px;
+  background:var(--cwi-gold);color:var(--cwi-navy);font-weight:800;text-decoration:none}
+.ml-hero .ml-actions .ml-btn+.ml-text-link:hover{background:#F0B055}
+
+/* 13. A thin division line under the header on every page */
+.site-header{border-bottom:1px solid var(--cwi-border)}
+
+/* 14. Landing pages: less empty space, with the same thin line between sections */
+.ml-section{padding-top:40px;padding-bottom:40px}
+.ml-section+.ml-section{
+  background-image:linear-gradient(var(--cwi-border),var(--cwi-border));
+  background-size:calc(100% - 96px) 1px;background-position:48px 0;background-repeat:no-repeat}
+.ml-start{padding-bottom:40px}
+/* The yellow "Stuck, curious" box: proper space below it, aligned with the content */
+.ml-invite{margin:8px 48px 0}
+.ml-main,.ml-page{display:flow-root}
+.ml-invite:last-child{margin-bottom:48px}
+.ml-invite+*{margin-top:48px}
+@media(max-width:760px){
+  .ml-section{padding-top:32px;padding-bottom:32px}
+  .ml-section+.ml-section{background-size:calc(100% - 48px) 1px;background-position:24px 0}
+  .ml-invite{margin:8px 16px 0}
+  .ml-invite:last-child{margin-bottom:32px}
+}

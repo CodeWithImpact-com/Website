@@ -1,0 +1,16 @@
+/* Code With Impact: shared glossary styles (hover/tap definitions and glossary page) */
+.gl-term{all:unset;cursor:help;display:inline;border-bottom:2px dotted #b64e45;color:inherit;font:inherit;line-height:inherit;touch-action:manipulation}
+.gl-term:hover,.gl-term[aria-expanded="true"]{background:#fff3d9;border-bottom-style:solid}
+.gl-term:focus-visible{outline:3px solid #217c8a;outline-offset:2px;border-radius:2px}
+.gl-tip{position:absolute;z-index:1000;background:#102033;color:#fff;border-radius:10px;padding:12px 14px;box-shadow:0 10px 24px rgba(16,32,51,.25);font:14px/1.5 Inter,Arial,sans-serif;max-width:calc(100vw - 24px);box-sizing:border-box;cursor:auto;overflow-wrap:anywhere}
+.gl-tip b{display:block;color:#f5bd69;margin-bottom:4px;font-size:14px}
+.gl-tip span{display:block}
+.gl-tip[hidden]{display:none}
+.gl-link{font-weight:800;display:block}
+.gl-search{display:flex;flex-direction:column;gap:6px;font-weight:700;color:#102033;max-width:420px;margin:10px 0 24px}
+.gl-search input{font:inherit;font-weight:400;padding:10px 12px;border:1px solid #e4dbd0;border-radius:8px}
+.gl-list{margin:0;display:grid;gap:0}
+.gl-entry{border-top:1px solid #eadfd3;padding:14px 0;display:grid;grid-template-columns:260px 1fr;gap:16px}
+.gl-entry dt{font-weight:800;color:#102033}.gl-entry dd{margin:0;line-height:1.6}
+.gl-entry[hidden]{display:none}
+@media(max-width:640px){.gl-entry{grid-template-columns:1fr;gap:4px}}
