@@ -1,4 +1,4 @@
-/* Work With Us page: "What we can help with" tabs, the six-step partner journey and the page feedback box. */
+/* Work With Us page: "What we can help with" tabs and the six-step partner journey. */
 'use strict';
 (() => {
   const SKILLS = [
@@ -164,7 +164,7 @@
     stepTabs.forEach((t, j) => t.classList.toggle('done', j < i));
     $('pj-bar').style.width = ((i + 1) / STEPS.length * 100) + '%';
     $('step-back').disabled = i === 0;
-    setText('step-next', i === STEPS.length - 1 ? 'Give us feedback ↓' : 'Next step →');
+    setText('step-next', i === STEPS.length - 1 ? 'How we use your feedback ↓' : 'Next step →');
   });
   selectStep(0);
   $('step-back').addEventListener('click', () => selectStep(current - 1));
@@ -173,33 +173,6 @@
     selectStep(current + 1);
   });
 
-  // Page feedback: opens the visitor's email app; also counts the rating (no personal data) when analytics is on.
-  let rating = '';
-  const choices = [...document.querySelectorAll('.pj-choice')];
-  const LABELS = { clear: 'Clear', mostly: 'Mostly clear', unclear: 'Not really clear' };
-  choices.forEach((c) => c.addEventListener('click', () => {
-    rating = c.dataset.rate;
-    choices.forEach((x) => x.setAttribute('aria-pressed', x === c ? 'true' : 'false'));
-  }));
-  $('pj-ask').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const thanks = $('pj-thanks');
-    const comment = $('pj-comment').value.trim();
-    if (!rating && !comment) {
-      thanks.textContent = 'Please pick an answer or write a comment first.';
-      thanks.classList.add('show');
-      return;
-    }
-    if (rating && !window.cwiAnalyticsOff && window.goatcounter && window.goatcounter.count) {
-      window.goatcounter.count({ path: 'feedback-work-with-us-' + rating, title: 'Work With Us page feedback', event: true });
-    }
-    const body = 'How easy was the Work With Us page to follow? ' + (LABELS[rating] || 'No answer') +
-      '\n\nWhat would make it clearer?\n' + (comment || '(no comment)');
-    location.href = 'mailto:engagement@codewithimpact.com?subject=' + encodeURIComponent('Feedback on the Work With Us page') +
-      '&body=' + encodeURIComponent(body);
-    thanks.textContent = 'Thank you! If your email app didn\'t open, please write to engagement@codewithimpact.com.';
-    thanks.classList.add('show');
-  });
 
   // Deep links such as work-with-us.html#step-4 open that step.
   const m = /^#step-([1-6])$/.exec(location.hash);
