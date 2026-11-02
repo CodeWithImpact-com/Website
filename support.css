@@ -54,6 +54,8 @@
 .sp .cta h2{margin-left:auto;margin-right:auto;color:#fff}
 .sp .cta p{max-width:620px;margin-left:auto;margin-right:auto;color:#dfe5ee}
 .sp .cta .actions{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:24px}
+.sp .cta .btn.ghost-light{background:transparent;border:2px solid #fffaf3;color:#fffaf3;text-decoration:none}
+.sp .cta .btn.ghost-light:hover{background:#ffffff1a}
 .sp .sources{font-size:14px;color:var(--sp-muted)}
 .sp .sources ol{padding-left:20px;margin:8px 0 0}
 .sp .sources li{margin-bottom:6px}
