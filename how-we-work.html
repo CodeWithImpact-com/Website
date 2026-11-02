@@ -1,0 +1,524 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#0a1828"/><title>How We Work | Code With Impact</title>
+<meta name="description" content="An interactive map of the Code With Impact operating system: governance, tools, products, campaigns, learning, partners and skills."/>
+<link rel="canonical" href="https://codewithimpact.com/how-we-work.html"/>
+<style>
+:root{--bg:#0a1828;--panel:#121f2d;--line:#253f5c;--ink:#fcf4e9;--muted:#99abbd;--yellow:#ED7B74}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden}
+a{color:var(--yellow)}button,input{font:inherit}button{cursor:pointer}
+button:focus-visible,input:focus-visible,.node:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+header{position:absolute;z-index:10;top:0;left:0;right:0;display:flex;align-items:center;gap:12px;padding:13px 18px;background:linear-gradient(180deg,#0a1828f5,#0a1828ce);border-bottom:1px solid #fffaf31a;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:11px;margin-right:auto}
+.mark{width:37px;height:37px;display:grid;place-items:center;border:2px solid var(--yellow);border-radius:12px;color:var(--yellow);font-weight:900;font-size:15px;letter-spacing:-2px}
+.eyebrow{font-size:10px;letter-spacing:.17em;color:var(--yellow);font-weight:800;text-transform:uppercase}
+.brand{font-size:18px;font-weight:850;letter-spacing:-.04em}
+.btn{background:#192a3e;border:1px solid #294565;color:var(--ink);border-radius:10px;padding:10px 13px;font-size:12px;font-weight:650;white-space:nowrap}
+.btn:hover{background:#243c57}.btn.primary{color:#102033;background:var(--yellow);border-color:var(--yellow)}.btn.primary:hover{background:#f39a94}
+.search{width:min(270px,32vw);min-width:140px;padding:11px 13px;background:#172739;color:#fffaf3;border:1px solid #2a4666;border-radius:10px;outline:none}
+.search::placeholder{color:#8399af}
+.subbar{position:absolute;z-index:8;left:14px;right:14px;top:75px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;pointer-events:none}
+.subbar>*{pointer-events:auto}
+.pill{border:1px solid #2e4e71;background:#172739;color:#f8e7ce;padding:8px 12px;font-size:11px;border-radius:100px;display:flex;align-items:center;gap:6px}
+.pill b{width:8px;height:8px;border-radius:50%;display:inline-block}
+.pill.on{border-color:var(--yellow);color:var(--yellow);background:#3d2533}
+.scale{position:absolute;z-index:7;left:14px;right:14px;top:122px;display:flex;gap:8px;flex-wrap:wrap;pointer-events:none}
+.kpi{background:#0f1925d9;border:1px solid #223a54;border-radius:12px;padding:7px 11px;font-size:11px;color:#a5b5c6}
+.kpi strong{display:block;color:var(--ink);font-size:17px;letter-spacing:-.5px;line-height:1.1}
+.viewport{position:absolute;inset:0;touch-action:none;cursor:grab;background:radial-gradient(ellipse at 50% 51%,#1d3550 0%,#121e2b 40%,#0a1828 76%)}
+.viewport.drag{cursor:grabbing}.viewport svg{width:100%;height:100%;display:block}
+.edge{fill:none;stroke:#39608c;stroke-width:2;opacity:.28}
+.c-edge{stroke-width:3;opacity:.35}
+.x-edge{fill:none;stroke:var(--yellow);stroke-width:2;stroke-dasharray:6 6;opacity:0;transition:opacity .2s}
+.x-edge.on{opacity:.75}
+.edge.active{stroke:var(--yellow);opacity:.85;stroke-width:3}
+.node{cursor:pointer;transition:opacity .17s}.node:focus{outline:none}
+.node .core{stroke-width:2.3;fill:#172637}
+.node .outer{fill:none;stroke-width:1.8;opacity:.34}
+.node text{pointer-events:none;fill:#fcf4e7;font-weight:750}
+.node .name{font-size:19px;letter-spacing:-.5px}.node .small{font-size:17px;fill:#b5c2d0;font-weight:550}
+.node .icon{font-size:22px}
+.node.item .lbl{font-size:21px;font-weight:750;paint-order:stroke;stroke:#0a1828;stroke-width:5px;stroke-linejoin:round}
+.node.item .st{font-size:13px;font-weight:600;fill:#a4b4c5;letter-spacing:.04em;text-transform:uppercase}
+.node.item:hover .core{stroke:var(--yellow)}
+.node.muted{opacity:.16}
+.node.active .core{stroke:var(--yellow)!important;stroke-width:4}
+.hub circle{fill:#121e2b;stroke:var(--yellow);stroke-width:3}
+.hub .brandtext{fill:#F5BD69;font-size:25px;font-weight:900;letter-spacing:-1px}
+.hub .sub{fill:#b3c1cf;font-size:14px}
+.legend{position:absolute;z-index:6;left:20px;bottom:20px;max-width:min(410px,calc(100vw - 36px));background:#101a26db;border:1px solid #27415f;border-radius:16px;padding:13px 16px;font-size:12px;line-height:1.55;color:#bac6d3;backdrop-filter:blur(8px)}
+.legend strong{color:#fbf1e1}
+.zoomtools{position:absolute;z-index:6;right:20px;bottom:20px;display:flex;gap:6px;flex-direction:column}
+.zoomtools button{background:#18283b;color:#fffaf3;border:1px solid #3a618e;width:43px;height:43px;border-radius:12px;font-size:21px}
+.drawer{position:absolute;z-index:12;top:82px;right:16px;bottom:18px;width:min(420px,calc(100vw - 32px));border:1px solid #305075;border-radius:18px;background:#152434ec;backdrop-filter:blur(18px);box-shadow:0 20px 60px #020a14b0;display:none;overflow:hidden;flex-direction:column}
+.drawer.show{display:flex}
+.drawerTop{padding:16px 18px 12px;border-bottom:1px solid #294464;display:flex;align-items:flex-start;gap:12px}
+.drawerTop .close{margin-left:auto;background:#233b56;color:#fffaf3;border:0;border-radius:8px;width:30px;height:30px;flex-shrink:0}
+.d-body{overflow:auto;padding:16px 18px 24px}
+.dtag{font-size:11px;letter-spacing:.05em;font-weight:800;text-transform:uppercase;color:var(--yellow)}
+.dtitle{font-size:22px;line-height:1.15;font-weight:800;letter-spacing:-.7px;margin:7px 0 8px}
+.dmeta{font-size:12px;color:#a0b1c2;display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid #32547a;border-radius:20px;padding:3px 9px;font-size:11px;color:#f8e9d1}
+.chip.live{border-color:#8CCBB8;color:#8CCBB8}.chip.pilot{border-color:#F5BD69;color:#F5BD69}.chip.concept{border-color:#F4D2C5;color:#F4D2C5}.chip.internal{border-color:#748da6;color:#b6c3d0}
+.label{font-size:10px;text-transform:uppercase;color:var(--yellow);letter-spacing:.13em;font-weight:800;margin-top:19px;margin-bottom:6px}
+.dtext{font-size:14px;line-height:1.55;color:#f9e9d2;margin:0}
+.callout{background:#1b3049;border-left:3px solid var(--yellow);padding:11px 13px;border-radius:0 9px 9px 0;line-height:1.45;font-size:13px;color:#fff4e4}
+ul.facts{margin:0;padding-left:18px;font-size:13px;line-height:1.55;color:#f7e5c9}ul.facts li{margin:3px 0}
+.bars{display:flex;flex-direction:column;gap:6px}.bar{display:grid;grid-template-columns:150px 1fr 28px;gap:8px;align-items:center;font-size:12px;color:#d9e1e7}.bar i{height:8px;border-radius:6px;background:#ffffff14;overflow:hidden;display:block}.bar b{display:block;height:100%;border-radius:6px}.bar em{font-style:normal;text-align:right;color:#a9b6c2}
+.where{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:#b7c4d1;background:#101b28;border:1px solid #263f5c;border-radius:8px;padding:8px 10px;overflow-wrap:anywhere;line-height:1.6}
+.dactions{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.dactions a{border:1px solid var(--yellow);padding:9px 12px;border-radius:9px;color:#102033;text-decoration:none;background:var(--yellow);font-size:12px;font-weight:750}
+.related{display:flex;flex-wrap:wrap;gap:6px}
+.related button{background:#1e3148;border:1px solid #315379;color:#faeedc;border-radius:8px;padding:7px 9px;font-size:11px;display:flex;align-items:center;gap:6px}
+.related button b{width:7px;height:7px;border-radius:50%}
+.related button:hover{border-color:var(--yellow)}
+.list{display:flex;flex-direction:column;gap:7px}
+.list button{text-align:left;background:#19293c;border:1px solid #2a4768;border-radius:11px;padding:10px 12px;color:var(--ink)}
+.list button:hover{border-color:var(--yellow)}
+.list button span.why{display:block;font-size:11.5px;color:#a5b5c6;margin-top:3px;line-height:1.4}
+.tournav{display:flex;gap:8px;margin-top:18px}
+@media(max-width:730px){header{gap:8px;padding:10px}.brand{font-size:15px}.mark{width:30px;height:30px;border-radius:9px}.eyebrow{font-size:8px}.search{order:3;flex:1 1 100%;max-width:none}.btn{padding:8px 9px;font-size:11px}.subbar{top:113px;left:8px;right:8px;gap:5px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.pill{padding:6px 9px;font-size:10px;flex:none}.scale{top:158px;left:8px;gap:5px}.kpi{padding:5px 8px;font-size:9.5px}.kpi strong{font-size:14px}.kpi.hide-m{display:none}.drawer{top:auto;left:5px;right:5px;bottom:5px;width:auto;height:min(70vh,660px);border-radius:19px}.legend{display:none}.zoomtools{right:9px;bottom:10px}.zoomtools button{height:37px;width:37px}}
+</style></head><body>
+<header>
+  <div class="logo"><svg viewBox="0 0 100 100" width="40" height="40" aria-hidden="true"><g fill="#F5BD69"><path d="M50 2l7 14H43z"/><path d="M50 98l-7-14h14z"/><path d="M8 50l14-7v14z"/><path d="M19 17l15 4-11 11z"/><path d="M19 83l4-15 11 11z"/></g><path d="M74 30A30 30 0 1 0 74 70" fill="none" stroke="#F5BD69" stroke-width="11" stroke-linecap="butt"/><text x="52" y="62" text-anchor="middle" font-size="34" font-weight="900" fill="#fffaf3" font-family="Inter,Arial,sans-serif">#</text></svg><div><div class="eyebrow">Code With Impact</div><div class="brand">Operating System</div></div></div>
+  <input id="q" class="search" type="search" placeholder="Search the operation…" aria-label="Search components"/>
+  <a class="btn" href="index.html" style="text-decoration:none">← Website</a>
+  <button class="btn" id="fit">Reset view</button>
+  <button class="btn primary" id="tour">Take the tour</button>
+</header>
+<div class="subbar" id="pills"></div>
+<div class="scale" id="scale"></div>
+<div class="viewport" id="vp"><svg id="svg" role="img" aria-label="Map of the Code With Impact operating system"><g id="world"></g></svg></div>
+<div class="legend"><strong>How to read this map.</strong> The hub in the middle is the organisation. The eight coloured areas are what keeps it running, and each small circle is one part of the operation. Click anything to open its details. Dashed coral lines show how parts depend on each other. Drag to move around and scroll to zoom.</div>
+<div class="zoomtools"><button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">−</button></div>
+<aside class="drawer" id="drawer" aria-live="polite"><div class="drawerTop"><div id="dhead"></div><button class="close" id="dclose" aria-label="Close">×</button></div><div class="d-body" id="dbody"></div></aside>
+
+<script>
+const OS = {
+  updated: "2 November 2026",
+  hub: {title: "Code With Impact", sub: "Operating System"},
+  clusters: [
+    {id:"foundation", name:"Blueprint & Governance", short:"Blueprint", icon:"◆", color:"#F5BD69",
+     subtitle:"Why we exist and how we decide",
+     about:"The rules of the game. The Organisational Blueprint sets out the mission, values and capabilities. The operating-system pack turns them into day-to-day governance, a working cadence and clear owners."},
+    {id:"workspace", name:"Digital Workplace", short:"Workplace", icon:"▣", color:"#7FB2D9",
+     subtitle:"Google, Drive, GitHub & AI agents",
+     about:"Where the work happens. Shared email, documents and code live on common platforms, and AI agents support (but never replace) the people doing the work."},
+    {id:"products", name:"Products & Delivery", short:"Products", icon:"▥", color:"#ED7B74",
+     subtitle:"Website, Streamlit apps & research tools",
+     about:"What we build for partners. These are working tools, not slide decks: a public website, Streamlit dashboards, an AI-assisted research finder and analysis support for clinicians."},
+    {id:"growth", name:"Marketing & Story", short:"Marketing", icon:"✺", color:"#F4D2C5",
+     subtitle:"Campaign, Instagram & video framework",
+     about:"How we bring people in. A founder-led, build-in-public campaign runs across LinkedIn, Instagram and the website, powered by a video framework built like software."},
+    {id:"sustain", name:"Shop & Funding", short:"Shop", icon:"◎", color:"#F29A6B",
+     subtitle:"Merch shop, awards & CIC path",
+     about:"How we stay sustainable. Award applications and funding research run alongside a carefully staged merch shop whose surplus would support CWI projects."},
+    {id:"knowledge", name:"Knowledge & Learning", short:"Learn AI", icon:"✦", color:"#8CCBB8",
+     subtitle:"Learn AI, Research Brain & org memory",
+     about:"How we get smarter with every project. Free learning paths, a curated research map and a Digital Organisational Memory make sure knowledge outlasts any one volunteer."},
+    {id:"partners", name:"Partners & Universities", short:"Partners", icon:"⌁", color:"#DBE8EE",
+     subtitle:"Students, clinicians & research charities",
+     about:"Who we work with. Universities provide student talent through structured projects, while clinicians and research charities bring real questions that need data skills."},
+    {id:"skills", name:"Skills & Expertise", short:"Skills", icon:"✚", color:"#C9B6E4",
+     subtitle:"What our people can do",
+     about:"The talent behind the operation. Our core team brings decades of quantitative modelling and model-validation experience from finance, and a growing pool of AI Master's students and early-career engineers adds modern machine learning. Reusable AI skills turn what we learn into tools anyone can pick up."}
+  ],
+  items: [
+    // ---------- FOUNDATION ----------
+    {id:"blueprint", cat:"foundation", title:"Organisational Blueprint", status:"live", owner:"Leadership group · introduced by Jon",
+     what:"The organisation's founding design document (27 June 2026). It covers the mission and vision, the operating model, governance, technology, knowledge, value delivery, processes, performance and the future organisation.",
+     why:"Every project should create value today while increasing the organisation's ability to create even greater value tomorrow.",
+     facts:["3 strategic objectives: Deliver Impact · Develop People · Build Organisation Capability","5 values: Practical Impact · Collaboration · Ethical AI · Continuous Learning · Respect","7 organisational capabilities, from Partnership Management to Continuous Improvement","8 operating principles, e.g. “Impact before technology”, “AI augments human expertise”","8-stage partner journey: enquiry → discovery → scoping → allocation → delivery → knowledge capture → closure → improvement","A living document, reviewed every year"],
+     rel:["constitution","dom","operating","team"]},
+    {id:"constitution", cat:"foundation", title:"Constitution & Data Boundaries", status:"live", owner:"Governance",
+     what:"The top-level identity and red lines for CWI: decision principles, a quality standard, and privacy and ethics rules for how data and AI are used.",
+     why:"Privacy, ethics and evidence caution are non-negotiable. We never overclaim medical, research or statistical certainty.",
+     facts:["No exposure of personal or sensitive data","No fabricated evidence, partnerships, approvals or results","Escalate anything touching clinical interpretation, public claims or sensitive data","Separate facts, assumptions and recommendations"],
+     rel:["blueprint","agents","doctors"]},
+    {id:"operating", cat:"foundation", title:"Operating Model & Cadence", status:"live", owner:"Programme operations",
+     what:"Day-to-day operations: five workstreams with decision rights, a weekly, fortnightly and monthly rhythm, a 90-day plan and one live pilot register.",
+     why:"The main problem was never a lack of ideas. It was a lack of operating structure.",
+     facts:["5 workstreams: Programme Ops · Technical Delivery · Research & Data · Strategy & Leadership · Volunteer Enablement","Weekly: priorities, volunteer tasks, blockers, leadership update within 24h","90-day plan: stabilise → tighten scope → operationalise (Mar–Jun 2026)","Pilot register: every item has one owner, a 30-day outcome and a success signal"],
+     rel:["team","planner","agents"]},
+    {id:"team", cat:"foundation", title:"Team & Responsibilities", status:"live", owner:"Whole core team",
+     what:"Nine working responsibility areas, so everyone knows who owns what. Each project also has its own delivery lead and an independent reviewer.",
+     why:"We are already at capacity. The next step is to strengthen the core team and standardise how we work.",
+     facts:["Strategy & partnerships: Simona","Operations & onboarding: Jon & Anna","Delivery & quality: Caitlin","Knowledge & AI enablement: Miriam & Malek","Funding, awards & CIC: Yolanda & Anna","Marketing, comms & events: Tosin","University engagement: Adrian","Doctor engagement: Yolanda","Project delivery & peer review: project teams"],
+     rel:["volunteers","operating","university","campaign"]},
+    {id:"volunteers", cat:"foundation", title:"Volunteer Journey", status:"live", owner:"Operations & onboarding",
+     what:"How interest becomes useful, supervised contribution: onboarding, a task bank of bounded work, skills matching and clear handoffs.",
+     why:"Volunteers are enabled through bounded work, not heroic improvisation.",
+     facts:["Every new volunteer gets a defined first task with a clear handoff point","Senior and beginner-safe tasks are separated","A volunteer skills bank matches people to projects","Welcome emails and onboarding guides support joining"],
+     rel:["team","gworkspace","learnai","university"]},
+
+    // ---------- WORKSPACE ----------
+    {id:"gworkspace", cat:"workspace", title:"Google Workspace", status:"live", owner:"Operations & onboarding",
+     what:"The organisation's shared identity: email on the codewithimpact.com domain, shared calendars and meetings, and role-based shared inboxes such as the engagement contact.",
+     why:"One shared identity means the organisation, not any one person's account, owns its communication.",
+     facts:["Domain email on codewithimpact.com","Role inboxes (e.g. engagement@) used as organisational contacts","Calendars and meetings for the weekly operating cadence","Single sign-on can extend to other tools (e.g. GitHub)"],
+     rel:["gdrive","github","volunteers"]},
+    {id:"gdrive", cat:"workspace", title:"Shared Drive", status:"live", owner:"Operations & onboarding",
+     what:"The document home for CWI: blueprint, plans, award applications, decks, meeting notes and the planning workbook. It is the physical storage behind the Digital Organisational Memory.",
+     why:"Knowledge should be captured once and reused many times, and it must be easy to find.",
+     facts:["Strategy: Blueprint, integrated plan (3-page & 10-page), cost plan","Engagement: discovery-meeting templates, university RFPs","Funding: award applications and evidence","Campaign: decks, social card packs, video clips"],
+     rel:["dom","gworkspace","planner"]},
+    {id:"github", cat:"workspace", title:"GitHub Organisation", status:"live", owner:"Technical delivery",
+     what:"The CodeWithImpact-com organisation owns the code. Contributors use personal accounts, so the work outlives any one person while each person keeps credit for their contributions.",
+     why:"Code With Impact is a shared brand that can outlive where any of us work.",
+     facts:["Website repo → deploys codewithimpact.com through GitHub Pages","AI_engine_search repo → ALS Literature & Dataset Finder","Issue backlog split into senior vs beginner-safe tasks","Review & merge expectations defined for pilots"],
+     links:[["GitHub organisation","https://github.com/CodeWithImpact-com"]],
+     rel:["website","als","agents","university"]},
+    {id:"agents", cat:"workspace", title:"AI Agent Layer", status:"pilot", owner:"Knowledge & AI enablement",
+     what:"Custom AI agents and prompt templates that sit on top of the operating model. They know the constitution, the plan and the pilot register, and they draft work for humans to review.",
+     why:"AI is an enabler, not a replacement. Every AI output is reviewed before it is relied on.",
+     facts:["4 agents: CWI orchestrator · programme operations · strategy & leadership · technical delivery","4 prompt templates: weekly leadership update · doctor-query triage · volunteer task brief · digital update brief","A CWI skill for Codex/Claude coding assistants","A test plan and realistic test cases to evaluate the agents"],
+     rel:["constitution","operating","dom","github"]},
+
+    // ---------- PRODUCTS ----------
+    {id:"website", cat:"products", title:"codewithimpact.com", status:"live", owner:"Marketing & comms",
+     what:"The public front door: a static, fast website (Home, Projects, Get Involved, About, Contact) published from GitHub. It moved from Carrd to a site we own and version.",
+     why:"Code, when guided by purpose, can change lives.",
+     facts:["5 pages · no cookies · links to LinkedIn and Instagram","Projects page showcases the MND dashboard, ALS Finder and PAD meta-analysis","Deployed automatically through a GitHub Pages workflow","/learn will host the Learn AI pathway"],
+     links:[["Visit codewithimpact.com","https://codewithimpact.com"]],
+     rel:["github","learnai","campaign","shop","mnd"]},
+    {id:"streamlit", cat:"products", title:"Streamlit App Layer", status:"live", owner:"Technical delivery",
+     what:"Our standard way to ship data products fast: Python dashboards that partners can open in a browser, published on Streamlit Community Cloud or shared as snapshots.",
+     why:"Not advice. Tools. We build things partners keep using.",
+     facts:["4 apps: MND Dashboard · Research Impact · ALS Finder · CWI Current Plan","Python + pandas + Plotly, versioned on GitHub","Volunteers can contribute in small, reviewable pieces","Shareable HTML/PDF exports for stakeholders"],
+     rel:["mnd","mq","als","planner","github"]},
+    {id:"mnd", cat:"products", title:"MND Interactive Dashboard", status:"live", owner:"Technical delivery",
+     what:"Pilot 1: an interactive Streamlit dashboard that makes Motor Neurone Disease data easier to explore, visualise and interpret for research and decision-making.",
+     why:"CWI was founded after a close family member was diagnosed with MND. This is where it started.",
+     facts:["Public Streamlit app","Built through a GitHub workflow with volunteer contributions","Scope narrowed to a demonstrable milestone in the 90-day plan"],
+     links:[["Open the dashboard","https://cwi-mnd-dashboard.streamlit.app"]],
+     rel:["streamlit","website","charities"]},
+    {id:"mq", cat:"products", title:"Research Impact Dashboard", status:"pilot", owner:"Delivery & quality",
+     what:"A research-impact dashboard prototype for a mental-health research charity. It shows the work their grants have funded, built in Streamlit and reconciled against a Power BI model.",
+     why:"The charity told us they need to show the impact of the research they fund in order to protect their funding.",
+     facts:["Streamlit v3 + Power BI model reconciliation","Repeatable build pipeline and shareable HTML version","Started from a structured discovery meeting (June 2026)","Next: partner feedback and handover"],
+     rel:["streamlit","charities","studio"]},
+    {id:"als", cat:"products", title:"ALS Literature & Dataset Finder", status:"pilot", owner:"Technical delivery",
+     what:"Pilot 2, the research AI tool. It searches PubMed papers and GEO public datasets and builds a local feature index, so it can say which datasets likely contain a gene such as SOD1 or TARDBP.",
+     why:"The value is not a chat interface. The value is reliable retrieval.",
+     facts:["PubMed + GEO DataSets + GEO sample metadata","Indexing and serving kept separate for reliability","Streamlit front end over a local SQLite catalogue","Explicit boundaries on what it will not claim"],
+     links:[["View repository","https://github.com/CodeWithImpact-com/AI_engine_search"]],
+     rel:["github","streamlit","brain","alspredict"]},
+    {id:"pad", cat:"products", title:"PAD Biomarker Meta-Analysis", status:"pilot", owner:"Doctor engagement",
+     what:"Hands-on support for clinicians: a systematic review and targeted meta-analysis of serum biomarkers in Peripheral Artery Disease, from table cleaning to prioritising studies for pooled analysis.",
+     why:"Doctors have important clinical questions but often lack specialist analytical time.",
+     facts:["Data cleaning and extraction of published study tables","Reproducible Python notebooks","Dataset workflow diagrams for the next steps"],
+     rel:["doctors","constitution"]},
+    {id:"planner", cat:"products", title:"CWI Current Plan (internal)", status:"internal", owner:"Programme operations",
+     what:"An internal Streamlit app built on the planning workbook. It shows the work in progress, highlights tasks that are missing dates or review points, and compares capacity across workstreams.",
+     why:"We run CWI with the same tools we build for partners.",
+     facts:["Filters, task detail and optional in-session editing","Volunteer capacity and planning-data gaps","Export the current session back to Excel"],
+     rel:["operating","streamlit","gdrive"]},
+
+    // ---------- GROWTH ----------
+    {id:"campaign", cat:"growth", title:"Campaign Plan · From Idea to Movement", status:"live", owner:"Marketing, comms & events · Tosin",
+     what:"A founder-led, build-in-public campaign that invites people into the journey rather than broadcasting what we do.",
+     why:"“Building a movement where data skills help healthcare.”",
+     facts:["Inspire · Educate · Involve · Prove","6 audiences: data pros, universities, researchers, charities, sponsors, supporters","6-chapter storyline: Origin → CIC → Team → Universities → Projects → Impact","Golden rule: every post ends with one clear action","LinkedIn = boardroom · Instagram = scrapbook · website = evidence · newsletter = memory"],
+     rel:["instagram","linkedin","studio","papercut","shop"]},
+    {id:"instagram", cat:"growth", title:"Instagram · @code_with_impact", status:"live", owner:"Marketing, comms & events",
+     what:"The visual and emotional channel: reels, paper-cut volunteer intros, quote cards and behind-the-scenes posts.",
+     why:"Instagram builds emotion, and emotion turns followers into volunteers.",
+     facts:["Reels produced with the CWI Studio framework","Paper-cut “Meet the team” shorts","Reshareable social card series"],
+     links:[["Open Instagram","https://www.instagram.com/code_with_impact"]],
+     rel:["studio","papercut","campaign"]},
+    {id:"linkedin", cat:"growth", title:"LinkedIn Company Page", status:"live", owner:"Marketing, comms & events",
+     what:"The primary credibility and growth channel: founder diary, CIC updates, volunteer spotlights, researcher stories and sponsor posts.",
+     why:"LinkedIn is where data professionals and research leaders decide whether to trust us.",
+     facts:["Founder-led ‘building in public’ updates","Volunteer spotlights on team pages","Reel series: “How we made this reel with code”"],
+     links:[["Open LinkedIn","https://www.linkedin.com/company/106826547/"]],
+     rel:["campaign","studio","website"]},
+    {id:"studio", cat:"growth", title:"CWI Studio · Video Framework", status:"live", owner:"Marketing · Simona",
+     what:"Video built like software. Each reel runs story → storyboard → sourced charts → open-source AI voice → code render, using Remotion (React) and Chatterbox voice models.",
+     why:"Every number needs a source tick before it goes on screen.",
+     facts:["4 reels: Where do our best minds go? · How we made it · Making the voice · Data, AI & social good","3 brand style presets: clean corporate · energetic reel · event invitation","Fact bank with verified sources (e.g. Charity Digital Skills Report 2026)","Privacy boundary: only render assets ever leave the private board","A reusable reel-editor skill for branded 9:16 talking-head reels","Course: “From Storyboard to Voice”"],
+     rel:["instagram","linkedin","papercut","learnai"]},
+    {id:"papercut", cat:"growth", title:"Paper-cut Shorts & Social Cards", status:"live", owner:"Marketing, comms & events",
+     what:"The human layer: 10-second paper-cut episodes that introduce each volunteer, plus short, reshareable statement cards that point back to one action.",
+     why:"Cards create the signal. Paper-cut videos create the story.",
+     facts:["0–3s Meet [Name] · 3–6s their role · 6–8s what their skills change · 8–10s “Turning Data Into Hope”","30+ generated clips for team intros and logo animations","Social card packs: reshareable · work identity · original phases"],
+     rel:["instagram","shop","team"]},
+
+    // ---------- SUSTAIN ----------
+    {id:"shop", cat:"sustain", title:"CWI Shop · Drop 001 “Useful People”", status:"concept", owner:"Funding & CIC",
+     what:"A merch concept store (“Code it. Wear it. Mean it.”) with a staged plan to reach a small, testable Shopify shop. Surplus would go back into practical data and AI work for healthcare teams.",
+     why:"Geek is not a dress code. It's a mindset.",
+     facts:["Concept store designed. No payment is taken yet","Five hero products: hoodie, tee, identity tee, tote, one small item","Shopify Basic + print-on-demand (Printful UK vs Gelato/Prodigi)","Budget cap ~£600, then reinvest from sales","Path: samples → Shopify build → soft launch (Nov–Dec) → public launch (example: Jan 2027)","Planned at shop.codewithimpact.com"],
+     rel:["campaign","papercut","website","funding"]},
+    {id:"unltd", cat:"sustain", title:"UnLtd Award Application", status:"pilot", owner:"Yolanda & Anna",
+     what:"An application to UnLtd's award for social entrepreneurs, revised through several versions in October 2026, with an evidence pack drawn from live pilots.",
+     why:"Funding lets us move from goodwill to a sustainable CIC.",
+     facts:["Revised application (v6, October 2026)","Evidence from the MND, ALS and research-impact pilots","Tracked as a standing item in team meetings"],
+     rel:["funding","mnd","mq"]},
+    {id:"funding", cat:"sustain", title:"Funding, Market Position & CIC", status:"pilot", owner:"Funding, awards & CIC",
+     what:"Funding-opportunity research, a cost plan and a competitive-landscape analysis that sharpened our positioning on the way to becoming a Community Interest Company.",
+     why:"“Validated data and AI tools for health and medical research organisations, built by quant professionals.”",
+     facts:["Funding-opportunities deck and cost plan","Competitive landscape & market position (Oct 2026)","CIC is chapter 2 of the campaign storyline","Optional contributions proposal under review"],
+     rel:["unltd","shop","campaign","blueprint"]},
+
+    // ---------- KNOWLEDGE ----------
+    {id:"dom", cat:"knowledge", title:"Digital Organisational Memory", status:"pilot", owner:"Knowledge & AI enablement",
+     what:"The collective knowledge of CWI, from methods and templates to lessons learned and project outputs. It is designed so both people and AI can use it.",
+     why:"Organisational knowledge should outlast individual volunteers.",
+     facts:["One of the five pillars of the operating model","Knowledge lifecycle: capture → review → publish → maintain","Goal: ask questions in natural language and get trusted answers","Every project adds new knowledge"],
+     rel:["blueprint","gdrive","brain","agents"]},
+    {id:"learnai", cat:"knowledge", title:"Learn AI Pathway", status:"pilot", owner:"Knowledge & AI enablement",
+     what:"A free, self-contained learning experience for volunteers, students and charity staff, to be published at codewithimpact.com/learn. It has an Explore track and a Builder track.",
+     why:"Charities say a lack of skills is their biggest barrier to using AI. We teach those skills for free.",
+     facts:["8 modules: AI Made Simple → Inside an LLM → Prompting → Embeddings → RAG → Agents → Evaluation & Safety → CWI Project Lab","Interactive “Inside an LLM” lesson with 4 explorable stages + quiz","Clearly labelled simulations, no API keys, accessible design","Learn ML lab in review"],
+     rel:["website","library","brain","volunteers"]},
+    {id:"brain", cat:"knowledge", title:"Research Brain", status:"live", owner:"Knowledge & AI enablement",
+     what:"An interactive map of the research that shapes our work. Each paper links to a verified source and a plain-English “why it matters for CWI”.",
+     why:"We build on evidence, and we show our sources.",
+     facts:["29 research items across 6 themes","Healthcare AI · Knowledge & RAG · Agents · Model reliability · Responsible AI · AI & society","Verified source links (v1.1, Nov 2026)"],
+     rel:["dom","library","als","learnai"]},
+    {id:"library", cat:"knowledge", title:"AI Learning Library", status:"live", owner:"Knowledge & AI enablement",
+     what:"A curated list of courses, books and explainers for volunteers who want to grow their AI skills, with links that have been checked.",
+     why:"Every volunteer has knowledge worth sharing, and everyone has more to learn.",
+     facts:["Curated resources with links and notes","Feeds the Learn AI further-reading lists"],
+     rel:["learnai","brain"]},
+
+    // ---------- PARTNERS ----------
+    {id:"university", cat:"partners", title:"University Engagement", status:"pilot", owner:"Adrian",
+     what:"A structured route for Master's students to work on real, public-data health projects with weekly mentoring from CWI volunteers. Students gain real experience and research gets real help.",
+     why:"“Give students real impact experience.”",
+     facts:["First cohort: AI Master's students","Request-for-proposal format with phases, deliverables and a Gantt plan","2 hours a week of volunteer mentoring","University engagement roadmap (1–3–5 year view)"],
+     rel:["alspredict","github","team","volunteers"]},
+    {id:"alspredict", cat:"partners", title:"ALS Predict · Student Project", status:"pilot", owner:"Adrian",
+     what:"A 6-month project for two Master's students. They build an explainable framework that predicts ALS progression and segments patients, using the public PRO-ACT dataset.",
+     why:"ALS trajectories vary hugely, and that makes clinical trials slower and more costly.",
+     facts:["Progression modelling · risk drivers · patient segmentation · backtesting","7 phases from planning to final documentation","2 parallel workstreams: methodology/validation and data/segmentation","Production-quality Python, Git and documentation"],
+     rel:["university","als","mnd"]},
+    {id:"doctors", cat:"partners", title:"Doctor Engagement", status:"pilot", owner:"Yolanda",
+     what:"Clinical relationships and a safe triage path for doctors' questions about clean data, statistics and research framing.",
+     why:"Sensitive questions are escalated, not answered casually.",
+     facts:["Doctor-query triage prompt and approved answer patterns","Escalation for clinical interpretation","Live example: PAD biomarker meta-analysis"],
+     rel:["pad","constitution","agents"]},
+    {id:"charities", cat:"partners", title:"Research Charities", status:"pilot", owner:"Simona",
+     what:"Partnerships with health research charities, starting from a structured discovery meeting: their challenges, tools, data and who will own the solution.",
+     why:"“Turn messy data into insight.”",
+     facts:["Discovery template: challenges, tools, data, feasibility, ownership","Mental-health research charity: impact dashboard prototype","MND/ALS community: dashboard and research finder"],
+     rel:["mq","mnd","funding"]},
+
+    // ---------- SKILLS ----------
+    {id:"quant", cat:"skills", title:"Quant & Model-Risk Expertise", status:"live", owner:"Core team",
+     what:"Our differentiator. Most of the core team build, validate and govern risk models in banking and finance: credit risk, market risk, model validation and quantitative analytics.",
+     why:"People who validate risk models for banks bring the habits AI in health research needs: testing, governance and documentation.",
+     facts:["65+ years of combined quantitative experience across the profiled core team","Credit-risk modelling, model validation, FRM-level risk management","Backgrounds in Mathematics, Computer Science and Quantitative Finance","Senior data science and analytical leadership"],
+     bars:[["Finance modelling",24,24],["Credit-risk modelling",10,24],["Quantitative analytics",10,24],["Credit risk (international)",9,24],["Quant analytics (Python/SAS/SQL)",4,24]],
+     barsLabel:"Years of experience · selected core-team members",
+     rel:["team","methods","governskill","funding"]},
+    {id:"datasci", cat:"skills", title:"Data Science & ML Stack", status:"live", owner:"Technical delivery",
+     what:"The tools we build with every day, from data wrangling and statistics to machine learning and dashboards.",
+     why:"We use the same stack as industry, so the tools we hand over can be maintained by others.",
+     facts:["Python · pandas · NumPy · scikit-learn · SQL · SAS · R","TensorFlow · PyTorch for deep learning","Streamlit · Plotly · Power BI for dashboards","Jupyter notebooks for reproducible analysis"],
+     bars:[["Python",9,9],["NumPy",5,9],["TensorFlow",5,9],["Pandas",4,9],["SQL",4,9],["Git",4,9],["Scikit-learn",3,9],["PyTorch",3,9],["Docker",3,9]],
+     barsLabel:"Volunteer skills bank · people listing each skill (of 9)",
+     rel:["streamlit","mnd","mq","talent"]},
+    {id:"methods", cat:"skills", title:"Research & Statistical Methods", status:"live", owner:"Research & data support",
+     what:"Rigorous ways of turning messy evidence into something trustworthy: systematic review, meta-analysis, backtesting, validation and careful statistical framing.",
+     why:"Transparent limits over false certainty.",
+     facts:["Systematic review and targeted meta-analysis (PAD biomarkers)","Progression modelling, segmentation and backtesting (ALS Predict)","Evidence retrieval from PubMed and GEO (ALS Finder)","Data-quality assessment and cleaning for clinicians","Power BI vs app reconciliation (research-impact dashboard)"],
+     rel:["pad","alspredict","als","mq","quant"]},
+    {id:"aieng", cat:"skills", title:"AI Engineering & Agents", status:"pilot", owner:"Knowledge & AI enablement",
+     what:"Applied AI skills: retrieval-based search, LLM explainers, custom agents, prompt design and evaluation, always with a human in the loop.",
+     why:"AI augments human expertise. It doesn't replace it.",
+     facts:["Retrieval systems and feature indexing (ALS Finder)","Custom agents, prompt templates and agent test cases","Teaching LLM internals (Learn AI: embeddings, RAG, agents, evaluation)","Interest across the talent pool: NLP, explainable AI, computer vision"],
+     rel:["agents","als","learnai","aiskills"]},
+    {id:"aiskills", cat:"skills", title:"Reusable AI Skills Library", status:"live", owner:"Knowledge & AI enablement",
+     what:"Packaged, reusable instructions that let AI assistants (Claude, Codex, Copilot) do CWI work the CWI way. Know-how is captured once and anyone can reuse it.",
+     why:"Knowledge should be captured once and reused many times.",
+     facts:["codewithimpact skill: creates and reviews the repo's agents, prompts, hooks and skills","cwi-reel-editor skill: turns talking-head videos into branded 9:16 reels with B-roll, captions and end card","4 prompt skills: weekly leadership update · doctor-query triage · volunteer task brief · digital update brief","4 specialist agents: orchestrator · programme ops · strategy · technical delivery","Studio scripts: storyboard sync, voice generation, scene review"],
+     rel:["agents","studio","dom","aieng"]},
+    {id:"softeng", cat:"skills", title:"Software & Web Engineering", status:"live", owner:"Technical delivery",
+     what:"Building and shipping things that last: version control, modular code, websites, front-end frameworks and automated deployment.",
+     why:"Production-ready, reusable code, not one-off academic exercises.",
+     facts:["Git & GitHub workflows, code review, automated deploys to GitHub Pages","HTML/CSS/JS sites, React and TypeScript (Remotion, Landy template)","Docker, Azure, Linux, Java, C/C++, C#/.NET across the talent pool","Privacy-by-design engineering (Studio export boundary)"],
+     rel:["github","website","studio","datasci"]},
+    {id:"creative", cat:"skills", title:"Storytelling & Creative Production", status:"live", owner:"Marketing, comms & events",
+     what:"The skills that make data human: video as code, AI voice, brand design, comic storyboards and campaign writing.",
+     why:"Educate in simple language so people trust the mission.",
+     facts:["Remotion video pipeline + open-source AI voice (Chatterbox)","Paper-cut animation series and social card design","Interactive explainers and data-visualisation design","Course: “From Storyboard to Voice”"],
+     rel:["studio","papercut","campaign","shop"]},
+    {id:"governskill", cat:"skills", title:"Governance, Delivery & Fundraising", status:"live", owner:"Leadership group",
+     what:"The organisational skills that keep a volunteer operation trustworthy: model governance, programme management, partnership building and funding applications.",
+     why:"Governance should enable delivery.",
+     facts:["Model governance and documentation standards from regulated finance","Operating model design, 90-day planning and pilot registers","Discovery meetings, RFP writing and university mentoring","Award applications, cost planning and market positioning"],
+     rel:["blueprint","operating","unltd","quant"]},
+    {id:"talent", cat:"skills", title:"Emerging Talent Pool", status:"pilot", owner:"University engagement",
+     what:"AI Master's students and early-career engineers who bring the newest machine-learning skills and many languages, mentored by the core team.",
+     why:"Every volunteer has knowledge worth sharing.",
+     facts:["9 profiled volunteers in the skills bank, mostly 0–3 years' experience","Interests: NLP, deep learning, computer vision, explainable AI, ML for healthcare, forecasting","Languages: English, Spanish, French, German, Arabic, Ukrainian, Russian and more","Matched to bounded, mentored project work"],
+     bars:[["NLP",3,9],["Deep learning",2,9],["Computer vision",2,9],["Explainable AI",2,9]],
+     barsLabel:"Areas of interest · people listing each (of 9)",
+     rel:["university","alspredict","volunteers","datasci"]}
+  ]
+};
+
+/* ---------- layout ---------- */
+const svgNS="http://www.w3.org/2000/svg";
+const world=document.getElementById("world"), svg=document.getElementById("svg"), vp=document.getElementById("vp");
+const byId=Object.fromEntries(OS.items.map(i=>[i.id,i]));
+const cById=Object.fromEntries(OS.clusters.map(c=>[c.id,c]));
+const R=840;
+OS.clusters.forEach((c,k)=>{const a=-Math.PI/2+k*2*Math.PI/OS.clusters.length;c.a=a;c.x=Math.cos(a)*R;c.y=Math.sin(a)*R*0.82;});
+OS.clusters.forEach(c=>{
+  const its=OS.items.filter(i=>i.cat===c.id), n=its.length, spread=Math.min(2.6,0.48*n), rings=n>6?[215,305,395]:[225,300];
+  its.forEach((it,j)=>{const t=n===1?0:(j/(n-1)-.5)*spread, a=c.a+t, r=rings[j%rings.length];it.x=c.x+Math.cos(a)*r;it.y=c.y+Math.sin(a)*r;});
+});
+const el=(t,attrs,parent)=>{const e=document.createElementNS(svgNS,t);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||world).appendChild(e);return e;};
+const defs=el("defs",{},svg);
+const pat=el("pattern",{id:"dots",width:28,height:28,patternUnits:"userSpaceOnUse"},defs);el("circle",{cx:2,cy:2,r:1.2,fill:"#fffaf314"},pat);
+el("rect",{x:-3000,y:-3000,width:6000,height:6000,fill:"url(#dots)"});
+const curve=(a,b,bend=.18)=>{const mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dx=b.x-a.x,dy=b.y-a.y;return `M${a.x},${a.y} Q${mx-dy*bend},${my+dx*bend} ${b.x},${b.y}`;};
+const gEdges=el("g",{}),gX=el("g",{}),gNodes=el("g",{});
+const hub={x:0,y:0};
+const edgeEls=[];
+OS.clusters.forEach(c=>{el("path",{d:curve(hub,c,.05),class:"edge c-edge",stroke:c.color,style:`stroke:${c.color}`},gEdges);});
+OS.items.forEach(it=>{const c=cById[it.cat];edgeEls.push({it,e:el("path",{d:curve(c,it,.08),class:"edge"},gEdges)});});
+// cross links (deduplicated)
+const xEdges=[];const seen=new Set();
+OS.items.forEach(it=>(it.rel||[]).forEach(r=>{const o=byId[r];if(!o||o.cat===it.cat)return;const k=[it.id,r].sort().join("|");if(seen.has(k))return;seen.add(k);xEdges.push({a:it.id,b:r,e:el("path",{d:curve(it,o,.22),class:"x-edge"},gX)});}));
+// hub
+const hg=el("g",{class:"node hub",tabindex:0,role:"button","aria-label":"About the operating system"},gNodes);
+el("circle",{cx:0,cy:0,r:118,fill:"none",stroke:"#ED7B7440","stroke-width":1.5},hg);
+el("circle",{cx:0,cy:0,r:98},hg);
+const t1=el("text",{x:0,y:-6,"text-anchor":"middle",class:"brandtext"},hg);t1.textContent="Code With Impact";
+const t2=el("text",{x:0,y:20,"text-anchor":"middle",class:"sub"},hg);t2.textContent="Operating System";
+const t3=el("text",{x:0,y:42,"text-anchor":"middle",class:"sub",style:"font-size:11px;fill:#849ab1"},hg);t3.textContent="Turning data into hope";
+hg.addEventListener("click",()=>openHub());hg.addEventListener("keydown",e=>{if(e.key==="Enter")openHub();});
+// clusters
+const nodeEls={};
+OS.clusters.forEach(c=>{
+  const g=el("g",{class:"node cluster",transform:`translate(${c.x},${c.y})`,tabindex:0,role:"button","aria-label":c.name},gNodes);
+  el("circle",{r:96,class:"outer",stroke:c.color},g);
+  el("circle",{r:80,class:"core",stroke:c.color},g);
+  const ic=el("text",{y:-18,"text-anchor":"middle",class:"icon",style:`font-size:28px;fill:${c.color}`},g);ic.textContent=c.icon;
+  const words=c.name.split(" & ");
+  const n1=el("text",{y:14,"text-anchor":"middle",class:"name",style:"font-size:21px"},g);n1.textContent=words[0]+(words[1]?" &":"");
+  if(words[1]){const n2=el("text",{y:38,"text-anchor":"middle",class:"name",style:"font-size:21px"},g);n2.textContent=words[1];}
+  const sb=el("text",{y:124,"text-anchor":"middle",class:"small"},g);sb.textContent=c.subtitle;
+  g.addEventListener("click",e=>{e.stopPropagation();openCluster(c.id);});g.addEventListener("keydown",e=>{if(e.key==="Enter")openCluster(c.id);});
+  nodeEls[c.id]=g;
+});
+// items
+function wrap(s,max){const w=s.split(" "),out=[];let l="";w.forEach(x=>{if((l+" "+x).trim().length>max&&l){out.push(l);l=x;}else l=(l+" "+x).trim();});out.push(l);return out.slice(0,3);}
+const ST={live:"Live",pilot:"Pilot",concept:"Concept",internal:"Internal"};
+OS.items.forEach(it=>{
+  const c=cById[it.cat];
+  const g=el("g",{class:"node item",transform:`translate(${it.x},${it.y})`,tabindex:0,role:"button","aria-label":it.title},gNodes);
+  el("circle",{r:34,class:"outer",stroke:c.color},g);
+  el("circle",{r:25,class:"core",stroke:c.color},g);
+  el("circle",{r:8,fill:it.status==="live"?"#8CCBB8":it.status==="concept"?"#F4D2C5":it.status==="internal"?"#8197ae":"#F5BD69"},g);
+  const lines=wrap(it.title.replace(/ · .*$/,"").replace(/ “.*$/,""),16);
+  lines.forEach((ln,i)=>{const t=el("text",{y:58+i*22,"text-anchor":"middle",class:"lbl"},g);t.textContent=ln;});
+  const st=el("text",{y:56+lines.length*22,"text-anchor":"middle",class:"st"},g);st.textContent=ST[it.status];
+  g.addEventListener("click",e=>{e.stopPropagation();openItem(it.id);});g.addEventListener("keydown",e=>{if(e.key==="Enter")openItem(it.id);});
+  nodeEls[it.id]=g;
+});
+
+/* ---------- scale strip & pills ---------- */
+const streamlitApps=4;
+const kpis=[[OS.clusters.length,"operating areas"],[OS.items.length,"connected parts"],[9,"team responsibility areas"],["65+","years of quant experience"],[streamlitApps,"Streamlit apps"],[OS.items.filter(i=>i.status==="live").length,"live today"],[xEdges.length,"cross-links"]];
+document.getElementById("scale").innerHTML=kpis.map(([n,l],i)=>`<div class="kpi${i>4?" hide-m":""}"><strong>${n}</strong>${l}</div>`).join("");
+const pills=document.getElementById("pills");
+let filter=null;
+pills.innerHTML=`<button class="pill on" data-c="">All areas</button>`+OS.clusters.map(c=>`<button class="pill" data-c="${c.id}"><b style="background:${c.color}"></b>${c.short}</button>`).join("");
+pills.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const id=b.dataset.c;if(id){openCluster(id);}else{filter=null;closeDrawer();fit();}syncPills();});
+function syncPills(){pills.querySelectorAll(".pill").forEach(p=>p.classList.toggle("on",(p.dataset.c||null)===filter));}
+
+/* ---------- highlighting ---------- */
+function highlight(ids){
+  const set=ids?new Set(ids):null;
+  for(const k in nodeEls)nodeEls[k].classList.toggle("muted",!!set&&!set.has(k));
+  edgeEls.forEach(({it,e})=>{e.classList.toggle("active",!!set&&set.has(it.id)&&set.has(it.cat));});
+}
+function showX(id){xEdges.forEach(x=>x.e.classList.toggle("on",!!id&&(x.a===id||x.b===id)));}
+function activate(id){document.querySelectorAll(".node.active").forEach(n=>n.classList.remove("active"));if(id&&nodeEls[id])nodeEls[id].classList.add("active");}
+
+/* ---------- drawer ---------- */
+const drawer=document.getElementById("drawer"),dhead=document.getElementById("dhead"),dbody=document.getElementById("dbody");
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+function relBtn(id){const o=byId[id]||cById[id];if(!o)return"";const c=cById[o.cat]||o;return `<button data-go="${id}"><b style="background:${c.color}"></b>${esc(o.title||o.name)}</button>`;}
+function openItem(id){
+  const it=byId[id],c=cById[it.cat];filter=null;syncPills();
+  const rels=[...new Set([...(it.rel||[]),...OS.items.filter(o=>(o.rel||[]).includes(id)).map(o=>o.id)])];
+  highlight([id,it.cat,...rels,...rels.map(r=>byId[r]&&byId[r].cat)]);showX(id);activate(id);
+  dhead.innerHTML=`<div class="dtag" style="color:${c.color}">${esc(c.name)}</div><div class="dtitle">${esc(it.title)}</div><div class="dmeta"><span class="chip ${it.status}">${ST[it.status]}</span><span class="chip">Owner: ${esc(it.owner)}</span></div>`;
+  dbody.innerHTML=`<div class="label" style="margin-top:0">What it is</div><p class="dtext">${esc(it.what)}</p>
+   <div class="label">Why it matters</div><div class="callout">${esc(it.why)}</div>
+   <div class="label">Key facts</div><ul class="facts">${it.facts.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
+   ${it.bars?`<div class="label">${esc(it.barsLabel||"Evidence")}</div><div class="bars">${it.bars.map(([l,v,m])=>`<div class="bar"><span>${esc(l)}</span><i><b style="width:${Math.round(v/m*100)}%;background:${c.color}"></b></i><em>${v}</em></div>`).join("")}</div>`:""}
+   ${it.links?`<div class="label">Open</div><div class="dactions">${it.links.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(t)} ↗</a>`).join("")}</div>`:""}
+   <div class="label">Connected to</div><div class="related">${rels.map(relBtn).join("")}</div>`;
+  showDrawer();setHash(id);focusOn(it.x,it.y,1.15,true);
+}
+function openCluster(id){
+  const c=cById[id],its=OS.items.filter(i=>i.cat===id);filter=id;syncPills();
+  highlight([id,...its.map(i=>i.id)]);showX(null);activate(id);
+  dhead.innerHTML=`<div class="dtag" style="color:${c.color}">${c.icon} Operating area</div><div class="dtitle">${esc(c.name)}</div><div class="dmeta">${its.length} parts · ${esc(c.subtitle)}</div>`;
+  dbody.innerHTML=`<p class="dtext">${esc(c.about)}</p><div class="label">Parts in this area</div><div class="list">${its.map(i=>`<button data-go="${i.id}"><strong>${esc(i.title)}</strong> <span class="chip ${i.status}" style="margin-left:4px">${ST[i.status]}</span><span class="why">${esc(i.why)}</span></button>`).join("")}</div>${tourIdx>=0?tourNav():""}`;
+  showDrawer();setHash(id);focusOn(c.x,c.y,.95,true);
+}
+function openHub(){
+  filter=null;syncPills();highlight(null);showX(null);activate(null);
+  dhead.innerHTML=`<div class="dtag">The whole picture</div><div class="dtitle">Code With Impact Operating System</div><div class="dmeta">Updated ${OS.updated}</div>`;
+  dbody.innerHTML=`<p class="dtext">Code With Impact connects skilled professionals in data, AI and digital with healthcare and research teams who need practical support. Behind that one line sits a whole operation. This map shows all of it.</p>
+  <div class="label">The cycle that makes it scale</div><div class="callout">Talented volunteers deliver meaningful projects → projects generate new knowledge → knowledge strengthens our Digital Organisational Memory → technology and AI make it easy to reuse → every new volunteer starts stronger than the last.</div>
+  <div class="label">Eight operating areas</div><div class="list">${OS.clusters.map(c=>`<button data-go="${c.id}"><strong style="color:${c.color}">${c.icon} ${esc(c.name)}</strong><span class="why">${esc(c.subtitle)}</span></button>`).join("")}</div>`;
+  showDrawer();
+}
+function setHash(id){try{history.replaceState(null,"",id?"#"+id:location.pathname+location.search);}catch(e){}}
+function showDrawer(){drawer.classList.add("show");dbody.scrollTop=0;}
+function closeDrawer(){drawer.classList.remove("show");setHash(null);highlight(null);showX(null);activate(null);tourIdx=-1;}
+document.getElementById("dclose").onclick=()=>{filter=null;syncPills();closeDrawer();};
+drawer.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b){const id=b.dataset.go;if(cById[id]){tourIdx=-1;openCluster(id);}else{tourIdx=-1;openItem(id);}return;}const t=e.target.closest("[data-tour]");if(t){step(+t.dataset.tour);}});
+
+/* ---------- tour ---------- */
+let tourIdx=-1;
+function tourNav(){return `<div class="tournav"><button class="btn" data-tour="-1" ${tourIdx===0?"disabled":""}>← Back</button><span style="flex:1;align-self:center;text-align:center;font-size:12px;color:#a5b5c6">Stop ${tourIdx+1} of ${OS.clusters.length}</span><button class="btn primary" data-tour="1">${tourIdx===OS.clusters.length-1?"Finish":"Next →"}</button></div>`;}
+function step(d){tourIdx+=d;if(tourIdx>=OS.clusters.length){tourIdx=-1;openHub();fit();return;}if(tourIdx<0)tourIdx=0;openCluster(OS.clusters[tourIdx].id);}
+document.getElementById("tour").onclick=()=>{tourIdx=0;openCluster(OS.clusters[0].id);};
+
+/* ---------- search ---------- */
+document.getElementById("q").addEventListener("input",e=>{
+  const q=e.target.value.trim().toLowerCase();
+  if(!q){highlight(null);return;}
+  const hits=OS.items.filter(i=>[i.title,i.what,i.why,i.owner,i.where,...i.facts].join(" ").toLowerCase().includes(q)).map(i=>i.id);
+  const cl=OS.clusters.filter(c=>(c.name+" "+c.subtitle).toLowerCase().includes(q)).map(c=>c.id);
+  highlight([...hits,...cl,...hits.map(h=>byId[h].cat)]);
+});
+document.getElementById("q").addEventListener("keydown",e=>{if(e.key==="Enter"){const q=e.target.value.trim().toLowerCase();const h=OS.items.find(i=>[i.title,i.what,...i.facts].join(" ").toLowerCase().includes(q));if(h)openItem(h.id);}});
+
+/* ---------- pan & zoom ---------- */
+let view={x:0,y:0,k:.5},anim=null;
+function apply(){const w=vp.clientWidth,h=vp.clientHeight;world.setAttribute("transform",`translate(${w/2+view.x},${h/2+view.y}) scale(${view.k})`);}
+function fit(){const w=vp.clientWidth,h=vp.clientHeight,mobile=w<730,top=mobile?205:200,bot=mobile?20:30;const b=gNodes.getBBox(),pad=20;const k=Math.min((w-2*pad)/b.width,(h-top-bot)/b.height);const kk=Math.max(mobile?.15:.3,Math.min(1,k));tween({x:-(b.x+b.width/2)*kk,y:-(b.y+b.height/2)*kk+(top-bot)/2,k:kk});}
+function focusOn(x,y,k,offset){const w=vp.clientWidth,mobile=w<730;const dx=drawer.classList.contains("show")&&!mobile?-Math.min(420,w*.3)/2:0;const dy=mobile&&drawer.classList.contains("show")?-vp.clientHeight*.28:0;const kk=Math.min(k,mobile?.8:k);tween({x:-x*kk+dx,y:-y*kk+dy,k:kk});}
+function tween(to){cancelAnimationFrame(anim);const from={...view},t0=performance.now(),D=reduce?0:450;const f=t=>{const p=D?Math.max(0,Math.min(1,(t-t0)/D)):1,e=1-Math.pow(1-p,3);view.x=from.x+(to.x-from.x)*e;view.y=from.y+(to.y-from.y)*e;view.k=from.k+(to.k-from.k)*e;apply();if(p<1)anim=requestAnimationFrame(f);};anim=requestAnimationFrame(f);}
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pts=new Map();let last=null,moved=0;
+vp.addEventListener("pointerdown",e=>{pts.set(e.pointerId,{x:e.clientX,y:e.clientY});moved=0;vp.classList.add("drag");});
+vp.addEventListener("pointermove",e=>{if(!pts.has(e.pointerId))return;const p=pts.get(e.pointerId);
+  if(pts.size===1){view.x+=e.clientX-p.x;view.y+=e.clientY-p.y;moved+=Math.abs(e.clientX-p.x)+Math.abs(e.clientY-p.y);apply();}
+  else if(pts.size===2){const [a,b]=[...pts.values()];const d0=Math.hypot(a.x-b.x,a.y-b.y);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});const [c,d]=[...pts.values()];const d1=Math.hypot(c.x-d.x,c.y-d.y);zoomAt((c.x+d.x)/2,(c.y+d.y)/2,d1/d0);moved+=10;return;}
+  pts.set(e.pointerId,{x:e.clientX,y:e.clientY});});
+const up=e=>{pts.delete(e.pointerId);if(!pts.size)vp.classList.remove("drag");};
+vp.addEventListener("pointerup",up);vp.addEventListener("pointercancel",up);
+vp.addEventListener("click",e=>{if(moved<6&&e.target.closest(".node")==null&&drawer.classList.contains("show")){filter=null;syncPills();closeDrawer();}},true);
+function zoomAt(cx,cy,f){const r=vp.getBoundingClientRect(),w=r.width,h=r.height;const nk=Math.max(.2,Math.min(2.5,view.k*f));const px=cx-r.left-w/2-view.x,py=cy-r.top-h/2-view.y;view.x-=px*(nk/view.k-1);view.y-=py*(nk/view.k-1);view.k=nk;apply();}
+vp.addEventListener("wheel",e=>{e.preventDefault();zoomAt(e.clientX,e.clientY,Math.exp(-e.deltaY*.0015));},{passive:false});
+document.getElementById("zin").onclick=()=>{const r=vp.getBoundingClientRect();zoomAt(r.left+r.width/2,r.top+r.height/2,1.25);};
+document.getElementById("zout").onclick=()=>{const r=vp.getBoundingClientRect();zoomAt(r.left+r.width/2,r.top+r.height/2,.8);};
+document.getElementById("fit").onclick=()=>{filter=null;syncPills();closeDrawer();fit();};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){filter=null;syncPills();closeDrawer();}});
+addEventListener("resize",apply);
+view.k=.4;apply();fit();
+function route(){const h0=decodeURIComponent(location.hash.slice(1));if(byId[h0])openItem(h0);else if(cById[h0])openCluster(h0);}
+setTimeout(route,500);addEventListener("hashchange",route);
+</script>
+<script src="analytics.js" defer></script>
+</body></html>
