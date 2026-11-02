@@ -141,3 +141,6 @@
  .pj-good{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){.pj [role=tab],.pj-progress i{transition:none}}
+
+/* "You are here": the header's Partner With Us button marks this page, like the active menu link elsewhere. */
+.site-header a.btn.primary[aria-current=page]{background:#102033;border-color:#102033;color:#FFFAF3!important;box-shadow:0 0 0 3px #FFFAF3,0 0 0 5px #ED7B74}
