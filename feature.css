@@ -23,3 +23,8 @@
 .partner-banner .txt span{color:#2a3546}
 .partner-banner .actions{display:flex;gap:10px;flex-wrap:wrap}
 @media(max-width:820px){.partner-banner{flex-direction:column;align-items:flex-start;gap:14px}.partner-banner .thumb{width:100%}.partner-banner .txt{flex:none}}
+
+/* Homepage "What We Do": link to the skills map. */
+.expertise-link{margin:26px 0 0;text-align:center;font-size:17px}
+.expertise-link a{color:#A8443C;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.expertise-link a:hover{color:#102033}
