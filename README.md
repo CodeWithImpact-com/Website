@@ -1,4 +1,4 @@
-# Code With Impact website: Claude_12
+# Code With Impact website: version_12
 
 Static website with Learn AI, Learn ML and the ML Methods Guide. This is a local development version; it has not been published by this review.
 
@@ -13,7 +13,7 @@ With the workspace's local server running, open:
 
 Alternatively, open the HTML files directly. Lessons run in the browser; external reading links need an internet connection.
 
-## What changed in Claude_12: one colour system
+## What changed in version_12: one colour system
 
 A new stylesheet, `colours.css`, loads last on every page (after `typography.css`). It keeps the brand colours and sets one job for each:
 
@@ -43,7 +43,7 @@ A new stylesheet, `colours.css`, loads last on every page (after `typography.css
 - New check: `learn-ml/tests/colours.test.cjs`. 88 checks pass.
 - To undo the colour changes, remove the `colours.css` line from the pages, or empty the file.
 
-## What changed in Claude_11
+## What changed in version_11
 
 **Shared layout and definitions update**
 - Every HTML page loads `typography.css` last. Shared text roles now control font families, body line spacing, responsive page/section/lesson headings, card titles, buttons, labels, code and prose links. Chart labels retain their compact component styles.
@@ -69,7 +69,7 @@ A new stylesheet, `colours.css`, loads last on every page (after `typography.css
 - New glossary page (`glossary.html`) with a search box, built from the same list, linked from both landing pages and every lesson.
 - `sitemap.xml` and `robots.txt` so search engines can find every lesson. After publishing, submit https://codewithimpact.com/sitemap.xml in Google Search Console.
 
-## What changed in Claude_10
+## What changed in version_10
 - Privacy page: Code With Impact is described as a volunteer-led initiative (not yet a company); the 12-month retention period is confirmed.
 - The project notebook is tested and runs end to end; the site now says so and explains what its results teach (performance can drift on later days).
 - Learn ML invites people to ask questions and collaborate (landing page, project page and every lesson), instead of an FAQ.
